@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ ...}: {
   imports = [
     ./actual-budget
     ./immich-docker

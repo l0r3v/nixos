@@ -1,6 +1,6 @@
 {
   pkgs,
- themeName ? "gruvbox",
+  themeName ? "gruvbox",
   ...
 }: let
   inputImage = ../config/wallpaper/nix-transp.png;

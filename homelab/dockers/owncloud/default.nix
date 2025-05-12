@@ -2,13 +2,11 @@
 {
   pkgs,
   lib,
-config,
+  config,
   ...
-}:
-let
+}: let
   version = "10.15";
-  in
-{
+in {
   # Runtime
   virtualisation.docker = {
     enable = true;
@@ -23,16 +21,16 @@ let
     "dockers/owncloud/trusted_domain" = {};
   };
   sops.templates."owncloud-docker.env".content = ''
-OWNCLOUD_ADMIN_PASS=${config.sops.placeholder."dockers/owncloud/admin_pass"}
-OWNCLOUD_ADMIN_USERNAME=${config.sops.placeholder."dockers/owncloud/admin_user"}
-MYSQL_PASSWORD=${config.sops.placeholder."dockers/owncloud/password"}
-MYSQL_ROOT_PASSWORD=${config.sops.placeholder."dockers/owncloud/password"}
-OWNCLOUD_DB_PASSWORD=${config.sops.placeholder."dockers/owncloud/password"}
+    OWNCLOUD_ADMIN_PASS=${config.sops.placeholder."dockers/owncloud/admin_pass"}
+    OWNCLOUD_ADMIN_USERNAME=${config.sops.placeholder."dockers/owncloud/admin_user"}
+    MYSQL_PASSWORD=${config.sops.placeholder."dockers/owncloud/password"}
+    MYSQL_ROOT_PASSWORD=${config.sops.placeholder."dockers/owncloud/password"}
+    OWNCLOUD_DB_PASSWORD=${config.sops.placeholder."dockers/owncloud/password"}
 
-OWNCLOUD_TRUSTED_DOMAINS=${config.sops.placeholder."dockers/owncloud/trusted_domain"}
-OWNCLOUD_VERSION=${version}
-OWNCLOUD_DOMAIN=localhost:8080
-HTTP_PORT=2424
+    OWNCLOUD_TRUSTED_DOMAINS=${config.sops.placeholder."dockers/owncloud/trusted_domain"}
+    OWNCLOUD_VERSION=${version}
+    OWNCLOUD_DOMAIN=localhost:8080
+    HTTP_PORT=2424
   '';
   # Containers
   virtualisation.oci-containers.containers."owncloud_mariadb" = {
@@ -198,4 +196,3 @@ HTTP_PORT=2424
     wantedBy = ["multi-user.target"];
   };
 }
-

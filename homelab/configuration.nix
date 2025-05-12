@@ -134,30 +134,30 @@ in {
     };
   };
   programs.zsh = {
-	    enable = true;
-	    enableCompletion = true;
-	    autosuggestions.enable = true;
-	    syntaxHighlighting.enable = true;
-	    promptInit = ''
-	      if [[ -r "${pkgs.zsh-powerlevel10k}/p10k-instant-prompt-finalize.zsh" ]]; then
-	        source "\${pkgs.zsh-powerlevel10k}/p10k-instant-prompt-finalize.zsh"
-	      fi
-	      eval "$(zoxide init --cmd cd zsh)"
-	      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-	      [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-	    '';
-	    ohMyZsh = {
-	      enable = true;
-	      plugins = ["git" "eza" "fzf" "safe-paste" "ssh" "ssh-agent" "zoxide"];
-	    };
-	    shellAliases = {
-	      ll = "eza -l";
-	      lla = "eza -la";
-	      ett = "eza --tree";
-	      update = "sudo nixos-rebuild switch --flake /home/hspasqui/nixos-homelab/#";
-	    };
-	    histSize = 10000;
-	  };
+    enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+    promptInit = ''
+      if [[ -r "${pkgs.zsh-powerlevel10k}/p10k-instant-prompt-finalize.zsh" ]]; then
+        source "\${pkgs.zsh-powerlevel10k}/p10k-instant-prompt-finalize.zsh"
+      fi
+      eval "$(zoxide init --cmd cd zsh)"
+      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+    '';
+    ohMyZsh = {
+      enable = true;
+      plugins = ["git" "eza" "fzf" "safe-paste" "ssh" "ssh-agent" "zoxide"];
+    };
+    shellAliases = {
+      ll = "eza -l";
+      lla = "eza -la";
+      ett = "eza --tree";
+      update = "sudo nixos-rebuild switch --flake /home/hspasqui/nixos-homelab/#";
+    };
+    histSize = 10000;
+  };
 
   services.openssh = {
     enable = true;
@@ -178,7 +178,7 @@ in {
   networking.firewall.allowedTCPPorts = [22 8123 8080 8031 8083 2443 44];
   networking.firewall.allowedUDPPorts = [8123 8031];
 
-    nix.settings = {
+  nix.settings = {
     experimental-features = ["nix-command" "flakes"];
     substituters = [
       "https://nix-community.cachix.org"

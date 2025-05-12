@@ -2,7 +2,7 @@
 {
   pkgs,
   lib,
-config,
+  config,
   ...
 }: let
   version = "2.2.7";
@@ -19,8 +19,8 @@ in {
     "dockers/miniflux/db_password" = {};
   };
   sops.templates."miniflux-docker.env".content = ''
-  DATABASE_URL=${config.sops.placeholder."dockers/miniflux/db_url"}
-  POSTGRES_PASSWORD=${config.sops.placeholder."dockers/miniflux/db_password"}
+    DATABASE_URL=${config.sops.placeholder."dockers/miniflux/db_url"}
+    POSTGRES_PASSWORD=${config.sops.placeholder."dockers/miniflux/db_password"}
   '';
   # Containers
   virtualisation.oci-containers.containers."miniflux" = {
@@ -143,4 +143,3 @@ in {
     wantedBy = ["multi-user.target"];
   };
 }
-

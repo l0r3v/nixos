@@ -19,7 +19,7 @@
     shellAliases = {
       ll = "ls -l";
       update = "sudo nixos-rebuild switch --flake /home/lorev/nixos/# |& nom";
-      updateServer = "sudo nixos-rebuild switch --flake /home/lorev/nixos/#homelab --target-host root@homelab |& noem";
+      updateServer = "sudo nixos-rebuild switch --flake /home/lorev/nixos/#homelab --target-host root@homelab |& nom";
     };
     history.size = 10000;
   };

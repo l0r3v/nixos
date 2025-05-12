@@ -143,8 +143,8 @@
     NIXOS_OZONE_WL = "1";
     #my sessionVariables
     EDITOR = "nvim";
-    NH_FLAKE = "/home/lorev/nixos-config";
-    FLAKE = "/home/lorev/nixos-config";
+    NH_FLAKE = "/home/lorev/nixos";
+    FLAKE = "/home/lorev/nixos";
   };
 
   programs.virt-manager.enable = true;
