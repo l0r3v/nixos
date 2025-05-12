@@ -83,6 +83,15 @@ in {
   };
 
   programs = {
+    keychain = {
+      enable = true;
+      enableZshIntegration = true;
+      keys = [
+        "~/.ssh/id_ed25519"
+      ];
+    };
+
+
     btop.enable = true;
     direnv = {
       enable = true;
