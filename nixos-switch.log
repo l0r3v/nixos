@@ -1,0 +1,35 @@
+warning: Git tree '/home/lorev/nixos-config' is dirty
+these 8 derivations will be built:
+  /nix/store/7y5pdj9dac271qsa65y8g9ca4r8rg68l-home-manager-path.drv
+  /nix/store/8fzl5a4zvzhy30451clhkgr4h53bbndi-start.drv
+  /nix/store/lxirnad7x55fb4anyql9qpxr13399c3b-hm_hyprhyprland.conf.drv
+  /nix/store/digqv6690syypcjr8c0lnf5g7d8dwlwd-activation-script.drv
+  /nix/store/2c40m0s12jp6b3sz3s2xd0saqik4zg2c-tray.target.drv
+  /nix/store/n9q67y5dwg118wsxr3miq0kjf0rvz67b-hyprland-session.target.drv
+  /nix/store/zhy0vhdjmryc5v3qf93iq4lqdvq2v9pk-home-manager-files.drv
+  /nix/store/14lv1qx86a4dx5zj31q5ixr2r41c4ldr-home-manager-generation.drv
+building '/nix/store/7y5pdj9dac271qsa65y8g9ca4r8rg68l-home-manager-path.drv'...
+building '/nix/store/n9q67y5dwg118wsxr3miq0kjf0rvz67b-hyprland-session.target.drv'...
+building '/nix/store/2c40m0s12jp6b3sz3s2xd0saqik4zg2c-tray.target.drv'...
+building '/nix/store/8fzl5a4zvzhy30451clhkgr4h53bbndi-start.drv'...
+building '/nix/store/lxirnad7x55fb4anyql9qpxr13399c3b-hm_hyprhyprland.conf.drv'...
+building '/nix/store/digqv6690syypcjr8c0lnf5g7d8dwlwd-activation-script.drv'...
+building '/nix/store/zhy0vhdjmryc5v3qf93iq4lqdvq2v9pk-home-manager-files.drv'...
+building '/nix/store/14lv1qx86a4dx5zj31q5ixr2r41c4ldr-home-manager-generation.drv'...
+Starting Home Manager activation
+Activating checkFilesChanged
+Activating checkLinkTargets
+Activating writeBoundary
+Activating installPackages
+replacing old 'home-manager-path'
+installing 'home-manager-path'
+building '/nix/store/51hdv5k58vnn0rj9rb84sfip4wvi5ql3-user-environment.drv'...
+Activating linkGeneration
+Cleaning up orphan links from /home/lorev
+Path '/home/lorev/.config/hypr/start.sh' does not link into a Home Manager generation. Skipping delete.
+Creating profile generation 119
+Creating home file links in /home/lorev
+Activating onFilesChange
+ok
+Activating reloadSystemd
+warning: Git tree '/home/lorev/nixos-config' is dirty

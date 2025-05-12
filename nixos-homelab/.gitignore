@@ -1,0 +1,4 @@
+dockers/immich-docker/compose-this.yml
+*/*/*.yml
+*/*/.env
+vm-override.nix
