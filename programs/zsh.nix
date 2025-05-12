@@ -18,8 +18,8 @@
     };
     shellAliases = {
       ll = "ls -l";
-      update = "sudo nixos-rebuild switch --flake /home/lorev/nixos-config/# && nh home switch";
-      updateServer = "sudo nixos-rebuild switch --flake /home/lorev/nixos-config/#homelab --target-host root@homelab --verbose";
+      update = "sudo nixos-rebuild switch --flake /home/lorev/nixos/# |& nom";
+      updateServer = "sudo nixos-rebuild switch --flake /home/lorev/nixos/#homelab --target-host root@homelab |& noem";
     };
     history.size = 10000;
   };
