@@ -86,14 +86,25 @@
         driver = pkgs.libfprint-2-tod1-goodix;
       };
     };
-    # Enable the GNOME desktop environment
     xserver = {
       enable = true;
       displayManager.gdm = {
         enable = true;
-        banner = ''Bentornato Lorenzo! '';
       };
-      desktopManager.gnome.enable = true;
+      #displayManager.ly = {
+      #  enable = false;
+      #  settings = {
+      #    animation = "matrix";
+      #    animation_timeout_sec = 10;
+      #    asterisk = "\#";
+      #    auth_fails = 3;
+      #    bigclock = "en";
+      #    clear_password = true;
+      #    clock = "%a %d %b %R";
+      #    lang = "it";
+      #  };
+      #};
+      desktopManager.gnome.enable = false;
       xkb = {
         layout = "it";
         variant = "";
