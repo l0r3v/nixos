@@ -8,6 +8,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     nixvim = {
       url = "github:Iorev/nixvim-config";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,6 +61,7 @@
           inputs.sops-nix.nixosModules.sops
           inputs.stylix.nixosModules.stylix
           inputs.home-manager.nixosModules.home-manager
+          inputs.nixos-hardware.nixosModules.dell-xps-15-9500-nvidia
           {
             home-manager = {
               useGlobalPkgs = true;
