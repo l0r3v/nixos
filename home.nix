@@ -78,6 +78,7 @@ in {
       pkgs.vorta
       pkgs.gcr
       pkgs.seahorse
+      pkgs.nix-output-monitor
     ]; #END OF PACKAGES
   };
 

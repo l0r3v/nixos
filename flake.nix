@@ -44,10 +44,6 @@
       url = "github:kamadorueda/alejandra";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    homelab = {
-      url = "path:/home/lorev/nixos-homelab";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: let
@@ -80,7 +76,7 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs themeName;};
         modules = [
-          inputs.homelab.nixosModules.homelab
+          ./homelab/configuration.nix
           inputs.sops-nix.nixosModules.sops
           inputs.stylix.nixosModules.stylix
         ];
