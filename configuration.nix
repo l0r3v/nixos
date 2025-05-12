@@ -104,7 +104,7 @@
       #    lang = "it";
       #  };
       #};
-      desktopManager.gnome.enable = false;
+      desktopManager.gnome.enable = true;
       xkb = {
         layout = "it";
         variant = "";
