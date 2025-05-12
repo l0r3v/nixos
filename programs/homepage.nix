@@ -175,10 +175,10 @@
                 type = "homeassistant";
                 url = "{{HOMEPAGE_VAR_HA_URL}}";
                 key = "{{HOMEPAGE_VAR_HA_KEY}}";
-                custom = {
-                  template = "{{ states.switch|selectattr('state','equalto','on')|list|length }}";
-                  label = "switches on";
-                };
+                #custom = {
+                #  template = "{{ states.switch|selectattr('state','equalto','on')|list|length }}";
+                #  label = "switches on";
+                #};
               };
             };
           }
