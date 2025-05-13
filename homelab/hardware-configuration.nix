@@ -13,20 +13,20 @@
 
   boot = {
     initrd.availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_usb_sdmmc"];
-  initrd.kernelModules = [];
-  kernelModules = ["kvm-intel"];
-  extraModulePackages = [];
-  };    
-  fileSystems={
+    initrd.kernelModules = [];
+    kernelModules = ["kvm-intel"];
+    extraModulePackages = [];
+  };
+  fileSystems = {
     "/" = {
-    device = "/dev/disk/by-uuid/8cb9d864-19cb-4d8a-8ffa-007de09d4530";
-    fsType = "ext4";
-  };
-  "/home/hspasqui/archive" = {
-    device = "/dev/disk/by-uuid/bbade891-5006-422b-a2ed-e9df5c87a065";
-    fsType = "ext4";
-    options = ["nofail"];
-  };
+      device = "/dev/disk/by-uuid/8cb9d864-19cb-4d8a-8ffa-007de09d4530";
+      fsType = "ext4";
+    };
+    "/home/hspasqui/archive" = {
+      device = "/dev/disk/by-uuid/bbade891-5006-422b-a2ed-e9df5c87a065";
+      fsType = "ext4";
+      options = ["nofail"];
+    };
   };
 
   swapDevices = [];

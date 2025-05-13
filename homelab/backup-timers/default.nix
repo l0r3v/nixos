@@ -1,4 +1,4 @@
-{ ...}: {
+{...}: {
   imports = [
     ./gitea.nix
     ./immich.nix

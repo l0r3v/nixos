@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   haosDisk = "/home/hspasqui/archive/VMs/haos_ova-15.1.qcow2"; # metti qui il tuo path .qcow2 se già esiste
 in {
   environment.systemPackages = with pkgs; [qemu OVMF];

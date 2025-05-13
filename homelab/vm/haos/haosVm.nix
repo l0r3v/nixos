@@ -1,7 +1,4 @@
-{
-  inputs,
-  ...
-}: let
+{inputs, ...}: let
   nixvirt = inputs.nixvirt;
 in {
   virtualisation = {
