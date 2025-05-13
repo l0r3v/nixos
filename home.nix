@@ -80,6 +80,10 @@ in {
       pkgs.seahorse
       pkgs.nix-output-monitor
       pkgs.lazygit
+      (pkgs.octave.withPackages (opkgs:
+        with opkgs; [
+          symbolic
+        ]))
     ]; #END OF PACKAGES
   };
 
