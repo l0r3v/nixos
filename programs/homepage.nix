@@ -13,6 +13,7 @@
     "homepage/uptimekuma/url" = {};
     "homepage/uptimekuma/slug" = {};
     "homepage/borg/key" = {};
+    "homepage/settings/allowed_hosts" = {};
   };
   sops.templates."homepage-dashboard.env".content = ''
     HOMEPAGE_VAR_TAILSCALE_KEY=${config.sops.placeholder."homepage/tailscale/key"}
@@ -28,6 +29,7 @@
     HOMEPAGE_VAR_UPTIMEKUMA_URL=${config.sops.placeholder."homepage/uptimekuma/url"}
     HOMEPAGE_VAR_UPTIMEKUMA_SLUG=${config.sops.placeholder."homepage/uptimekuma/slug"}
     HOMEPAGE_VAR_BORG_KEY=${config.sops.placeholder."homepage/borg/key"}
+    HOMEPAGE_ALLOWED_HOSTS=${config.sops.placeholder."homepage/settings/allowed_hosts"}
   '';
 
   services.homepage-dashboard = {
