@@ -1,4 +1,4 @@
-{ ...}: {
+{...}: {
   imports = [
     ./nnn.nix
     ./zsh.nix
@@ -10,5 +10,6 @@
     ./texlive.nix
     ./hyprland.nix
     ./alacritty.nix
+    ./mpv.nix
   ];
 }
