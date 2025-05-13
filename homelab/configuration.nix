@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
   inputs,
   themeName ? "gruvbox",
   ...
@@ -18,6 +17,11 @@ in {
     ./backup-timers
     ./sops.nix
   ];
+
+  hardware = {
+    graphics.enable = true;
+    nvidia.modesetting.enable = true;
+  };
 
   stylix = {
     enable = true;
