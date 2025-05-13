@@ -20,6 +20,7 @@
       ll = "ls -l";
       update = "sudo nixos-rebuild switch --flake /home/lorev/nixos/# |& nom";
       updateServer = "sudo nixos-rebuild switch --flake /home/lorev/nixos/#homelab --target-host root@homelab |& nom";
+      nssh = "nvim oil-ssh://hspasqui@homelab/~";
     };
     history.size = 10000;
   };
