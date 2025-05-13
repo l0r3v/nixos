@@ -79,6 +79,7 @@ in {
       pkgs.gcr
       pkgs.seahorse
       pkgs.nix-output-monitor
+      pkgs.lazygit
     ]; #END OF PACKAGES
   };
 
@@ -90,7 +91,6 @@ in {
         "~/.ssh/id_ed25519"
       ];
     };
-
 
     btop.enable = true;
     direnv = {
