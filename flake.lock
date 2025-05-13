@@ -916,11 +916,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1747130044,
-        "narHash": "sha256-eozOSSHzXdno/IIcBgUBlrXlnyuv5nzh5Yo2Fnly5xo=",
+        "lastModified": 1747136315,
+        "narHash": "sha256-xIBYpFpzY3nsG1EXm5ye6tlVCyEEBjkqzBRg1DF5icM=",
         "ref": "refs/heads/main",
-        "rev": "8b2398bbc40f6f5ecb941d9fbd3b1153fb248abc",
-        "revCount": 75,
+        "rev": "cb2f98ebefac3f4ece54b1fc00e0d9de9ac048ac",
+        "revCount": 78,
         "type": "git",
         "url": "file:///home/lorev/nixvim"
       },
@@ -1360,11 +1360,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744850791,
-        "narHash": "sha256-kYxF8k8cBuGO4REmy8/FZk4XH8QLYcM5Q/RmfwKfmKo=",
+        "lastModified": 1747133283,
+        "narHash": "sha256-+d4SzKtswqdwn8lZPOPlSYBTD1QPw7j6ynal97jEb68=",
         "owner": "Iorev",
         "repo": "university-setup",
-        "rev": "e06a9b1db2a788961a69ad2c8e7d7d5a29c65e39",
+        "rev": "be7395f139eded7c894f2f65c281e1a2412a7947",
         "type": "github"
       },
       "original": {
