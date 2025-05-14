@@ -9,9 +9,9 @@
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     settings = {
       general = {
-        gaps_in = 1;
-        gaps_out = 2;
-        border_size = 1;
+        gaps_in = 2;
+        gaps_out = 4;
+        border_size = 2;
         #"col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         #"col.inactive_border" = "rgba(595959aa)";
         layout = "dwindle";
@@ -24,7 +24,6 @@
         "gammastep-indicator -l 45.068371:7.683070"
         "hacompanion"
         "owncloud"
-        "bitwarden"
       ];
       monitor = [
         "eDP-1,preferred,auto,1.25"
@@ -61,7 +60,6 @@
 
       input = {
         kb_layout = "it";
-        kb_options = "caps:swapescape";
       };
       gestures = {
         workspace_swipe = true;
@@ -76,7 +74,7 @@
       "$mainMod" = "SUPER";
       "$terminal" = "alacritty";
       "$menu" = "rofi -show drun";
-      "$browser" = "floorp";
+      "$browser" = "qutebrowser";
       bind = [
         "$mainMod, Return, exec, $terminal"
         "$mainMod, Q, killactive"
@@ -143,6 +141,9 @@
         #"Control_L&Alt_L, o, exec, $browser -new-tab $(yq .onedrive ~/current_course/info.yaml | tr -d '\"')"
         "Control_L&Alt_L, x, exec, $browser -new-tab $(yq .extra ~/current_course/info.yaml | tr -d '\"')"
         "Control_L&Alt_L, g, exec, $browser -new-tab $(yq .goodnotes ~/current_course/info.yaml | tr -d '\"')"
+
+        #Bitwarden rofi
+        "Control_L&SHIFT, l, exec,rofi-rbw --no-help --keybindings Ctrl+1:type:username:tab:password,Ctrl+2:type:username,Ctrl+3:type:password,Ctrl+4:type:totp"
       ];
       bindel = [
         ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
