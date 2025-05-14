@@ -86,6 +86,7 @@
         driver = pkgs.libfprint-2-tod1-goodix;
       };
     };
+    preload.enable = true;
     xserver = {
       enable = true;
       displayManager.gdm = {
@@ -222,9 +223,8 @@
   #Install Steam
   programs.steam.enable = true;
 
-  # Open ports in the firewall.
   services.kanata = {
-    enable = false;
+    enable = true;
     keyboards = {
       internalKeyboard = {
         devices = [

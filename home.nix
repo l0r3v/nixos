@@ -80,10 +80,14 @@ in {
       pkgs.seahorse
       pkgs.nix-output-monitor
       pkgs.lazygit
+      pkgs.pinentry
+      pkgs.rbw
+      pkgs.rofi-rbw-wayland
       (pkgs.octave.withPackages (opkgs:
         with opkgs; [
           symbolic
         ]))
+      pkgs.libqalculate
     ]; #END OF PACKAGES
   };
 

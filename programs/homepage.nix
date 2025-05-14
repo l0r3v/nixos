@@ -59,8 +59,6 @@
           disk = ["/" "/home/lorev/archive/"];
           units = "metric"; # o "imperial"
         };
-        resources = {
-        };
       }
       {
         search = {

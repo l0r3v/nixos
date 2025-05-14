@@ -10,6 +10,8 @@
     ./texlive.nix
     ./hyprland.nix
     ./alacritty.nix
+    ./qutebrowser.nix
     ./mpv.nix
+    ./rbw.nix
   ];
 }
