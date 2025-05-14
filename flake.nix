@@ -66,6 +66,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
+              backupFileExtension = "backup";
               users.lorev = import ./home.nix;
               extraSpecialArgs = {
                 inherit system inputs themeName;
