@@ -3,7 +3,11 @@
   inputs,
   ...
 }: {
-  programs.floorp = {
+  stylix.targets.firefox = {
+    profileNames = ["lorev"];
+    colorTheme.enable = true;
+  };
+  programs.firefox = {
     enable = true;
     profiles.lorev = {
       search = {
