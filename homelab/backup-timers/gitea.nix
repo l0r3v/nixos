@@ -52,7 +52,7 @@
       echo copying gitea file from container
       docker cp "$CONTAINER_NAME:$FILE_PATH" "$LOCAL_DIR/gitea-dump.zip"
       echo "✅ File copiato: $FILENAME → $LOCAL_DIR"
-
+      
       # Elimina il file dal container
       docker exec "$CONTAINER_NAME" rm "$FILE_PATH"
       if [ $? -eq 0 ]; then
@@ -67,11 +67,11 @@
       rm -f "$LOCAL_DIR/gitea-dump.zip"
       ### Append to remote Borg repository
       echo appending to remote repo
-      borg create $REMOTE_HOST$REMOTE_BACKUP_PATH::{now} "$LOCAL_DIR/gitea-dump.zip" || STATUS=$?
-      echo pruning remote repo
-      borg prune --keep-daily=7 --keep-weekly=4 --keep-monthly=4 --keep-yearly=2 $REMOTE_HOST$REMOTE_BACKUP_PATH
-      echo compacting remote repo
-      borg compact $REMOTE_HOST$REMOTE_BACKUP_PATH
+      borg create $REMOTE_HOST$REMOTE_BACKUP_PATH::{now} "$LOCAL_DIR" || STATUS=$?
+      # echo pruning remote repo
+      # borg prune --keep-daily=7 --keep-weekly=4 --keep-monthly=4 --keep-yearly=2 $REMOTE_HOST$REMOTE_BACKUP_PATH
+      # echo compacting remote repo
+      # borg compact $REMOTE_HOST$REMOTE_BACKUP_PATH
 
       end_time=$(date +%s)
       duration=$((end_time -start_time))

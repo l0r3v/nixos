@@ -38,10 +38,10 @@
       echo append to borg remote
       ### Append to remote Borg repository
       borg create $REMOTE_HOST$REMOTE_BACKUP_PATH::{now} "$UPLOAD_LOCATION" --exclude "$UPLOAD_LOCATION"/thumbs/ --exclude "$UPLOAD_LOCATION"/encoded-video/ || STATUS=$?
-      echo pruning remote
-      borg prune --keep-daily=3 --keep-weekly=4 --keep-monthly=6 --keep-yearly=1 $REMOTE_HOST$REMOTE_BACKUP_PATH
-      echo compacting remote
-      borg compact $REMOTE_HOST$REMOTE_BACKUP_PATH
+      #echo pruning remote
+      #borg prune --keep-daily=3 --keep-weekly=4 --keep-monthly=6 --keep-yearly=1 $REMOTE_HOST$REMOTE_BACKUP_PATH
+      #echo compacting remote
+      #borg compact $REMOTE_HOST$REMOTE_BACKUP_PATH
 
       end_time=$(date +%s)
       duration=$((end_time -start_time))

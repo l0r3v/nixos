@@ -45,10 +45,10 @@
       ### Append to remote Borg repository
       echo appending to remote repo
       borg create $REMOTE_HOST$REMOTE_BACKUP_PATH::{now} "$FILES_DIR" "$DB_BACKUP_PATH" || STATUS=$?
-      echo pruning remote repo
-      borg prune --keep-daily=2 --keep-weekly=4 --keep-monthly=3 --keep-yearly=1 $REMOTE_HOST$REMOTE_BACKUP_PATH
-      echo compacting remote repo
-      borg compact $REMOTE_HOST$REMOTE_BACKUP_PATH
+      #echo pruning remote repo
+      #borg prune --keep-daily=2 --keep-weekly=4 --keep-monthly=3 --keep-yearly=1 $REMOTE_HOST$REMOTE_BACKUP_PATH
+      #echo compacting remote repo
+      #borg compact $REMOTE_HOST$REMOTE_BACKUP_PATH
 
       end_time=$(date +%s)
       duration=$((end_time -start_time))
