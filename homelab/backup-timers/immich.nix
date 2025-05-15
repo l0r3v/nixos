@@ -12,13 +12,13 @@
   };
   sops.secrets."borgbase/immich/remote_host" = {};
   systemd.services."backup-immich" = {
-    path = with pkgs; [borgbackup curl docker];
+    path = with pkgs; [borgbackup curl util-linux postgresql];
     script = ''
         #!/bin/sh
 
       # Paths
-      UPLOAD_LOCATION="/home/hspasqui/archive/immich/uploads"
-      BACKUP_PATH="/home/hspasqui/archive/backup/immich"
+      UPLOAD_LOCATION="/srv/archive/immich/uploads"
+      BACKUP_PATH="/srv/archive/backup/immich"
       REMOTE_HOST="$(cat ${config.sops.secrets."borgbase/immich/remote_host".path})"
       REMOTE_BACKUP_PATH="./repo"
       export BORG_PASSCOMMAND="cat /home/hspasqui/.borg_passphrase"
@@ -29,15 +29,17 @@
       #curl -s -X POST https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage -d chat_id=-1002509650347 -d text="#immich: #startedBackup"
       start_time=$(date +%s)
       # Backup Immich database
-      echo stopping immich container
-      docker stop immich_server
+      echo stopping immich slice
+      systemctl stop immich-server.service immich-machine-learning.service
       echo started immich database dump
-      docker exec -t immich_postgres pg_dumpall --clean --if-exists --username=postgres > "$UPLOAD_LOCATION"/database-backup/immich-database.sql
-      echo finished immich database dump, restarting immich container
-      docker start immich_server
+      #docker exec -t immich_postgres pg_dumpall --clean --if-exists --username=postgres > "$UPLOAD_LOCATION"/database-backup/immich-database.sql
+      runuser -u postgres -- pg_dump --clean --if-exists --username=postgres immich > "$UPLOAD_LOCATION/immich-database.sql"
+      echo finished immich database dump, restarting immich service
+      systemctl start immich-server.service immich-machine-learning.service
+      #docker start immich_server
       echo append to borg remote
       ### Append to remote Borg repository
-      borg create $REMOTE_HOST$REMOTE_BACKUP_PATH::{now} "$UPLOAD_LOCATION" --exclude "$UPLOAD_LOCATION"/thumbs/ --exclude "$UPLOAD_LOCATION"/encoded-video/ || STATUS=$?
+      borg create $REMOTE_HOST$REMOTE_BACKUP_PATH::{now} /srv/archive/./immich/uploads --exclude "$UPLOAD_LOCATION/thumbs" --exclude "$UPLOAD_LOCATION/encoded-video" || STATUS=$?
       #echo pruning remote
       #borg prune --keep-daily=3 --keep-weekly=4 --keep-monthly=6 --keep-yearly=1 $REMOTE_HOST$REMOTE_BACKUP_PATH
       #echo compacting remote

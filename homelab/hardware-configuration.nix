@@ -22,7 +22,7 @@
       device = "/dev/disk/by-uuid/8cb9d864-19cb-4d8a-8ffa-007de09d4530";
       fsType = "ext4";
     };
-    "/home/hspasqui/archive" = {
+    "/srv/archive" = {
       device = "/dev/disk/by-uuid/bbade891-5006-422b-a2ed-e9df5c87a065";
       fsType = "ext4";
       options = ["nofail"];

@@ -17,8 +17,8 @@
     path = with pkgs; [borgbackup curl docker unzip];
     script = ''
            #!/bin/sh
-      DB_BACKUP_PATH="/home/hspasqui/archive/owncloud/owncloudDbBackup.bak"
-      FILES_DIR="/home/hspasqui/archive/owncloud/files"
+      DB_BACKUP_PATH="/srv/archive/owncloud/owncloudDbBackup.bak"
+      FILES_DIR="/srv/archive/owncloud/files"
       export BORG_PASSCOMMAND="cat /home/hspasqui/.borg_passphrase"
       export BORG_RSH="ssh -i /home/hspasqui/.ssh/backup-ssh -o StrictHostKeyChecking=no"
       # Paths
@@ -34,8 +34,10 @@
       ### Backup owncloud
       echo starting maintenance mode
       docker exec -u www-data owncloud_server bash -c "occ maintenance:mode --on"
-      echo removing old backup file
-      rm $DB_BACKUP_PATH
+      if [ -f $DB_BACKUP_PATH ]; then
+        echo removing old backup file
+        rm $DB_BACKUP_PATH
+      fi
       echo dumping database
       docker exec owncloud_mariadb mysqldump --single-transaction -h localhost -u owncloud --password=$DB_PASSWORD owncloud > "$DB_BACKUP_PATH"
       # stop maintenance mode
@@ -44,7 +46,7 @@
 
       ### Append to remote Borg repository
       echo appending to remote repo
-      borg create $REMOTE_HOST$REMOTE_BACKUP_PATH::{now} "$FILES_DIR" "$DB_BACKUP_PATH" || STATUS=$?
+      borg create $REMOTE_HOST$REMOTE_BACKUP_PATH::{now} /srv/archive/./owncloud/ --exclude "/srv/archive/owncloud/redis" --exclude "/srv/archive/owncloud/mysql" || STATUS=$?
       #echo pruning remote repo
       #borg prune --keep-daily=2 --keep-weekly=4 --keep-monthly=3 --keep-yearly=1 $REMOTE_HOST$REMOTE_BACKUP_PATH
       #echo compacting remote repo

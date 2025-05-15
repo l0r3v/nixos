@@ -20,8 +20,8 @@ in {
   sops.templates."immich-docker.env".content = ''
           DB_PASSWORD=${config.sops.placeholder."dockers/immich/db_password"}
           POSTGRES_PASSWORD=${config.sops.placeholder."dockers/immich/db_password"}
-    UPLOAD_LOCATION=/home/hspasqui/archive/immich/uploads
-    DB_DATA_LOCATION=/home/hspasqui/archive/immich/postgres
+    UPLOAD_LOCATION=/srv/archive/immich/uploads
+    DB_DATA_LOCATION=/srv/archive/immich/postgres
 
     IMMICH_VERSION=${version}
     TZ=Europe/Rome
@@ -37,10 +37,10 @@ in {
     image = "ghcr.io/immich-app/immich-machine-learning:${version}";
     environment = {
       "DB_DATABASE_NAME" = "immich";
-      "DB_DATA_LOCATION" = "/home/hspasqui/archive/immich/postgres";
+      "DB_DATA_LOCATION" = "/srv/archive/immich/postgres";
       "DB_USERNAME" = "postgres";
       "IMMICH_VERSION" = "${version}";
-      "UPLOAD_LOCATION" = "/home/hspasqui/archive/immich/uploads";
+      "UPLOAD_LOCATION" = "/srv/archive/immich/uploads";
       "TZ" = "Europe/Rome";
     };
     environmentFiles = [
@@ -89,7 +89,7 @@ in {
       config.sops.templates."immich-docker.env".path
     ];
     volumes = [
-      "/home/hspasqui/archive/immich/postgres:/var/lib/postgresql/data:rw"
+      "/srv/archive/immich/postgres:/var/lib/postgresql/data:rw"
     ];
     cmd = ["postgres" "-c" "shared_preload_libraries=vectors.so" "-c" "search_path=\"$user\", public, vectors" "-c" "logging_collector=on" "-c" "max_wal_size=2GB" "-c" "shared_buffers=512MB" "-c" "wal_compression=on"];
     log-driver = "journald";
@@ -158,17 +158,17 @@ in {
     image = "ghcr.io/immich-app/immich-server:${version}";
     environment = {
       "DB_DATABASE_NAME" = "immich";
-      "DB_DATA_LOCATION" = "/home/hspasqui/archive/immich/postgres";
+      "DB_DATA_LOCATION" = "/srv/archive/immich/postgres";
       "DB_USERNAME" = "postgres";
       "IMMICH_VERSION" = "${version}";
-      "UPLOAD_LOCATION" = "/home/hspasqui/archive/immich/uploads";
+      "UPLOAD_LOCATION" = "/srv/archive/immich/uploads";
     };
     environmentFiles = [
       config.sops.templates."immich-docker.env".path
     ];
     volumes = [
       "/etc/localtime:/etc/localtime:ro"
-      "/home/hspasqui/archive/immich/uploads:/usr/src/app/upload:rw"
+      "/srv/archive/immich/uploads:/usr/src/app/upload:rw"
     ];
     ports = [
       "2283:2283/tcp"

@@ -17,7 +17,7 @@ in {
                     count = 2;
                     unit = "GiB";
                   };
-                  storage_vol = /home/hspasqui/archive/VMs/haos_ova-15.1.qcow2;
+                  storage_vol = /srv/archive/VMs/haos_ova-15.1.qcow2;
                   nvram_path = /var/lib/libvirt/qemu/nvram/haos_VARS.fd;
                   virtio_net = true;
                   virtio_drive = true;

@@ -23,8 +23,8 @@ in {
       "TZ" = "Europe/Rome";
     };
     volumes = [
-      "/home/hspasqui/archive/calibre-web/data:/config:rw"
-      "/home/hspasqui/archive/calibre-web/library:/books:rw"
+      "/srv/archive/calibre-web/data:/config:rw"
+      "/srv/archive/calibre-web/library:/books:rw"
     ];
     ports = [
       "8083:8083/tcp"

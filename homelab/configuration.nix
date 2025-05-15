@@ -108,7 +108,7 @@ in {
   systemd.services.hacompanion = {
     enable = true;
     serviceConfig = {
-      ExecStart = "${pkgs.hacompanion}/bin/hacompanion -config /home/hspasqui/archive/hacompanion/hacompanion.toml";
+      ExecStart = "${pkgs.hacompanion}/bin/hacompanion -config /srv/archive/hacompanion/hacompanion.toml";
       Restart = "on-failure";
       RestartSec = "60";
     };
@@ -153,7 +153,7 @@ in {
     '';
     ohMyZsh = {
       enable = true;
-      plugins = ["git" "eza" "fzf" "safe-paste" "ssh" "ssh-agent" "zoxide"];
+      plugins = ["git" "eza" "fzf" "safe-paste" "zoxide"];
     };
     shellAliases = {
       ll = "eza -l";

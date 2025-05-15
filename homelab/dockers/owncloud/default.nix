@@ -44,7 +44,7 @@ in {
       config.sops.templates."owncloud-docker.env".path
     ];
     volumes = [
-      "/home/hspasqui/archive/owncloud/mysql:/var/lib/mysql:rw"
+      "/srv/archive/owncloud/mysql:/var/lib/mysql:rw"
     ];
     cmd = ["--max-allowed-packet=128M" "--innodb-log-file-size=64M"];
     log-driver = "journald";
@@ -83,7 +83,7 @@ in {
       config.sops.templates."owncloud-docker.env".path
     ];
     volumes = [
-      "/home/hspasqui/archive/owncloud/redis:/data:rw"
+      "/srv/archive/owncloud/redis:/data:rw"
     ];
     cmd = ["--databases" "1"];
     log-driver = "journald";
@@ -131,7 +131,7 @@ in {
       config.sops.templates."owncloud-docker.env".path
     ];
     volumes = [
-      "/home/hspasqui/archive/owncloud/files:/mnt/data:rw"
+      "/srv/archive/owncloud/files:/mnt/data:rw"
     ];
     ports = [
       "2424:8080/tcp"

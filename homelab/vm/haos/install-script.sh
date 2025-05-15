@@ -5,7 +5,7 @@ virt-install \
     --description "Home Assistant OS" --os-variant=generic \
     --memory 2048 \
     --boot uefi \
-    --disk /home/hspasqui/archive/VMs/haos_ova-15.1.qcow2,bus=scsi --controller type=scsi,model=virtio-scsi --import\
+    --disk /srv/archive/VMs/haos_ova-15.1.qcow2,bus=scsi --controller type=scsi,model=virtio-scsi --import\
     --vcpus=2 \
     --graphics none\
     --network network=macvtap-net\

@@ -19,7 +19,7 @@
       CONTAINER_NAME=gitea
       REMOTE_DIR=/tmp
       PATTERN=gitea-dump-*.zip
-      LOCAL_DIR=/home/hspasqui/archive/backup/gitea/
+      LOCAL_DIR=/srv/archive/backup/gitea/
       export BORG_PASSCOMMAND="cat /home/hspasqui/.borg_passphrase"
       export BORG_RSH="ssh -i /home/hspasqui/.ssh/backup-ssh -o StrictHostKeyChecking=no"
       # Paths
@@ -67,7 +67,7 @@
       rm -f "$LOCAL_DIR/gitea-dump.zip"
       ### Append to remote Borg repository
       echo appending to remote repo
-      borg create $REMOTE_HOST$REMOTE_BACKUP_PATH::{now} "$LOCAL_DIR" || STATUS=$?
+      borg create $REMOTE_HOST$REMOTE_BACKUP_PATH::{now} /srv/archive/backup/ ./gitea/ || STATUS=$?
       # echo pruning remote repo
       # borg prune --keep-daily=7 --keep-weekly=4 --keep-monthly=4 --keep-yearly=2 $REMOTE_HOST$REMOTE_BACKUP_PATH
       # echo compacting remote repo
