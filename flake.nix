@@ -11,7 +11,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nixvim = {
-      url = "git+file:///home/lorev/nixvim";
+      url = "git+ssh://git@git.pasqui.casa/lorev/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
