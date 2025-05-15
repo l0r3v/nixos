@@ -21,7 +21,7 @@ in {
       "ACTUAL_LOGIN_METHOD" = "openid";
     };
     volumes = [
-      "/home/hspasqui/archive/actual-budget/actual-data:/data:rw"
+      "/srv/archive/actual-budget/actual-data:/data:rw"
     ];
     ports = [
       "5006:5006/tcp"
