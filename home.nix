@@ -83,6 +83,7 @@ in {
       pkgs.pinentry
       pkgs.rbw
       pkgs.rofi-rbw-wayland
+      pkgs.cloudflared
       (pkgs.octave.withPackages (opkgs:
         with opkgs; [
           symbolic
@@ -116,11 +117,23 @@ in {
       addKeysToAgent = "confirm";
       forwardAgent = true;
       extraConfig = ''
-        Host homelab-git
-          HostName homelab.tail0e73ab.ts.net
+        host homelab-git
+          hostname homelab.tail0e73ab.ts.net
           user git
-          Port 2221
-          IdentityFile /home/lorev/.ssh/id_ed25519
+          port 2221
+          identityfile /home/lorev/.ssh/id_ed25519
+        host git.pasqui.casa
+          hostname git-ssh.pasqui.casa
+          user git
+          port 2221
+          identityfile /home/lorev/.ssh/id_ed25519
+          proxycommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h
+        host git-ssh.pasqui.casa
+          hostname git-ssh.pasqui.casa
+          user git
+          port 2221
+          identityfile /home/lorev/.ssh/id_ed25519
+          proxycommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h
       '';
     };
 
