@@ -33,7 +33,7 @@
       "USER_UID" = "1000";
       "DISABLE_REGISTRATION" = "true";
       "REQUIRE_SIGNIN_VIEW" = "false";
-      "SSH_PORT" = "2221";
+      "SSH_PORT" = "22";
     };
     environmentFiles = [
       config.sops.templates."gitea-docker.env".path
@@ -41,7 +41,7 @@
     volumes = [
       "/etc/localtime:/etc/localtime:ro"
       "/etc/timezone:/etc/timezone:ro"
-      "/home/hspasqui/archive/gitea/data:/data:rw"
+      "/srv/archive/gitea/data:/data:rw"
     ];
     ports = [
       "8222:3000/tcp"
@@ -86,7 +86,7 @@
       config.sops.templates."gitea-docker.env".path
     ];
     volumes = [
-      "/home/hspasqui/archive/gitea/postgres:/var/lib/postgresql/data:rw"
+      "/srv/archive/gitea/postgres:/var/lib/postgresql/data:rw"
     ];
     log-driver = "journald";
     extraOptions = [
