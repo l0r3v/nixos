@@ -1,8 +1,8 @@
 {...}: {
   imports = [
     ./actual-budget
-    ./immich-docker
-    ./miniflux
+    #./immich-docker
+    #./miniflux
     ./calibre-web
     ./owncloud
     ./gitea
