@@ -13,6 +13,7 @@ in {
   imports = [
     ./hardware-configuration.nix
     ./dockers
+    ./services
     ./remote-builder.nix
     ./backup-timers
     ./sops.nix
