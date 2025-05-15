@@ -46,6 +46,8 @@
       # Estrai solo il nome file da path completo
       FILENAME=$(basename "$FILE_PATH")
 
+      #elimina cartella backup completamente (tanto dovrebbe venire sovrascritta)
+      rm -rf $LOCAL_DIR/*
       # Copia il file dal container al tuo host
       echo copying gitea file from container
       docker cp "$CONTAINER_NAME:$FILE_PATH" "$LOCAL_DIR/gitea-dump.zip"
@@ -59,6 +61,10 @@
           echo "⚠️  File copiato, ma non rimosso: $FILENAME"
       fi
 
+      echo "unzipping"
+      unzip  -o "$LOCAL_DIR/gitea-dump.zip" -d $LOCAL_DIR 
+      echo "deleting zip"
+      rm -f "$LOCAL_DIR/gitea-dump.zip"
       ### Append to remote Borg repository
       echo appending to remote repo
       borg create $REMOTE_HOST$REMOTE_BACKUP_PATH::{now} "$LOCAL_DIR/gitea-dump.zip" || STATUS=$?
