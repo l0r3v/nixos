@@ -50,7 +50,7 @@
 
   outputs = {nixpkgs, ...} @ inputs: let
     system = "x86_64-linux";
-    themeName = "catppuccin-macchiato";
+    themeName = "sandcastle";
   in {
     formatter.${system} = inputs.alejandra.defaultPackage.${system};
     nixosConfigurations = {

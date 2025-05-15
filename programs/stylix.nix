@@ -16,7 +16,7 @@ in {
   stylix = {
     enable = true;
     base16Scheme = theme;
-    image = macchiato;
+    image = wallpaper-nix;
     opacity = {
       applications = 1.0; #This doesn't seem to work
       desktop = 0.85;
