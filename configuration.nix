@@ -206,6 +206,8 @@
     pkgs.wayland-protocols
     pkgs.wlroots
     pkgs.libxkbcommon
+    pkgs.ripgrep
+    pkgs.nix-index
   ];
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 

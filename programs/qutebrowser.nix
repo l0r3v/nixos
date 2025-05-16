@@ -14,8 +14,8 @@
       normal = {
         "X" = "hint links spawn mpv {hint-url}";
         "ò" = "cmd-set-text :";
-        "o" = "cmd-set-text :open -s ";
-        "O" = "cmd-set-text :open -ts ";
+        "o" = "cmd-set-text -s :open -s ";
+        "O" = "cmd-set-text -s :open -ts ";
         "<Ctrl-v>" = lib.mkMerge [
           "config-cycle tabs.show never always"
           "config-cycle statusbar.show in-mode always"
