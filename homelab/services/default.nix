@@ -3,5 +3,6 @@
     ./immich.nix
     ./miniflux.nix
     ./caddy.nix
+    ./cloudflared.nix
   ];
 }
