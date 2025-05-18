@@ -7,7 +7,7 @@
     ./owncloud
     ./gitea
     ./portainer
-    ./cloudflared
+    #./cloudflared
   ];
   virtualisation.docker.enable = true;
   users.users."hspasqui".extraGroups = ["docker"];
