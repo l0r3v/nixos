@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   imports = [
@@ -8,7 +9,7 @@
     ./hardware-configuration.nix
     #./distributed-builds.nix
     ./sops.nix
-    ./programs/homepage.nix
+    ./services/homepage.nix
   ];
 
   # Bootloader.
@@ -50,7 +51,6 @@
       icu
     ];
   };
-
   # Set your time zone.
   time.timeZone = "Europe/Rome";
 
@@ -86,6 +86,14 @@
         driver = pkgs.libfprint-2-tod1-goodix;
       };
     };
+    logind = {
+      lidSwitch = "suspend";
+      lidSwitchExternalPower = "suspend";
+
+      powerKey = "lock";
+      powerKeyLongPress = "poweroff";
+      lidSwitchDocked = "ignore";
+    };
     preload.enable = true;
     xserver = {
       enable = true;
@@ -115,7 +123,6 @@
 
     # Disable CUPS to never print documents.
     printing.enable = false;
-    flatpak.enable = true;
     tailscale = {
       enable = true;
       useRoutingFeatures = "both";
@@ -125,7 +132,9 @@
   # Configure console keymap
   console.keyMap = "it2";
 
-  security.rtkit.enable = true;
+  security = {
+    rtkit.enable = true;
+  };
   users.users.lorev = {
     isNormalUser = true;
     description = "Lorenzo Pasqui";
@@ -158,6 +167,28 @@
     NH_FLAKE = "/home/lorev/nixos";
     FLAKE = "/home/lorev/nixos";
   };
+  # configuration.nix
+  systemd.user.services."lid-monitor" = {
+    description = "Lid close monitor handler";
+    script = ''
+      #!/usr/bin/env bash
+      LID_STATE=$(cat /proc/acpi/button/lid/*/state | awk '{print $2}')
+      EXTERNAL=$(hyprctl monitors -j | jq '[.[] | select(.name!="eDP-1" and .active)] | length')
+      if [[ "$LID_STATE" == "closed" && "$EXTERNAL" -gt 0 ]]; then
+        hyprctl keyword monitor "eDP-1,disable"
+      elif [[ "$LID_STATE" == "open" ]]; then
+        hyprctl keyword monitor "eDP-1,preferred,auto-left,1.25"
+      fi
+    '';
+    wantedBy = ["tray.target"];
+    serviceConfig = {
+      Type = "oneshot";
+    };
+  };
+
+  services.udev.extraRules = ''
+    ACTION=="change", SUBSYSTEM=="power_supply", KERNEL=="*lid*", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}+="lid-monitor.service"
+  '';
 
   programs.virt-manager.enable = true;
   users.groups.libvirtd.members = ["lorev"];
@@ -173,14 +204,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  #nixpkgs.config.packageOverrides = pkgs: {
-  #  factorio = pkgs.factorio.override {
-  #    username = "Utis";
-  # This works but it requires to put in the following line a secrets.
-  # Is there a better way??
-  #    token = "";
-  #  };
-  #};
   environment.systemPackages = [
     pkgs.vim
     pkgs.git
@@ -226,7 +249,7 @@
   programs.steam.enable = true;
 
   services.kanata = {
-    enable = true;
+    enable = false;
     keyboards = {
       internalKeyboard = {
         devices = [
