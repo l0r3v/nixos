@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   programs.qutebrowser = {
     enable = true;
     searchEngines = {
@@ -20,6 +24,9 @@
           "config-cycle tabs.show never always"
           "config-cycle statusbar.show in-mode always"
           "config-cycle scrolling.bar never always"
+        ];
+        "tt" = lib.mkMerge [
+          "config-cycle colors.webpage.darkmode.enabled true false"
         ];
       };
       prompt = {
