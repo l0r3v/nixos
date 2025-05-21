@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{lib, ...}: {
   programs.qutebrowser = {
     enable = true;
     searchEngines = {
@@ -13,25 +9,7 @@
       ddg = "https://duckduckgo.com/?t=h_&q={}";
       np = "https://search.nixos.org/packages?type=packages&query={}";
       mynix = "https://mynixos.com/search?q={}";
-    };
-    keyBindings = {
-      normal = {
-        "X" = "hint links spawn mpv {hint-url}";
-        "ò" = "cmd-set-text :";
-        "o" = "cmd-set-text -s :open -s ";
-        "O" = "cmd-set-text -s :open -ts ";
-        "<Ctrl-v>" = lib.mkMerge [
-          "config-cycle tabs.show never always"
-          "config-cycle statusbar.show in-mode always"
-          "config-cycle scrolling.bar never always"
-        ];
-        "tt" = lib.mkMerge [
-          "config-cycle colors.webpage.darkmode.enabled true false"
-        ];
-      };
-      prompt = {
-        "<Ctrl-y>" = "prompt-yes";
-      };
+      yt = "https://www.youtube.com/results?search_query={}";
     };
     settings = {
       colors.webpage.darkmode.enabled = true;
@@ -55,4 +33,8 @@
       confirm_quit = ["always"];
     };
   };
+  imports = [
+    ./keybindings.nix
+    ./greasemonkey.nix
+  ];
 }
