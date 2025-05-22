@@ -10,6 +10,7 @@
     #./distributed-builds.nix
     ./sops.nix
     ./services/homepage.nix
+    ./services/kanata.nix
   ];
 
   # Bootloader.
@@ -248,34 +249,5 @@
   #Install Steam
   programs.steam.enable = true;
 
-  services.kanata = {
-    enable = false;
-    keyboards = {
-      internalKeyboard = {
-        devices = [
-          "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
-          "/dev/input/by-path/platform-INT33D5:00-event"
-          "/dev/input/by-path/platform-PNP0C14:03-event"
-        ];
-        extraDefCfg = "process-unmapped-keys yes";
-        config = ''
-          (defsrc
-           caps ;
-          )
-          (defvar
-           tap-time 100
-           hold-time 500
-          )
-          (defalias
-           capsesc (tap-hold $tap-time $hold-time esc lctl)
-          )
-
-          (deflayer base
-           @capsesc ;
-          )
-        '';
-      };
-    };
-  };
   system.stateVersion = "24.05"; # Do not change this
 }
