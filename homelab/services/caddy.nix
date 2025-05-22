@@ -1,12 +1,11 @@
-{...}:
-{
+{...}: {
   services.caddy = {
-    enable = true;
+    enable = false;
     extraConfig = ''
       :1313 {
         root * /var/www/mysite
         file_server
       }
-      '';
+    '';
   };
 }

@@ -52,7 +52,7 @@
       echo copying gitea file from container
       docker cp "$CONTAINER_NAME:$FILE_PATH" "$LOCAL_DIR/gitea-dump.zip"
       echo "✅ File copiato: $FILENAME → $LOCAL_DIR"
-      
+
       # Elimina il file dal container
       docker exec "$CONTAINER_NAME" rm "$FILE_PATH"
       if [ $? -eq 0 ]; then
@@ -62,7 +62,7 @@
       fi
 
       echo "unzipping"
-      unzip  -o "$LOCAL_DIR/gitea-dump.zip" -d $LOCAL_DIR 
+      unzip  -o "$LOCAL_DIR/gitea-dump.zip" -d $LOCAL_DIR
       echo "deleting zip"
       rm -f "$LOCAL_DIR/gitea-dump.zip"
       ### Append to remote Borg repository
