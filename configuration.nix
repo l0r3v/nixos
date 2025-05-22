@@ -91,8 +91,6 @@
       lidSwitch = "suspend";
       lidSwitchExternalPower = "suspend";
 
-      powerKey = "lock";
-      powerKeyLongPress = "poweroff";
       lidSwitchDocked = "ignore";
     };
     preload.enable = true;
@@ -232,6 +230,7 @@
     pkgs.libxkbcommon
     pkgs.ripgrep
     pkgs.nix-index
+    pkgs.steam-tui
   ];
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
