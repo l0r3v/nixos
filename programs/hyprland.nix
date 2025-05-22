@@ -1,6 +1,8 @@
 {
   pkgs,
   inputs,
+  lib,
+  config,
   ...
 }: {
   wayland.windowManager.hyprland = {
@@ -60,7 +62,7 @@
 
       input = {
         kb_layout = "it";
-        kb_options = "caps:swapescape";
+        #kb_options = "caps:swapescape";
       };
       gestures = {
         workspace_swipe = true;
@@ -121,6 +123,8 @@
         "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
         # Scroll through existing workspaces with mainMod + scroll
+        "$mainMod SHIFT, K, workspace, e+1"
+        "$mainMod SHIFT, J, workspace, e-1"
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
 
