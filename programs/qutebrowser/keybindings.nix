@@ -1,7 +1,7 @@
 {lib, ...}: {
   programs.qutebrowser.keyBindings = {
     normal = {
-      "X" = "hint links spawn --detach mpv {hint-url}";
+      "xx" = "hint links spawn --detach mpv {hint-url}";
       "ò" = "cmd-set-text :";
       "xo" = "cmd-set-text -s :open -b";
       "wo" = "cmd-set-text -s :open -w";
