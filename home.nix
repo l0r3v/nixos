@@ -24,8 +24,6 @@ in {
       pkgs.fzf #cli fuzzy finder
       pkgs.yq
       pkgs.zoxide
-      pkgs.dropbox
-      pkgs.tlrc
       pkgs.vlc
       pkgs.graphicsmagick
       pkgs.grim
@@ -37,7 +35,6 @@ in {
       pkgs.headsetcontrol
       pkgs.gh
       pkgs.libsecret
-      pkgs.nchat
       pkgs.ripgrep
       pkgs.blueman
       pkgs.stremio
@@ -53,27 +50,20 @@ in {
       pkgs.ytfzf
       pkgs.calibre
       pkgs.whatsie
-      pkgs.bitwarden
       pkgs.rclone
       pkgs.rclone-browser
       pkgs.chromium
-      pkgs.localsend
-      pkgs.libreoffice-qt
       pkgs.gimp
       pkgs.hacompanion
-      pkgs.speedtest-cli
       pkgs.ckan
-      pkgs.prismlauncher
       pkgs.audacity
       pkgs.inkscape
       pkgs.latexrun
       pkgs.xdotool
-      pkgs.discord
       pkgs.newsflash
       pkgs.nix-init
       pkgs.owncloud-client
       pkgs.aria2
-      pkgs.vscodium
       pkgs.preload
       pkgs.vorta
       pkgs.gcr
@@ -84,10 +74,6 @@ in {
       pkgs.rbw
       pkgs.rofi-rbw-wayland
       pkgs.cloudflared
-      (pkgs.octave.withPackages (opkgs:
-        with opkgs; [
-          symbolic
-        ]))
       pkgs.libqalculate
     ]; #END OF PACKAGES
   };
