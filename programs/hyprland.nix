@@ -1,8 +1,6 @@
 {
   pkgs,
   inputs,
-  lib,
-  config,
   ...
 }: {
   wayland.windowManager.hyprland = {
@@ -14,8 +12,6 @@
         gaps_in = 2;
         gaps_out = 4;
         border_size = 2;
-        #"col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        #"col.inactive_border" = "rgba(595959aa)";
         layout = "dwindle";
       };
       exec-once = [
@@ -127,25 +123,28 @@
         "$mainMod SHIFT, J, workspace, e-1"
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
+        "$mainMod, N, workspace, +1"
+        "$mainMod SHIFT, N, movetoworkspace, +1"
+        "$mainMod, B, workspace, -1"
+        "$mainMod SHIFT, B, movetoworkspace, -1"
 
         "$mainMod, f, fullscreen"
 
         # University shortcuts
-        "Control_L&Alt_L, t, exec, $terminal -d ~/current_course"
-        "Control_L&Alt_L, n, exec, $terminal -d ~/current_course --hold sh -c nvim"
-        "Control_L&Alt_L, l, exec, rofi-lectures"
-        "Control_L&Alt_L, c, exec, rofi-courses"
-        "Control_L&Alt_L, v, exec, rofi-lectures-view"
-        "Control_L&Alt_L, b, exec, backup-uni"
-        "Control_L&Alt_L, s, exec, bash ~/university-setup/other/select_subfolder"
-        "Control_L&Alt_L, p, exec, select_file-uni"
-        "Control_L&Alt_L, y, exec, select_file-uni rec"
-        "Control_L&Alt_L, i, exec, bash ~/university-setup/other/scrsht_util.sh"
+        "Control_L&Alt_R, t, exec, $terminal -d ~/current_course"
+        "Control_L&Alt_R, n, exec, $terminal -d ~/current_course --hold sh -c nvim"
+        "Control_L&Alt_R, l, exec, rofi-lectures"
+        "Control_L&Alt_R, c, exec, rofi-courses"
+        "Control_L&Alt_R, v, exec, rofi-lectures-view"
+        "Control_L&Alt_R, b, exec, backup-uni"
+        "Control_L&Alt_R, s, exec, bash ~/university-setup/other/select_subfolder"
+        "Control_L&Alt_R, p, exec, select_file-uni"
+        "Control_L&Alt_R, y, exec, select_file-uni rec"
+        "Control_L&Alt_R, i, exec, bash ~/university-setup/other/scrsht_util.sh"
 
-        "Control_L&Alt_L, w, exec, $browser -new-tab $(yq .link ~/current_course/info.yaml | tr -d '\"')"
-        #"Control_L&Alt_L, o, exec, $browser -new-tab $(yq .onedrive ~/current_course/info.yaml | tr -d '\"')"
-        "Control_L&Alt_L, x, exec, $browser -new-tab $(yq .extra ~/current_course/info.yaml | tr -d '\"')"
-        "Control_L&Alt_L, g, exec, $browser -new-tab $(yq .goodnotes ~/current_course/info.yaml | tr -d '\"')"
+        "Control_L&Alt_R, w, exec, $browser -new-tab $(yq .link ~/current_course/info.yaml | tr -d '\"')"
+        "Control_L&Alt_R, x, exec, $browser -new-tab $(yq .extra ~/current_course/info.yaml | tr -d '\"')"
+        "Control_L&Alt_R, g, exec, $browser -new-tab $(yq .goodnotes ~/current_course/info.yaml | tr -d '\"')"
 
         #Bitwarden rofi
         "Control_L&SHIFT, l, exec,rofi-rbw --no-help --keybindings Ctrl+1:type:username:tab:password,Ctrl+2:type:username,Ctrl+3:type:password,Ctrl+4:type:totp"

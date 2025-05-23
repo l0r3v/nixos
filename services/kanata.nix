@@ -7,8 +7,13 @@
           process-unmapped-keys yes
         '';
         config = ''
+
+
           (defsrc
-           caps a s d f g h j k l ; F1 u i o
+           caps a s d f g h j k l ; F1 u i o z 
+          )
+          (deflocalkeys-linux
+           < 86
           )
           (defvar
            tap-time 200
@@ -16,14 +21,15 @@
           )
           (defalias
            capsesc (tap-hold $tap-time $hold-time esc lctl)
-           a-mod (tap-hold $tap-time $hold-time a lsft)
-           s-mod (tap-hold $tap-time $hold-time s ralt)
-           d-mod (tap-hold $tap-time $hold-time d lmet)
-           f-mod (tap-hold $tap-time $hold-time f lctl)
-           j-mod (tap-hold $tap-time $hold-time j rctl)
-           k-mod (tap-hold $tap-time $hold-time k rmet)
-           l-mod (tap-hold $tap-time $hold-time l ralt)
-           ;-mod (tap-hold $tap-time $hold-time ; rsft)
+           a-mod (tap-hold $tap-time $hold-time a ralt)
+           s-mod (tap-hold $tap-time $hold-time s lctl)
+           d-mod (tap-hold $tap-time $hold-time d lsft)
+           f-mod (tap-hold $tap-time $hold-time f lmet)
+           j-mod (tap-hold $tap-time $hold-time j rmet)
+           k-mod (tap-hold $tap-time $hold-time k rsft)
+           l-mod (tap-hold $tap-time $hold-time l rctl)
+           ;-mod (tap-hold $tap-time $hold-time ; ralt)
+           z-mod (tap-hold $tap-time $hold-time z <)
 
            mouse-control (layer-while-held mouse)
            mouse-left (movemouse-left 100 20)
@@ -51,6 +57,7 @@
            u
            i
            o
+           @z-mod
            )
           (deflayer mouse
            _
@@ -68,6 +75,7 @@
            @click-left
            @click-middle
            @click-right
+           _
            )
         '';
       };
