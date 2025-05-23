@@ -5,7 +5,7 @@
     ./zathura.nix
     ./stylix.nix
     ./rofi.nix
-    ./waybar.nix
+    ./waybar
     ./firefox.nix
     ./texlive.nix
     ./hyprland.nix
