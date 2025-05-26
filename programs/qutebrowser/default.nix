@@ -26,9 +26,15 @@
       };
       tabs = {
         close_mouse_button_on_bar = "ignore";
+        last_close = "close";
       };
       url = {
         start_pages = "http://localhost:8082";
+      };
+      hints = {
+        chars = "asdfghjkl";
+        dictionary = "/home/lorev/.config/qutebrowser/wordlist";
+        mode = "letter";
       };
       confirm_quit = ["always"];
     };
@@ -36,5 +42,6 @@
   imports = [
     ./keybindings.nix
     ./greasemonkey.nix
+    ./words.nix
   ];
 }

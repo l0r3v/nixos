@@ -17,10 +17,11 @@
         modules-left = [
           #"idle_inhibitor"
           "group/mobo_drawer"
+          "hyprland/workspaces#rw"
         ];
 
         modules-center = [
-          "hyprland/workspaces#rw"
+          "clock"
         ];
 
         modules-right = [
@@ -28,7 +29,6 @@
           "battery"
           "custom/battery-mode"
           "pulseaudio#1"
-          "clock"
           "tray"
         ];
         "hyprland/workspaces" = {

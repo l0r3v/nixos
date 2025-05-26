@@ -10,7 +10,7 @@
 
 
           (defsrc
-           caps a s d f g h j k l ; F1 u i o z 
+           caps a s d f g h j k l ; F1 u i o z lalt
           )
           (deflocalkeys-linux
            < 86
@@ -21,7 +21,7 @@
           )
           (defalias
            capsesc (tap-hold $tap-time $hold-time esc lctl)
-           a-mod (tap-hold $tap-time $hold-time a ralt)
+           a-mod (tap-hold $tap-time $hold-time a lalt)
            s-mod (tap-hold $tap-time $hold-time s lctl)
            d-mod (tap-hold $tap-time $hold-time d lsft)
            f-mod (tap-hold $tap-time $hold-time f lmet)
@@ -58,6 +58,7 @@
            i
            o
            @z-mod
+           ralt
            )
           (deflayer mouse
            _
@@ -75,6 +76,7 @@
            @click-left
            @click-middle
            @click-right
+           _
            _
            )
         '';

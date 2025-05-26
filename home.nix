@@ -79,6 +79,9 @@ in {
   };
 
   programs = {
+    yazi = {
+      enable = true;
+    };
     keychain = {
       enable = true;
       enableZshIntegration = true;
@@ -186,6 +189,12 @@ in {
     java.enable = true;
   };
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/pdf" = "org.pwmt.zathura.desktop";
+    };
+  };
   home.sessionVariables = {
     EDITOR = "nvim";
     XDG_CONFIG_HOME = "/home/lorev/.config";

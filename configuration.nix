@@ -11,8 +11,20 @@
     ./sops.nix
     ./services/homepage.nix
     ./services/kanata.nix
+    ./services/nixos-cli.nix
   ];
-
+  specialisation = {
+    mobile.configuration = {
+      system.nixos.tags = ["mobile"];
+      hardware.nvidia = {
+        prime.offload.enable = lib.mkForce true;
+        prime.offload.enableOffloadCmd = lib.mkForce true;
+        prime.sync.enable = lib.mkForce false;
+      };
+      powerManagement.powertop.enable = true;
+      services.thermald.enable = true;
+    };
+  };
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = true;
@@ -165,6 +177,7 @@
     EDITOR = "nvim";
     NH_FLAKE = "/home/lorev/nixos";
     FLAKE = "/home/lorev/nixos";
+    NIXOS_CONFIG = "/home/lorev/nixos";
   };
   # configuration.nix
   systemd.user.services."lid-monitor" = {
@@ -203,34 +216,35 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = [
-    pkgs.vim
-    pkgs.git
-    pkgs.dunst
-    pkgs.libnotify
-    pkgs.swww
-    pkgs.networkmanagerapplet
-    pkgs.brightnessctl
-    pkgs.pavucontrol
-    pkgs.waybar
-    pkgs.jdk
-    pkgs.zoxide
-    pkgs.zathura
-    pkgs.htop-vim
-    pkgs.jq
-    pkgs.openresolv
-    pkgs.nh
-    pkgs.nixd
-    pkgs.qemu
-    pkgs.sops
-    pkgs.nss
-    pkgs.wayland
-    pkgs.wayland-protocols
-    pkgs.wlroots
-    pkgs.libxkbcommon
-    pkgs.ripgrep
-    pkgs.nix-index
-    pkgs.steam-tui
+  environment.systemPackages = with pkgs; [
+    vim
+    git
+    dunst
+    libnotify
+    swww
+    networkmanagerapplet
+    brightnessctl
+    pavucontrol
+    waybar
+    jdk
+    zoxide
+    zathura
+    htop-vim
+    jq
+    openresolv
+    nh
+    nixd
+    qemu
+    sops
+    nss
+    wayland
+    wayland-protocols
+    wlroots
+    libxkbcommon
+    ripgrep
+    nix-index
+    steam-tui
+    nvd
   ];
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 

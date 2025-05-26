@@ -10,6 +10,7 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    nixos-cli.url = "github:nix-community/nixos-cli";
     nixvim = {
       url = "git+ssh://git@git.pasqui.casa/lorev/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,7 +62,8 @@
           inputs.sops-nix.nixosModules.sops
           inputs.stylix.nixosModules.stylix
           inputs.home-manager.nixosModules.home-manager
-          inputs.nixos-hardware.nixosModules.dell-xps-15-9500-nvidia
+          inputs.nixos-hardware.nixosModules.dell-xps-15-9500
+          inputs.nixos-cli.nixosModules.nixos-cli
           {
             home-manager = {
               useGlobalPkgs = true;
