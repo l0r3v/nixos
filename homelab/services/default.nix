@@ -2,7 +2,8 @@
   imports = [
     ./immich.nix
     ./miniflux.nix
-    ./caddy.nix
+    #./caddy.nix
     ./cloudflared.nix
+    ./ntfy.nix
   ];
 }

@@ -82,7 +82,7 @@ in {
   environment.systemPackages = with pkgs; [
     btop
     wget
-    extended-nixvim
+    vim
     alejandra
     virt-manager
     xz
@@ -98,7 +98,6 @@ in {
     gitui
     lm_sensors
     OVMF
-    jellyfin
     fzf
     borgbackup
     unzip
@@ -127,7 +126,7 @@ in {
   };
   environment.sessionVariables = {
     NH_FLAKE = "/home/hspasqui/nixos-homelab";
-    EDITOR = "nvim";
+    EDITOR = "vim";
   };
   programs.bash = {
     shellInit = "export TERM=xterm-256color";

@@ -26,7 +26,7 @@
       };
       tabs = {
         close_mouse_button_on_bar = "ignore";
-        last_close = "close";
+        last_close = "ignore";
       };
       url = {
         start_pages = "http://localhost:8082";

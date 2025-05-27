@@ -147,7 +147,7 @@
         "Control_L&Alt_R, g, exec, $browser -new-tab $(yq .goodnotes ~/current_course/info.yaml | tr -d '\"')"
 
         #Bitwarden rofi
-        "Control_L&SHIFT, l, exec,rofi-rbw --no-help --keybindings Ctrl+1:type:username:tab:password,Ctrl+2:type:username,Ctrl+3:type:password,Ctrl+4:type:totp"
+        "Control_L&SHIFT, l, exec,rofi-rbw --no-help --keybindings Ctrl+1:type:username,Ctrl+2:type:password,Ctrl+3:type:totp"
       ];
       bindel = [
         ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
@@ -161,6 +161,10 @@
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
+      
+      bindl =[
+        ", switch:Lid Switch, exec,bash ~/lid-monitor.sh"
+      ]; 
     };
   };
 }

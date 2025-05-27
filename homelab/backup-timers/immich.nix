@@ -35,11 +35,11 @@
       #docker exec -t immich_postgres pg_dumpall --clean --if-exists --username=postgres > "$UPLOAD_LOCATION"/database-backup/immich-database.sql
       runuser -u postgres -- pg_dump --clean --if-exists --username=postgres immich > "$UPLOAD_LOCATION/immich-database.sql"
       echo finished immich database dump, restarting immich service
-      systemctl start immich-server.service immich-machine-learning.service
       #docker start immich_server
       echo append to borg remote
       ### Append to remote Borg repository
       borg create $REMOTE_HOST$REMOTE_BACKUP_PATH::{now} /srv/archive/./immich/uploads --exclude "$UPLOAD_LOCATION/thumbs" --exclude "$UPLOAD_LOCATION/encoded-video" || STATUS=$?
+      systemctl start immich-server.service immich-machine-learning.service
       #echo pruning remote
       #borg prune --keep-daily=3 --keep-weekly=4 --keep-monthly=6 --keep-yearly=1 $REMOTE_HOST$REMOTE_BACKUP_PATH
       #echo compacting remote

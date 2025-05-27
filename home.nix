@@ -75,6 +75,7 @@ in {
       pkgs.rofi-rbw-wayland
       pkgs.cloudflared
       pkgs.libqalculate
+      pkgs.cider-2
     ]; #END OF PACKAGES
   };
 

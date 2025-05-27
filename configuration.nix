@@ -245,6 +245,8 @@
     nix-index
     steam-tui
     nvd
+    socat
+    ags
   ];
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
