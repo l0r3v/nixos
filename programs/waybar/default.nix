@@ -22,6 +22,7 @@
 
         modules-center = [
           "clock"
+          "custom/music"
         ];
 
         modules-right = [
@@ -84,10 +85,7 @@
             "class<libreoffice-startcenter>" = "󰏆 ";
             "class<com.obsproject.Studio>" = " ";
             "class<polkit-gnome-authentication-agent-1>" = "󰒃 ";
-            "class<nwg-look>" = " ";
             "class<zen-alpha>" = "󰰷 ";
-            "class<waterfox|waterfox-bin>" = " ";
-            "class<microsoft-edge>" = " ";
             "class<vlc>" = "󰕼 ";
           };
         };
@@ -239,6 +237,18 @@
           "interval" = 5;
           "format" = "{}";
           "return-type" = "text ";
+        };
+        "custom/music" = {
+          "format" = "{}";
+          "return-type" = "json";
+          "interval" = 3;
+          "exec" = "~/.config/waybar/music.sh";
+          "on-click" = "playerctl play-pause";
+          "on-click-right" = "playerctl next";
+          "on-click-middle" = "playerctl previous";
+          "on-scroll-up" = "playerctl volume 0.05+";
+          "on-scroll-down" = "playerctl volume 0.05-";
+          "tooltip" = false;
         };
       };
     };

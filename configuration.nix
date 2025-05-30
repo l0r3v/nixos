@@ -108,9 +108,6 @@
     preload.enable = true;
     xserver = {
       enable = true;
-      displayManager.gdm = {
-        enable = true;
-      };
       #displayManager.ly = {
       #  enable = false;
       #  settings = {
@@ -124,12 +121,13 @@
       #    lang = "it";
       #  };
       #};
-      desktopManager.gnome.enable = true;
       xkb = {
         layout = "it";
         variant = "";
       };
     };
+    desktopManager.gnome.enable = true;
+    displayManager.gdm.enable = true;
     envfs.enable = true;
 
     # Disable CUPS to never print documents.
@@ -247,6 +245,7 @@
     nvd
     socat
     ags
+    playerctl
   ];
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 

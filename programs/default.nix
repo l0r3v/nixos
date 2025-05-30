@@ -13,5 +13,6 @@
     ./qutebrowser
     ./mpv.nix
     ./rbw.nix
+    ./eww.nix
   ];
 }

@@ -33,42 +33,6 @@ in {
            border-color: #11111b;
        }
 
-        #workspaces {
-          color: #${config.lib.stylix.colors.base00};
-          background: #${config.lib.stylix.colors.base01};
-          margin: 4px 4px;
-          padding: 5px 5px;
-          border-radius: 16px;
-        }
-        #workspaces button {
-          font-weight: bold;
-          padding: 0px 5px;
-          margin: 0px 3px;
-          border-radius: 16px;
-          color: #${config.lib.stylix.colors.base00};
-          background: linear-gradient(45deg, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base0D});
-          opacity: 0.5;
-          transition: ${betterTransition};
-        }
-        #workspaces button.active {
-          font-weight: bold;
-          padding: 0px 5px;
-          margin: 0px 3px;
-          border-radius: 16px;
-          color: #${config.lib.stylix.colors.base00};
-          background: linear-gradient(45deg, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base0D});
-          transition: ${betterTransition};
-          opacity: 1.0;
-          min-width: 40px;
-        }
-        #workspaces button:hover {
-          font-weight: bold;
-          border-radius: 16px;
-          color: #${config.lib.stylix.colors.base00};
-          background: linear-gradient(45deg, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base0D});
-          opacity: 0.8;
-          transition: ${betterTransition};
-        }
 
 
        #mode {
@@ -147,5 +111,10 @@ in {
        #custom-separator {
            color: #606060;
        }
+       #custom-music.visible {
+           color: @accent4;
+           padding: 0 10px;
+          }
+
   '';
 }

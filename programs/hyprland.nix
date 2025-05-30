@@ -24,8 +24,8 @@
         "owncloud"
       ];
       monitor = [
-        "eDP-1,preferred,auto,1.25"
-        "DP-2,preferred,auto-right,1.6"
+        "eDP-1,preferred,auto,1.2"
+        "DP-2,preferred,auto-right,auto"
       ];
       dwindle = {
         pseudotile = true;
@@ -33,17 +33,18 @@
       };
       decoration = {
         rounding = 5;
-        "active_opacity" = 1;
-        "inactive_opacity" = 0.75;
+        active_opacity = 1;
+        inactive_opacity = 0.85;
+        dim_inactive = false;
+        dim_strength = 0.05;
         blur = {
           enabled = true;
-          size = 8;
-          passes = 5;
-          vibrancy = 0.75;
+          size = 1;
+          passes = 2;
         };
       };
       animations = {
-        enabled = true;
+        enabled = false;
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
         animation = [
           "windows, 1, 7, myBezier"
@@ -161,10 +162,10 @@
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
-      
-      bindl =[
+
+      bindl = [
         ", switch:Lid Switch, exec,bash ~/lid-monitor.sh"
-      ]; 
+      ];
     };
   };
 }
