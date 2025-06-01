@@ -1,0 +1,22 @@
+[scopes.nixos]
+description = "NixOS flake configuration for XPSnixos"
+# This path assumes the `nixos-cli` module is being used.
+# Do NOT copy verbatim unless using it.
+options-list-file = "/run/current-system/etc/nixos-cli/options-cache.json"
+options-list-cmd = '''
+nix eval "$HOME/nixos/#nixosConfigurations.XPSnixos" --json --apply 'input: let
+  inherit (input) options pkgs;
+
+  optionsList = builtins.filter
+    (v: v.visible && !v.internal)
+    (pkgs.lib.optionAttrSetToDocList options);
+in
+  optionsList'
+'''
+evaluator = "nix eval $HOME/nixos/#nixosConfigurations.XPSnixos.config.{{ .Option }}"
+[scopes.homemanager]
+description = "Home Manager system configured as a NixOS module"
+options-list-cmd = '''
+jq '[to_entries[] | .value.name = .key | .value.declarations = [.value.declarations[].name] | .value]' /run/current-system/sw/share/doc/home-manager/options.json
+'''
+evaluator = "nix eval #nixosConfigurations.XPSnixos.config.home-manager.users.lorev.{{ .Option }}"

@@ -32,15 +32,24 @@
         preserve_split = true;
       };
       decoration = {
-        rounding = 5;
+        rounding = 10;
+        rounding_power = 2;
         active_opacity = 1;
-        inactive_opacity = 0.85;
+        inactive_opacity = 1;
         dim_inactive = false;
         dim_strength = 0.05;
         blur = {
           enabled = true;
           size = 1;
-          passes = 2;
+          passes = 6;
+          new_optimizations = true;
+          ignore_opacity = false;
+          xray = false;
+        };
+        shadow = {
+          enabled = true;
+          range = 4;
+          render_power = 3;
         };
       };
       animations = {
@@ -72,7 +81,7 @@
         "XCURSOR_SIZE,32"
       ];
       "$mainMod" = "SUPER";
-      "$terminal" = "alacritty";
+      "$terminal" = "kitty";
       "$menu" = "rofi -show drun";
       "$browser" = "qutebrowser";
       bind = [

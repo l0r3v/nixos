@@ -1,6 +1,10 @@
 {pkgs, ...}: {
   programs.mpv = {
     enable = true;
+    config = {
+      gpu-api = "opengl";
+      gpu-context = "wayland";
+    };
     package = (
       pkgs.mpv-unwrapped.wrapper {
         scripts = with pkgs.mpvScripts; [

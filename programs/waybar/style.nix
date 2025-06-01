@@ -6,14 +6,14 @@
   betterTransition = "all 0.3s cubic-bezier(.55,-0.68,.48,1.682)";
 in {
   programs.waybar.style = ''
-    @define-color fgcolor #${config.lib.stylix.colors.base05};  /* foreground color */
+    @define-color fgcolor #${config.lib.stylix.colors.base06};  /* foreground color */
     @define-color bgcolor #${config.lib.stylix.colors.base00};  /* background color */
-    @define-color accent1 #${config.lib.stylix.colors.base0C}; /* light blue*/
-    @define-color accent2 #${config.lib.stylix.colors.base0B}; /* green*/
-    @define-color accent3 #${config.lib.stylix.colors.base09}; /* orange*/
-    @define-color accent4 #${config.lib.stylix.colors.base0E}; /* purple*/
-    @define-color accent5 #${config.lib.stylix.colors.base0D}; /* blue */
-    @define-color accent6 #${config.lib.stylix.colors.base0F}; /* gray blue*/
+    @define-color light_green #${config.lib.stylix.colors.base0C}; /* light green*/
+    @define-color blue #${config.lib.stylix.colors.base0B}; /* blue */
+    @define-color sand #${config.lib.stylix.colors.base09}; /* sand */
+    @define-color red #${config.lib.stylix.colors.base0E}; /* red*/
+    @define-color mid_gray #${config.lib.stylix.colors.base05}; /* mid gray*/
+    @define-color dark_gold #${config.lib.stylix.colors.base0F}; /* dark gold */
 
        *{
         font-weight:bold;
@@ -46,7 +46,7 @@ in {
           color: @fgcolor;
         }
        #battery {
-           color: @accent5;
+           color: @red;
        }
 
        @keyframes blink {
@@ -74,13 +74,8 @@ in {
            /*padding: 3px;*/
        }
 
-       #custom-keyboard,
-       #cpu {
-           color: @accent1;
-       }
-
        #memory {
-           color: @accent3;
+           color: @sand;
        }
 
        #backlight {
@@ -89,30 +84,27 @@ in {
 
 
        #pulseaudio {
-           color: @accent4;
+           color: @blue;
        }
 
        #pulseaudio-muted {
-           color: @accent2;
+           color: @blue;
        }
        #wireplumber {
-           color: @accent4;
+           color: @red;
        }
 
        #wireplumber-muted {
-           color: @accent2;
+           color: @blue;
        }
 
 
        #disk {
-           color: @accent5;
+           color: @mid_gray;
        }
 
-       #custom-separator {
-           color: #606060;
-       }
        #custom-music.visible {
-           color: @accent4;
+           color: @mid_gray;
            padding: 0 10px;
           }
 

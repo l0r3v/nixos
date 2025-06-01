@@ -7,12 +7,14 @@
     ./rofi.nix
     ./waybar
     #./firefox.nix
+    ./kitty.nix
     ./texlive.nix
     ./hyprland.nix
     ./alacritty.nix
     ./qutebrowser
     ./mpv.nix
     ./rbw.nix
-    ./eww.nix
+    #./eww.nix
+    ./nix-helpers.nix
   ];
 }

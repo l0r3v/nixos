@@ -47,6 +47,7 @@
       url = "github:kamadorueda/alejandra";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    optnix.url = "github:water-sucks/optnix";
   };
 
   outputs = {nixpkgs, ...} @ inputs: let
@@ -62,7 +63,7 @@
           inputs.sops-nix.nixosModules.sops
           inputs.stylix.nixosModules.stylix
           inputs.home-manager.nixosModules.home-manager
-          inputs.nixos-hardware.nixosModules.dell-xps-15-9500
+          inputs.nixos-hardware.nixosModules.dell-xps-15-9500-nvidia
           inputs.nixos-cli.nixosModules.nixos-cli
           {
             home-manager = {

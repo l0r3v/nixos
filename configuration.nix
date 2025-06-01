@@ -7,24 +7,12 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    #./distributed-builds.nix
+    ./distributed-builds.nix
     ./sops.nix
     ./services/homepage.nix
     ./services/kanata.nix
     ./services/nixos-cli.nix
   ];
-  specialisation = {
-    mobile.configuration = {
-      system.nixos.tags = ["mobile"];
-      hardware.nvidia = {
-        prime.offload.enable = lib.mkForce true;
-        prime.offload.enableOffloadCmd = lib.mkForce true;
-        prime.sync.enable = lib.mkForce false;
-      };
-      powerManagement.powertop.enable = true;
-      services.thermald.enable = true;
-    };
-  };
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = true;
@@ -100,9 +88,6 @@
       };
     };
     logind = {
-      lidSwitch = "suspend";
-      lidSwitchExternalPower = "suspend";
-
       lidSwitchDocked = "ignore";
     };
     preload.enable = true;
@@ -207,7 +192,11 @@
 
   hardware = {
     graphics.enable = true;
-    nvidia.modesetting.enable = true;
+    nvidia = {
+      modesetting.enable = true;
+      open = true;
+      primeBatterySaverSpecialisation = true;
+    };
   };
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr];
@@ -215,6 +204,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
+    inputs.optnix.packages."${system}".optnix
     vim
     git
     dunst
@@ -230,7 +220,6 @@
     htop-vim
     jq
     openresolv
-    nh
     nixd
     qemu
     sops
@@ -240,9 +229,7 @@
     wlroots
     libxkbcommon
     ripgrep
-    nix-index
     steam-tui
-    nvd
     socat
     ags
     playerctl

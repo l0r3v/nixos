@@ -38,7 +38,6 @@ in {
       pkgs.ripgrep
       pkgs.blueman
       pkgs.stremio
-      pkgs.kitty
       pkgs.alejandra
       pkgs.base16-schemes
       pkgs.onedrive
