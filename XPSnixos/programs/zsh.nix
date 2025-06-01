@@ -29,7 +29,7 @@
       upgrade = "sudo nixos-rebuild switch --flake /home/lorev/nixos/# |& nom";
       mobile = "sudo /nix/var/nix/profiles/system/specialisation/mobile/bin/swtich-to-configuration test";
       no-mobile = "sudo /nix/var/nix/profiles/system/bin/swtich-to-configuration switch";
-      updateServer = "sudo nixos-rebuild switch --flake /home/lorev/nixos/#homelab --target-host root@homelab |& nom";
+      updateServer = "sudo nixos-rebuild switch --flake /home/lorev/nixos/homelab/#homelab --target-host root@homelab |& nom";
       nssh = "nvim oil-ssh://hspasqui@homelab/~";
     };
     history.size = 10000;

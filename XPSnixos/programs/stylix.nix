@@ -1,8 +1,8 @@
 {
   pkgs,
-  themeName ? "gruvbox",
   ...
 }: let
+  themeName = "sandcastle";
   wallpaper-wing = ../config/wallpaper/wingInFlux.jpg;
   macchiato = ../config/wallpaper/nixos-wallpaper-catppuccin-mocha.png;
   inputImage = ../config/wallpaper/nix-transp.png;

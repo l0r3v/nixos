@@ -52,19 +52,17 @@
 
   outputs = {nixpkgs, ...} @ inputs: let
     system = "x86_64-linux";
-    themeName = "sandcastle";
   in {
     formatter.${system} = inputs.alejandra.defaultPackage.${system};
     nixosConfigurations = {
       XPSnixos = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit system inputs themeName;};
+        specialArgs = {inherit system inputs;};
         modules = [
           ./configuration.nix
-          inputs.sops-nix.nixosModules.sops
-          inputs.stylix.nixosModules.stylix
           inputs.home-manager.nixosModules.home-manager
           inputs.nixos-hardware.nixosModules.dell-xps-15-9500-nvidia
-          inputs.nixos-cli.nixosModules.nixos-cli
+          inputs.stylix.nixosModules.stylix
+          inputs.sops-nix.nixosModules.sops
           {
             home-manager = {
               useGlobalPkgs = true;
@@ -72,27 +70,10 @@
               backupFileExtension = "backup";
               users.lorev = import ./home.nix;
               extraSpecialArgs = {
-                inherit system inputs themeName;
+                inherit system inputs;
               };
             };
           }
-        ];
-      };
-
-      homelab = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs themeName;};
-        modules = [
-          ./homelab/configuration.nix
-          inputs.sops-nix.nixosModules.sops
-          inputs.stylix.nixosModules.stylix
-        ];
-      };
-
-      iso = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./isoimage/configuration.nix
         ];
       };
     };

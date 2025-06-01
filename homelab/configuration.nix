@@ -1,32 +1,21 @@
 {
-  config,
   pkgs,
-  inputs,
-  themeName ? "gruvbox",
   ...
-}: let
-  inherit (pkgs.stdenv.hostPlatform) system;
-  nixvim-package = inputs.nixvim.packages.${system}.default;
-  extended-nixvim = nixvim-package.extend config.lib.stylix.nixvim.config;
-  theme = "${pkgs.base16-schemes}/share/themes/${themeName}.yaml";
-in {
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ./dockers
     ./services
     ./remote-builder.nix
     ./backup-timers
-    ./sops.nix
+    ../common/nix-helpers.nix
+    ../common/sops.nix
   ];
 
   hardware = {
     graphics.enable = true;
     nvidia.modesetting.enable = true;
-  };
-
-  stylix = {
-    enable = true;
-    base16Scheme = theme;
   };
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -125,7 +114,6 @@ in {
     useRoutingFeatures = "server";
   };
   environment.sessionVariables = {
-    NH_FLAKE = "/home/hspasqui/nixos-homelab";
     EDITOR = "vim";
   };
   programs.bash = {

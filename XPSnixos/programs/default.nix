@@ -15,6 +15,5 @@
     ./mpv.nix
     ./rbw.nix
     #./eww.nix
-    ./nix-helpers.nix
   ];
 }

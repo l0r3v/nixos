@@ -1,17 +1,19 @@
 {
   pkgs,
   inputs,
+config,
   lib,
   ...
-}: {
+}: 
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./distributed-builds.nix
-    ./sops.nix
     ./services/homepage.nix
     ./services/kanata.nix
-    ./services/nixos-cli.nix
+    ../common/nix-helpers.nix
+    ../common/sops.nix
   ];
   # Bootloader.
   boot.loader = {
@@ -158,9 +160,6 @@
     NIXOS_OZONE_WL = "1";
     #my sessionVariables
     EDITOR = "nvim";
-    NH_FLAKE = "/home/lorev/nixos";
-    FLAKE = "/home/lorev/nixos";
-    NIXOS_CONFIG = "/home/lorev/nixos";
   };
   # configuration.nix
   systemd.user.services."lid-monitor" = {
@@ -204,7 +203,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    inputs.optnix.packages."${system}".optnix
     vim
     git
     dunst
