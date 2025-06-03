@@ -1,11 +1,10 @@
 {
   pkgs,
   inputs,
-config,
+  config,
   lib,
   ...
-}: 
-{
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -245,6 +244,13 @@ config,
     nerd-fonts.fira-code
     nerd-fonts.mononoki
   ];
+  xdg.mime.defaultApplications = {
+    "text/html" = "org.qutebrowser.qutebrowser.desktop";
+    "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
+    "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
+    "x-scheme-handler/about" = "org.qutebrowser.qutebrowser.desktop";
+    "x-scheme-handler/unknown" = "org.qutebrowser.qutebrowser.desktop";
+  };
   #Install Steam
   programs.steam.enable = true;
 

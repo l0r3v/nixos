@@ -47,11 +47,9 @@ in {
       pkgs.tut
       pkgs.clang
       pkgs.ytfzf
-      pkgs.calibre
       pkgs.whatsie
       pkgs.rclone
       pkgs.rclone-browser
-      pkgs.chromium
       pkgs.gimp
       pkgs.hacompanion
       pkgs.ckan
@@ -60,14 +58,12 @@ in {
       pkgs.latexrun
       pkgs.xdotool
       pkgs.newsflash
-      pkgs.nix-init
       pkgs.owncloud-client
       pkgs.aria2
       pkgs.preload
       pkgs.vorta
       pkgs.gcr
       pkgs.seahorse
-      pkgs.nix-output-monitor
       pkgs.lazygit
       pkgs.pinentry
       pkgs.rbw
@@ -75,6 +71,7 @@ in {
       pkgs.cloudflared
       pkgs.libqalculate
       pkgs.cider-2
+      pkgs.tea
     ]; #END OF PACKAGES
   };
 
@@ -193,6 +190,11 @@ in {
     enable = true;
     defaultApplications = {
       "application/pdf" = "org.pwmt.zathura.desktop";
+      "text/html" = "org.qutebrowser.qutebrowser.desktop";
+      "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
+      "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
+      "x-scheme-handler/about" = "org.qutebrowser.qutebrowser.desktop";
+      "x-scheme-handler/unknown" = "org.qutebrowser.qutebrowser.desktop";
     };
   };
   home.sessionVariables = {
@@ -201,7 +203,7 @@ in {
   };
 
   imports = [
-    ./config/files.nix
+    ./dotfiles
     ./programs
   ];
 

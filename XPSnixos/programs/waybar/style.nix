@@ -16,21 +16,23 @@ in {
     @define-color dark_gold #${config.lib.stylix.colors.base0F}; /* dark gold */
 
        *{
+        border: none;
+        border-radius: 0;
         font-weight:bold;
-        font-size:16px;
+        font-size:13px;
         }
 
         window#waybar {
-          background: rgba(0,0,0,0);
+          background: @bgcolor;
         }
 
        tooltip {
            background: #1e1e2e;
-           opacity: 0.6;
+           opacity: 1;
            border-radius: 10px;
            border-width: 2px;
            border-style: solid;
-           border-color: #11111b;
+           border-color: @bgcolor;
        }
 
 

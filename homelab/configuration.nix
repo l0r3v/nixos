@@ -1,8 +1,4 @@
-{
-  pkgs,
-  ...
-}:
-{
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ./dockers
@@ -115,9 +111,9 @@
   };
   environment.sessionVariables = {
     EDITOR = "vim";
+    TERM = "xterm-256color";
   };
   programs.bash = {
-    shellInit = "export TERM=xterm-256color";
     shellAliases = {
       ll = "eza -la";
       ett = "eza --tree";

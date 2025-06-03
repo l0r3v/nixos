@@ -1,5 +1,4 @@
-{inputs,
-  ...}: {
+{inputs, ...}: {
   imports = [
     inputs.nixos-cli.nixosModules.nixos-cli
   ];
@@ -16,7 +15,6 @@
         opt = ["option" "-i"];
         test = ["apply" "--no-boot" "--no-activate"];
       };
-
     };
   };
 }

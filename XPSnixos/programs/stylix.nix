@@ -1,11 +1,8 @@
-{
-  pkgs,
-  ...
-}: let
-  themeName = "sandcastle";
-  wallpaper-wing = ../config/wallpaper/wingInFlux.jpg;
-  macchiato = ../config/wallpaper/nixos-wallpaper-catppuccin-mocha.png;
-  inputImage = ../config/wallpaper/nix-transp.png;
+{pkgs, ...}: let
+  themeName = "espresso";
+  wallpaper-wing = ../dotfiles/wallpaper/wingInFlux.jpg;
+  macchiato = ../dotfiles/wallpaper/nixos-wallpaper-catppuccin-mocha.png;
+  inputImage = ../dotfiles/wallpaper/nix-transp.png;
   # https://tinted-theming.github.io/tinted-gallery/
   theme = "${pkgs.base16-schemes}/share/themes/${themeName}.yaml";
   wallpaper-nix = pkgs.runCommand "nix-colored.png" {} ''
@@ -16,7 +13,7 @@ in {
   stylix = {
     enable = true;
     base16Scheme = theme;
-    image = wallpaper-nix;
+    image = wallpaper-wing;
     opacity = {
       applications = 1.0; #This doesn't seem to work
       desktop = 0.85;
