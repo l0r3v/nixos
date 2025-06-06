@@ -139,6 +139,7 @@
         "$mainMod SHIFT, B, movetoworkspace, -1"
 
         "$mainMod, f, fullscreen"
+        "$mainMod, c, exec, zathura ~/calendar"
 
         # University shortcuts
         "Control_L&Alt_R, t, exec, $terminal -d ~/current_course"
