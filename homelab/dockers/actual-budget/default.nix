@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  version = "25.5.0";
+  version = "25.6.1";
 in {
   # Runtime
   virtualisation.docker = {
