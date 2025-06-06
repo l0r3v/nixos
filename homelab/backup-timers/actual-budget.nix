@@ -28,7 +28,7 @@
       TELEGRAM_BOT_TOKEN="$(cat ${config.sops.secrets.telegram_bot_token.path})" #"
       STATUS=0
       BACKUP_ZIP="actual-budget-backup.zip"
-      ACTUAL_BUDGET_PASSWORD="$(cat ${config.sops.secrets."borgbase/actual/password".path})"#"
+      ACTUAL_BUDGET_PASSWORD="$(cat ${config.sops.secrets."borgbase/actual/password".path})"
       ACTUAL_BUDGET_URL="$(cat ${config.sops.secrets."borgbase/actual/url".path})" #"
       ACTUAL_BUDGET_SYNC_ID="$(cat ${config.sops.secrets."borgbase/actual/sync_id".path})" #"
 
@@ -39,15 +39,15 @@
                   | reduce range(0; 2) as $i
                   ({}; . + {($a[2*$i]): ($a[2*$i + 1])})' > /tmp/login.json
 
-      TOKEN="$(curl -s --location "$ACTUAL_BUDGET_URL/account/login" --header 'Content-Type: application/json' --data @/tmp/login.json  | jq --raw-output '.data.token')"
+      TOKEN="$(curl --location "$ACTUAL_BUDGET_URL/account/login" --header 'Content-Type: application/json' --data @/tmp/login.json  | jq --raw-output '.data.token')"
 
       rm /tmp/login.json
 
-      FILE_ID=$(curl -s --location "$ACTUAL_BUDGET_URL/sync/list-user-files" \--header "X-ACTUAL-TOKEN: $TOKEN" | jq --raw-output ".data[] | select( [ .groupId | match(\"$ACTUAL_BUDGET_SYNC_ID\") ] | any) | .fileId")
+      FILE_ID=$(curl --location "$ACTUAL_BUDGET_URL/sync/list-user-files" \--header "X-ACTUAL-TOKEN: $TOKEN" | jq --raw-output ".data[] | select( [ .groupId | match(\"$ACTUAL_BUDGET_SYNC_ID\") ] | any) | .fileId")
 
       rm -rf $LOCAL_DIR/$BACKUP_ZIP
 
-      curl -s --location "$ACTUAL_BUDGET_URL/sync/download-user-file" --header "X-ACTUAL-TOKEN: $TOKEN" --header "X-ACTUAL-FILE-ID: $FILE_ID" --output "$LOCAL_DIR/$BACKUP_ZIP"
+      curl --location "$ACTUAL_BUDGET_URL/sync/download-user-file" --header "X-ACTUAL-TOKEN: $TOKEN" --header "X-ACTUAL-FILE-ID: $FILE_ID" --output "$LOCAL_DIR/$BACKUP_ZIP"
 
 
       #curl -s -X POST https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage -d chat_id=-1002509650347 -d text="#actual: #startedBackup"
@@ -72,7 +72,7 @@
         MESSAGE="❌ Errore nel backup @Lorevocator"
       fi
       echo status $STATUS: $MESSAGE
-      curl -s -X POST https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage -d chat_id=-1002509650347 -d text="#actual-budget: $MESSAGE Tempo impiegato: $minutes min e $seconds sec"
+      curl -X POST https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage -d chat_id=-1002509650347 -d text="#actual-budget: $MESSAGE Tempo impiegato: $minutes min e $seconds sec"
       exit $STATUS
     '';
     serviceConfig = {
