@@ -123,8 +123,20 @@
                     };
                   }
                   {
-                    field = "data.repoList.1.currentUsage";
+                    field = "data.repoList.2.currentUsage";
                     label = "Gitea";
+                    format = "bytes";
+                    scale = 1000000;
+                    additionalField = {
+                      field = "data.repoList.2.lastModified";
+                      label = "Last Backup";
+                      format = "relativeDate";
+                      style = "short";
+                    };
+                  }
+                  {
+                    field = "data.repoList.1.currentUsage";
+                    label = "Owncloud";
                     format = "bytes";
                     scale = 1000000;
                     additionalField = {
@@ -135,12 +147,12 @@
                     };
                   }
                   {
-                    field = "data.repoList.2.currentUsage";
-                    label = "Owncloud";
+                    field = "data.repoList.3.currentUsage";
+                    label = "actual-budget";
                     format = "bytes";
                     scale = 1000000;
                     additionalField = {
-                      field = "data.repoList.2.lastModified";
+                      field = "data.repoList.3.lastModified";
                       label = "Last Backup";
                       format = "relativeDate";
                       style = "short";
