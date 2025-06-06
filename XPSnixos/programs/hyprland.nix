@@ -81,7 +81,7 @@
         "XCURSOR_SIZE,32"
       ];
       "$mainMod" = "SUPER";
-      "$terminal" = "kitty";
+      "$terminal" = "ghostty";
       "$menu" = "rofi -show drun";
       "$browser" = "qutebrowser";
       bind = [

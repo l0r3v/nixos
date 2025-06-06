@@ -19,7 +19,7 @@
         show = "auto";
       };
       auto_save.session = true;
-      editor.command = ["kitty" "-e" "vim" "{file}"];
+      editor.command = ["ghostty" "-e" "vim" "{file}"];
       input = {
         media_keys = true;
         mode_override = "normal";

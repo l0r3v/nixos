@@ -15,5 +15,6 @@
     ./mpv.nix
     ./rbw.nix
     #./eww.nix
+    ./ghostty.nix
   ];
 }

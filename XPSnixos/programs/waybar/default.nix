@@ -63,7 +63,7 @@
             "title<.*reddit.*>" = " ";
             "title<.*Picture-in-Picture.*>" = " ";
             "class<firefox|org.mozilla.firefox|librewolf|floorp|mercury-browser>" = " ";
-            "class<kitty|konsole|alacritty>" = " ";
+            "class<kitty|konsole|ghostty|alacritty>" = " ";
             "class<kitty-dropterm>" = " ";
             "class<Chromium|Thorium>" = " ";
             "class<org.telegram.desktop|io.github.tdesktop_x64.TDesktop>" = " ";
