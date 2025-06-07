@@ -1,9 +1,9 @@
 set -e
 
 virt-install \
-    --name haos\
+    --name homeassistant\
     --description "Home Assistant OS" --os-variant=generic \
-    --memory 2048 \
+    --memory 3072 \
     --boot uefi \
     --disk /srv/archive/VMs/haos_ova-15.1.qcow2,bus=scsi --controller type=scsi,model=virtio-scsi --import\
     --vcpus=2 \
