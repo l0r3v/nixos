@@ -1,19 +1,19 @@
 {config, ...}: {
   sops.secrets = {
-    "dockers/miniflux/admin_password" = {};
-    "dockers/miniflux/oauth2_client_id" = {};
-    "dockers/miniflux/oauth2_client_secret" = {};
-    "dockers/miniflux/oauth2_redirect_url" = {};
-    "dockers/miniflux/oauth2_endpoint" = {};
+    "miniflux/admin_password" = {};
+    "miniflux/oauth2_client_id" = {};
+    "miniflux/oauth2_client_secret" = {};
+    "miniflux/oauth2_redirect_url" = {};
+    "miniflux/oauth2_endpoint" = {};
   };
 
   sops.templates."miniflux.env".content = ''
     ADMIN_USERNAME=Lorenzo
-    ADMIN_PASSWORD=${config.sops.placeholder."dockers/miniflux/admin_password"}
-    OAUTH2_CLIENT_ID=${config.sops.placeholder."dockers/miniflux/oauth2_client_id"}
-    OAUTH2_CLIENT_SECRET=${config.sops.placeholder."dockers/miniflux/oauth2_client_secret"}
-    OAUTH2_REDIRECT_URL=${config.sops.placeholder."dockers/miniflux/oauth2_redirect_url"}
-    OAUTH2_OIDC_DISCOVERY_ENDPOINT=${config.sops.placeholder."dockers/miniflux/oauth2_endpoint"}
+    ADMIN_PASSWORD=${config.sops.placeholder."miniflux/admin_password"}
+    OAUTH2_CLIENT_ID=${config.sops.placeholder."miniflux/oauth2_client_id"}
+    OAUTH2_CLIENT_SECRET=${config.sops.placeholder."miniflux/oauth2_client_secret"}
+    OAUTH2_REDIRECT_URL=${config.sops.placeholder."miniflux/oauth2_redirect_url"}
+    OAUTH2_OIDC_DISCOVERY_ENDPOINT=${config.sops.placeholder."miniflux/oauth2_endpoint"}
   '';
 
   services.miniflux = {

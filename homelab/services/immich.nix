@@ -1,11 +1,11 @@
 {config, ...}: {
   sops.secrets = {
-    "dockers/immich/db_password" = {};
+    "immich/db_password" = {};
   };
 
   sops.templates."immich.env".content = ''
-    DB_PASSWORD=${config.sops.placeholder."dockers/immich/db_password"}
-    POSTGRES_PASSWORD=${config.sops.placeholder."dockers/immich/db_password"}
+    DB_PASSWORD=${config.sops.placeholder."immich/db_password"}
+    POSTGRES_PASSWORD=${config.sops.placeholder."immich/db_password"}
   '';
 
   services.immich = {
