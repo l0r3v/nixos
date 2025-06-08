@@ -2,6 +2,23 @@
   imports = [
     ./style.nix
   ];
+  home.file = {
+    ".config/waybar/watch_course.sh".text = ''
+      #!/bin/bash
+      cat /tmp/current_course'';
+    ".config/waybar/get_powermode.sh" = {
+      source = ./scripts/get_powermode.sh;
+      executable = true;
+    };
+    ".config/waybar/set_powermode.sh" = {
+      source = ./scripts/set_powermode.sh;
+      executable = true;
+    };
+    ".config/waybar/music.sh" = {
+      source = ./scripts/music.sh;
+      executable = true;
+    };
+  };
   programs.waybar = {
     enable = true;
     settings = {
