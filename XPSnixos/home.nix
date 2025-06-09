@@ -72,6 +72,7 @@ in {
       pkgs.libqalculate
       pkgs.cider-2
       pkgs.tea
+      pkgs.rofi-pulse-select
     ]; #END OF PACKAGES
   };
 

@@ -159,6 +159,7 @@
 
         #Bitwarden rofi
         "Control_L&SHIFT, l, exec,rofi-rbw --no-help --keybindings Ctrl+1:type:username,Ctrl+2:type:password,Ctrl+3:type:totp"
+        "Control_L&SHIFT, a, exec,rofi-pulse-select sink"
       ];
       bindel = [
         ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
