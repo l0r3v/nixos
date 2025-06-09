@@ -31,8 +31,9 @@
       "GITEA__database__USER" = "gitea";
       "USER_GID" = "1000";
       "USER_UID" = "1000";
-      "DISABLE_REGISTRATION" = "true";
       "REQUIRE_SIGNIN_VIEW" = "false";
+      "ENABLE_PASSWORD_SIGNIN_FORM" = "false";
+      "ENABLE_BASIC_AUTHENTICATION" = "false";
       "SSH_PORT" = "22";
     };
     environmentFiles = [
