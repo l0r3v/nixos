@@ -3,17 +3,18 @@
     normal = {
       "xx" = "hint links spawn --detach mpv {hint-url}";
       "ò" = "cmd-set-text :";
-      "xo" = "cmd-set-text -s :open -b";
-      "wo" = "cmd-set-text -s :open -w";
+      "xo" = "cmd-set-text -s :open -bs";
+      "wo" = "cmd-set-text -s :open -ws";
       "ga" = "open -t";
       "d" = "tab-close";
       "D" = "tab-only";
-      "PP" = "open -t -- {clipboard}";
-      "pp" = "open -- {clipboard}";
-      "Pp" = "open -t -- {primary}";
-      "pP" = "open -- {primary}";
+      "PP" = "open -ts -- {primary}";
+      "pp" = "open -s -- {primary}";
+      "Pp" = "open -ws -- {primary}";
+      "pP" = "open -bs -- {primary}";
       "o" = "cmd-set-text -s :open -s ";
       "O" = "cmd-set-text -s :open -ts ";
+      "co" = "spawn -u open_download";
       "<Ctrl-v>" = lib.mkMerge [
         "config-cycle tabs.show never always"
         "config-cycle statusbar.show in-mode always"
