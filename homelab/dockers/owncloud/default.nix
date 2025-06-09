@@ -49,7 +49,7 @@ in {
     cmd = ["--max-allowed-packet=128M" "--innodb-log-file-size=64M"];
     log-driver = "journald";
     extraOptions = [
-      "--health-cmd=[\"mysqladmin\", \"ping\", \"-u\", \"root\", \"--password=owncloud\"]"
+      "--health-cmd=mysqladmin ping -u root --password=owncloud"
       "--health-interval=10s"
       "--health-retries=5"
       "--health-timeout=5s"
@@ -88,7 +88,7 @@ in {
     cmd = ["--databases" "1"];
     log-driver = "journald";
     extraOptions = [
-      "--health-cmd=[\"redis-cli\", \"ping\"]"
+      "--health-cmd=redis-cli ping"
       "--health-interval=10s"
       "--health-retries=5"
       "--health-timeout=5s"
@@ -142,7 +142,7 @@ in {
     ];
     log-driver = "journald";
     extraOptions = [
-      "--health-cmd=[\"/usr/bin/healthcheck\"]"
+      "--health-cmd=\"healthcheck\""
       "--health-interval=30s"
       "--health-retries=5"
       "--health-timeout=10s"
