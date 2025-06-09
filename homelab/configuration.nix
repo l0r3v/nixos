@@ -152,7 +152,7 @@
     ports = [44];
     settings = {
       PasswordAuthentication = false;
-      AllowUsers = ["hspasqui"];
+      AllowUsers = ["hspasqui" "gitlab"];
       X11Forwarding = true;
       PermitRootLogin = "prohibit-password";
       AllowAgentForwarding = true;

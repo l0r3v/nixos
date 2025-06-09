@@ -121,6 +121,19 @@ in {
           port 2221
           identityfile /home/lorev/.ssh/id_ed25519
           proxycommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h
+
+          host gitlab.pasqui.casa
+          hostname gitlab-ssh.pasqui.casa
+          user gitlab
+          port 44
+          identityfile /home/lorev/.ssh/id_ed25519
+          proxycommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h
+        host gitlab-ssh.pasqui.casa
+          hostname gitlab-ssh.pasqui.casa
+          user gitlab
+          port 44
+          identityfile /home/lorev/.ssh/id_ed25519
+          proxycommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h
       '';
     };
 
