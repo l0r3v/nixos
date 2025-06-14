@@ -1,0 +1,43 @@
+name: Update XPS Nix Flakes and Create PR
+
+on:
+  schedule:
+    - cron: '0 13 * * *' 
+  workflow_dispatch:
+jobs:
+  update-flake:
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: nixos-host
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Aggiorna flake.lock
+        run: | 
+          git config user.name "l0r3v"
+          git config user.email "lorenzopasqui@gmail.com"
+          git fetch origin
+          if git ls-remote --exit-code --heads origin flake-update-xps; then
+            git checkout flake-update-xps
+            git pull --rebase origin flake-update 
+            echo "branch esiste"
+          else
+            git checkout -b flake-update-xps
+          fi
+          nix flake update --flake XPSnixos/.
+          git config user.name "Gitea Actions"
+          git config user.email "info@pasqui.casa"
+          git add .
+          if ! git diff --quiet; then
+            git commit -m "chore: updated xps flakes"
+            git push origin HEAD
+            tea login delete git.pasqui.casa 2>/dev/null || true
+            tea login add -u https://git.pasqui.casa -t ${{ secrets.GT_TOKEN }}
+            tea pr create --head flake-update-xps --base main --title "chore: update xps flakes" -a "lorev"
+          else
+            echo "Nessun cambiamento da committare"
+          fi
+        env: 
+          NIX_CONFIG: "access-tokens = github.com=${{ secrets.GH_TOKEN }}"

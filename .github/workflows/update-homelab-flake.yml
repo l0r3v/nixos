@@ -1,4 +1,4 @@
-name: Update Nix Flakes and Create PR
+name: Update Homelab Nix Flakes and Create PR
 
 on:
   schedule:
@@ -19,12 +19,12 @@ jobs:
           git config user.name "l0r3v"
           git config user.email "lorenzopasqui@gmail.com"
           git fetch origin
-          if git ls-remote --exit-code --heads origin flake-update; then
-            git checkout flake-update
-            git pull --rebase origin flake-update 
+          if git ls-remote --exit-code --heads origin flake-update-homelab; then
+            git checkout flake-update-homelab
+            git pull --rebase origin flake-update-homelab 
             echo "branch esiste"
           else
-            git checkout -b flake-update
+            git checkout -b flake-update-homelab
           fi
           nix flake update --flake XPSnixos/.
           nix flake update --flake homelab/.
@@ -36,7 +36,7 @@ jobs:
             git push origin HEAD
             tea login delete git.pasqui.casa 2>/dev/null || true
             tea login add -u https://git.pasqui.casa -t ${{ secrets.GT_TOKEN }}
-            tea pr create --head flake-update --base main --title "chore: update flakes" -a "lorev"
+            tea pr create --head flake-update-homelab --base main --title "chore: update flakes" -a "lorev"
           else
             echo "Nessun cambiamento da committare"
           fi
