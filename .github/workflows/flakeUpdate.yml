@@ -18,22 +18,27 @@ jobs:
         run: | 
           git config user.name "l0r3v"
           git config user.email "lorenzopasqui@gmail.com"
-          git checkout -b flake-update
+          git fetch origin
+          if git ls-remote --exit-code --heads origin flake-update; then
+            git checkout flake-update
+            git pull --rebase origin flake-update 
+            echo "branch esiste"
+          else
+            git checkout -b flake-update
+          fi
           nix flake update --flake XPSnixos/.
           nix flake update --flake homelab/.
           git config user.name "Gitea Actions"
           git config user.email "info@pasqui.casa"
           git add .
-          git commit -m "chore: updated flakes"
-          git push origin HEAD
+          if ! git diff --quiet; then
+            git commit -m "chore: updated flakes"
+            git push origin HEAD
+            tea login delete git.pasqui.casa 2>/dev/null || true
+            tea login add -u https://git.pasqui.casa -t ${{ secrets.GT_TOKEN }}
+            tea pr create --head flake-update --base main --title "chore: update flakes" -a "lorev"
+          else
+            echo "Nessun cambiamento da committare"
+          fi
         env: 
           NIX_CONFIG: "access-tokens = github.com=${{ secrets.GH_TOKEN }}"
-      - name: Create PR
-        uses: infinilabs/gitea-pr@v0
-        with:
-          url: https://git.pasqui.casa
-          token: ${{ secrets.GT_TOKEN }}
-          base: 'main'
-          branch: 'flake-update'
-          title: 'update flake lock'
-

@@ -88,6 +88,13 @@
     borgbackup
     unzip
     keychain
+    nodejs
+    coreutils
+    curl
+    gawk
+    gnused
+    nodejs
+    tea
   ];
 
   systemd.services.hacompanion = {

@@ -30,6 +30,7 @@
         gnused
         nodejs
         wget
+        tea
         nix
       ];
       settings = {
