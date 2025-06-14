@@ -1,0 +1,29 @@
+name: Update Nix Flakes and Create PR
+
+on:
+  schedule:
+    - cron: '0 13 * * *' 
+
+jobs:
+  update-flake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+        # Aggiorna flake di XPSnixos
+      - name: Aggiorna flake.lock e crea PR XPSnixos
+        working-directory: XPSnixos
+        uses: DeterminateSystems/update-flake-lock@main
+        with:
+          pr-title: "chore: update flakes in XPSnixos"
+          pr-lables: automated
+      - name: Aggiorna flake.lock e crea PR homelab
+        working-directory: homelab
+        uses: DeterminateSystems/update-flake-lock@main
+        with:
+          pr-title: "chore: update flakes in homelab"
+          pr-lables: automated
