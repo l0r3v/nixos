@@ -9,24 +9,31 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    runs-on: ubuntu-latest
+    runs-on: nixos-host
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@main
+      - name: Aggiorna flake.lock
+        run: | 
+          git config user.name "l0r3v"
+          git config user.email "lorenzopasqui@gmail.com"
+          git checkout -b flake-update
+          nix flake update --flake XPSnixos/.
+          nix flake update --flake homelab/.
+          git config user.name "Gitea Actions"
+          git config user.email "info@pasqui.casa"
+          git add .
+          git commit -m "chore: updated flakes"
+          git push origin HEAD
+        env: 
+          NIX_CONFIG: "access-tokens = github.com=${{ secrets.GH_TOKEN }}"
+      - name: Create PR
+        uses: infinilabs/gitea-pr@v0
+        with:
+          url: https://git.pasqui.casa
+          token: ${{ secrets.GT_TOKEN }}
+          base: 'main'
+          branch: 'flake-update'
+          title: 'update flake lock'
 
-        # Aggiorna flake di XPSnixos
-      - name: Aggiorna flake.lock e crea PR XPSnixos
-        uses: DeterminateSystems/update-flake-lock@main
-        with:
-          pr-title: "chore: update flakes in XPSnixos"
-          pr-labels: automated
-          path-to-flake-dir: 'XPSnixos/'
-      - name: Aggiorna flake.lock e crea PR homelab
-        uses: DeterminateSystems/update-flake-lock@main
-        with:
-          pr-title: "chore: update flakes in homelab"
-          pr-labels: automated
-          path-to-flake-dir: 'homelab/'

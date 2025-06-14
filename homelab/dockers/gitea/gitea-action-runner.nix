@@ -19,17 +19,18 @@
       name = "nix-runner";
       url = "https://git.pasqui.casa";
       token = "Gcu9mhdBD1H3hlDbOLGlUhCZ9miWZ4cbE7s3GBGC";
-      labels = [ "ubuntu-latest" ];
+        labels = [ "ubuntu-latest" "nixos-host:host"];
       hostPackages = with pkgs; [
         nodejs
         bash
         coreutils
         curl
         gawk
-        gitMinimal
+        git
         gnused
         nodejs
         wget
+        nix
       ];
       settings = {
       };
