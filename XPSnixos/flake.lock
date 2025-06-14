@@ -152,11 +152,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1749787411,
-        "narHash": "sha256-Ozx6BBA7jBPUF2b2tFAG4wD71cCBOmCgZFYjqCbpMJ8=",
+        "lastModified": 1749873802,
+        "narHash": "sha256-tDBFzpFNjpYZlr6XoeH+Cbzq89EPYqPWZkhE/epQ6gg=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "bf1c48472bc1daa1a19900484669f0f68acce902",
+        "rev": "fac7fdf2faa8232c2a95d5619e246b950267dd46",
         "type": "gitlab"
       },
       "original": {
@@ -978,11 +978,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1749285348,
-        "narHash": "sha256-frdhQvPbmDYaScPFiCnfdh3B/Vh81Uuoo0w5TkWmmjU=",
+        "lastModified": 1749794982,
+        "narHash": "sha256-Kh9K4taXbVuaLC0IL+9HcfvxsSUx8dPB5s5weJcc9pc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "3e3afe5174c561dee0df6f2c2b2236990146329f",
+        "rev": "ee930f9755f58096ac6e8ca94a1887e0534e2d81",
         "type": "github"
       },
       "original": {
@@ -1033,17 +1033,17 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1748967797,
-        "narHash": "sha256-i2fvCxrgzuDFeHV1cGZJK6ju+8Rty5CLHHUujtDam90=",
-        "ref": "refs/heads/main",
-        "rev": "02f59f5633fe28158e722c9e3a75405500a7f1e0",
-        "revCount": 85,
-        "type": "git",
-        "url": "ssh://git@git.pasqui.casa/lorev/nixvim"
+        "lastModified": 1749916365,
+        "narHash": "sha256-H12nohZQd/6dQD6WFtRoShrAcjK67bPtBtfyR3AWmNU=",
+        "owner": "l0r3v",
+        "repo": "nixvim",
+        "rev": "ab06d32faa57fa2d725b532b70fd04b66b66cff9",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "ssh://git@git.pasqui.casa/lorev/nixvim"
+        "owner": "l0r3v",
+        "repo": "nixvim",
+        "type": "github"
       }
     },
     "nixvim_2": {
@@ -1293,11 +1293,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1748966942,
-        "narHash": "sha256-uyGSU9O2zZj6Gb9jODuxsNDGzNDI4aIaBUvhcsBjvQ8=",
+        "lastModified": 1749905587,
+        "narHash": "sha256-sZpQM+InPCYwJQiTxs/PCCupwbYNaSCFi2Hvpl1/pOo=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "8d829119c5df4ad8064554547f198ea0630905b2",
+        "rev": "77a8b26520f48305f3b1bacffaa8740dde8afa2a",
         "type": "github"
       },
       "original": {
