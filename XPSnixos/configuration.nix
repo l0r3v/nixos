@@ -13,6 +13,7 @@
     ./services/kanata.nix
     ../common/nix-helpers.nix
     ../common/sops.nix
+    ../common/nix-maintenance.nix
   ];
   # Bootloader.
   boot.loader = {

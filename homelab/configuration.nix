@@ -7,6 +7,7 @@
     ./backup-timers
     ../common/nix-helpers.nix
     ../common/sops.nix
+    ../common/nix-maintenance.nix
   ];
 
   hardware = {
