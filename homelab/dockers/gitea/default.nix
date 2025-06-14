@@ -4,7 +4,12 @@
   lib,
   config,
   ...
-}: {
+}:let
+version = "1.24";
+  in{
+  imports = [
+    ./gitea-action-runner.nix
+  ];
   # Runtime
   virtualisation.docker = {
     enable = true;
@@ -23,7 +28,7 @@
   '';
   # Containers
   virtualisation.oci-containers.containers."gitea" = {
-    image = "docker.gitea.com/gitea:1.23";
+    image = "docker.gitea.com/gitea:${version}";
     environment = {
       "GITEA__database__DB_TYPE" = "postgres";
       "GITEA__database__HOST" = "db:5432";
