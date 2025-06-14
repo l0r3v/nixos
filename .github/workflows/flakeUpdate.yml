@@ -3,9 +3,12 @@ name: Update Nix Flakes and Create PR
 on:
   schedule:
     - cron: '0 13 * * *' 
-
+  workflow_dispatch:
 jobs:
   update-flake:
+    permissions:
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -16,14 +19,14 @@ jobs:
 
         # Aggiorna flake di XPSnixos
       - name: Aggiorna flake.lock e crea PR XPSnixos
-        working-directory: XPSnixos
         uses: DeterminateSystems/update-flake-lock@main
         with:
           pr-title: "chore: update flakes in XPSnixos"
-          pr-lables: automated
+          pr-labels: automated
+          path-to-flake-dir: 'XPSnixos/'
       - name: Aggiorna flake.lock e crea PR homelab
-        working-directory: homelab
         uses: DeterminateSystems/update-flake-lock@main
         with:
           pr-title: "chore: update flakes in homelab"
-          pr-lables: automated
+          pr-labels: automated
+          path-to-flake-dir: 'homelab/'
