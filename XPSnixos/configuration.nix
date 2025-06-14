@@ -43,6 +43,7 @@
     ];
   };
 
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/monokai.yaml";
   # Enable network manager applet
   programs = {
     nm-applet.enable = true;
