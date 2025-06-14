@@ -12,7 +12,7 @@
 
     nixos-cli.url = "github:nix-community/nixos-cli";
     nixvim = {
-      url = "git+ssh://git@git.pasqui.casa/lorev/nixvim";
+      url = "github:l0r3v/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
