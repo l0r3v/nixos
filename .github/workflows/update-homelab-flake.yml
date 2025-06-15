@@ -26,12 +26,12 @@ jobs:
           else
             git checkout -b flake-update-homelab
           fi
-          nix flake update --flake XPSnixos/.
           nix flake update --flake homelab/.
           git config user.name "Gitea Actions"
           git config user.email "info@pasqui.casa"
           git add .
-          if ! git diff --quiet; then
+          echo $(git diff --name-only)
+          if git diff --quiet; then
             git commit -m "chore: updated flakes"
             git push origin HEAD
             tea login delete git.pasqui.casa 2>/dev/null || true

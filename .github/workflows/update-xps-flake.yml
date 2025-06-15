@@ -21,7 +21,7 @@ jobs:
           git fetch origin
           if git ls-remote --exit-code --heads origin flake-update-xps; then
             git checkout flake-update-xps
-            git pull --rebase origin flake-update 
+            git pull --rebase origin flake-update-xps
             echo "branch esiste"
           else
             git checkout -b flake-update-xps
@@ -30,7 +30,8 @@ jobs:
           git config user.name "Gitea Actions"
           git config user.email "info@pasqui.casa"
           git add .
-          if ! git diff --quiet; then
+          echo $(git diff --name-only)
+          if git diff --quiet; then
             git commit -m "chore: updated xps flakes"
             git push origin HEAD
             tea login delete git.pasqui.casa 2>/dev/null || true
