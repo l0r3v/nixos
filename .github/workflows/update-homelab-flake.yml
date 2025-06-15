@@ -36,7 +36,7 @@ jobs:
             git push origin HEAD
             tea login delete git.pasqui.casa 2>/dev/null || true
             tea login add -u https://git.pasqui.casa -t ${{ secrets.GT_TOKEN }}
-            tea pr create --head flake-update-homelab --base main --title "chore: update flakes" -a "lorev"
+            tea pr create --head flake-update-homelab --base main --title "chore: update flakes" -a "lorev" -L "host/homelab"
           else
             echo "Nessun cambiamento da committare"
           fi

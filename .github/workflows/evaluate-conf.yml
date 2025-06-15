@@ -1,0 +1,30 @@
+name: Build nixos
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  eval-xps:
+    if: contains(github.event.pull_request.labels.*.name, 'host/xps') || contains(github.event.pull_request.labels.*.name, 'host/common')
+    name: Evaluate xps configuration
+    runs-on: nixos-host
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Nix packages
+        run: nix eval ./XPSnixos/.#nixosConfigurations.XPSnixos.config.system.build.toplevel 
+
+  eval-homelab:
+    if: contains(github.event.pull_request.labels.*.name, 'host/homelab') || contains(github.event.pull_request.labels.*.name, 'host/common')
+    name: Evaluate homelab configuration
+    runs-on: nixos-host
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Evaluate derivation
+        run: nix eval ./homelab/.#nixosConfigurations.homelab.config.system.build.toplevel 
