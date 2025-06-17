@@ -19,6 +19,8 @@ jobs:
           git config user.name "l0r3v"
           git config user.email "lorenzopasqui@gmail.com"
           git fetch origin
+          git remote set-url origin https://gitea-bot:${GITEA_PAT}@git.pasqui.casa/lorev/nixos.git
+          git remote get-url origin
           if git ls-remote --exit-code --heads origin flake-update-xps; then
             git checkout flake-update-xps
             git pull --rebase origin flake-update-xps
@@ -29,16 +31,18 @@ jobs:
           nix flake update --flake XPSnixos/.
           git config user.name "Gitea Actions"
           git config user.email "info@pasqui.casa"
-          git add .
-          echo $(git diff --name-only)
-          if git diff --quiet; then
+          echo $(git diff --cached --name-only)
+          echo $(git status --porcelain)
+          if git status --porcelain | grep -q 'XPSnixos/flake.lock'; then
+            git add XPSnixos/flake.lock
             git commit -m "chore: updated xps flakes"
             git push origin HEAD
             tea login delete git.pasqui.casa 2>/dev/null || true
-            tea login add -u https://git.pasqui.casa -t ${{ secrets.GT_TOKEN }}
-            tea pr create --head flake-update-xps --base main --title "chore: update xps flakes" -a "lorev" -L "host/xps"
+            tea login add -u https://git.pasqui.casa -t ${GITEA_PAT}
+            tea pr create --head flake-update-xps --base main --title "chore: update xps flakes" -a "lorev" -L "host/xps" --repo lorev/nixos
           else
             echo "Nessun cambiamento da committare"
           fi
         env: 
           NIX_CONFIG: "access-tokens = github.com=${{ secrets.GH_TOKEN }}"
+          GITEA_PAT: ${{ secrets.PAT }}
