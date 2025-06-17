@@ -29,7 +29,7 @@ jobs:
             git checkout -b flake-update-xps
           fi
           nix flake update --flake XPSnixos/.
-          git config user.name "Gitea Actions"
+          git config user.name "gitea-bot"
           git config user.email "info@pasqui.casa"
           echo $(git diff --cached --name-only)
           echo $(git status --porcelain)
