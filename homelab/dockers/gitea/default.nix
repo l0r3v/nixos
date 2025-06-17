@@ -4,9 +4,9 @@
   lib,
   config,
   ...
-}:let
-version = "1.24";
-  in{
+}: let
+  version = "1.24";
+in {
   imports = [
     ./gitea-action-runner.nix
   ];
