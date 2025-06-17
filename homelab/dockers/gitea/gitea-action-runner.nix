@@ -32,6 +32,7 @@
         wget
         tea
         nix
+          alejandra
       ];
       settings = {
       };
