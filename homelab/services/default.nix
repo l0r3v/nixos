@@ -4,5 +4,6 @@
     ./miniflux.nix
     ./cloudflared.nix
     ./paperless.nix
+    ./navidrome.nix
   ];
 }
