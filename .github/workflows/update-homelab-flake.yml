@@ -35,7 +35,7 @@ jobs:
           echo $(git status --porcelain)
           if git status --porcelain | grep -q 'homelab/flake.lock'; then
             git add homelab/flake.lock
-            git commit -m "chore: updated flakes"
+            git commit -m "chore: updated homelab flakes"
             git push origin HEAD
             tea login delete git.pasqui.casa 2>/dev/null || true
             tea login add -u https://git.pasqui.casa -t ${GITEA_PAT}
