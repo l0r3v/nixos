@@ -63,6 +63,11 @@
 
   services.getty.autologinUser = "hspasqui";
 
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    nix-direnv.enable = true;
+  };
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
