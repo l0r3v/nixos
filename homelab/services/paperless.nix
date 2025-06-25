@@ -1,4 +1,11 @@
 {config, ...}: {
+  nixpkgs.overlays = [
+    (self: super: {
+      paperless-ngx = super.paperless-ngx.overrideAttrs (old: {
+        doCheck = false;
+      });
+    })
+  ];
   sops.secrets = {
     "paperless/admin_password" = {};
     "paperless/db_password" = {};
