@@ -6,7 +6,7 @@
     ./stylix.nix
     ./rofi.nix
     ./waybar
-    #./firefox.nix
+    ./firefox.nix
     ./kitty.nix
     ./texlive.nix
     ./hyprland.nix
