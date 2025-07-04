@@ -14,6 +14,7 @@
     ../common/nix-helpers.nix
     ../common/sops.nix
     ../common/nix-maintenance.nix
+    ./programs/stylix.nix
   ];
   # Bootloader.
   boot.loader = {
@@ -43,7 +44,6 @@
     ];
   };
 
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/monokai.yaml";
   # Enable network manager applet
   programs = {
     nm-applet.enable = true;

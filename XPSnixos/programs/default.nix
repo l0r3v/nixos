@@ -3,7 +3,6 @@
     ./nnn.nix
     ./zsh.nix
     ./zathura.nix
-    ./stylix.nix
     ./rofi.nix
     ./waybar
     ./firefox.nix
