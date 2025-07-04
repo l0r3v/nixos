@@ -2,7 +2,7 @@ name: Update XPS Nix Flakes and Create PR
 
 on:
   schedule:
-    - cron: '0 13 * * *' 
+    - cron: '0 0 * * 0' 
   workflow_dispatch:
 jobs:
   update-flake:
