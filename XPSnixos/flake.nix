@@ -26,12 +26,12 @@
     };
 
     inkscape-figures = {
-      url = "github:Iorev/inkscape-figures";
+      url = "github:l0r3v/inkscape-figures";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     university-setup = {
-      url = "github:Iorev/university-setup";
+      url = "github:l0r3v/university-setup";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     yt-x = {
