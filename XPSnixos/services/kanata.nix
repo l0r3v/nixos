@@ -10,7 +10,7 @@
 
 
           (defsrc
-           caps a s d f g h j k l ; F1 u i o z
+           caps a s d f g h j k l ; F1 u i o z lalt
           )
           (deflocalkeys-linux
            < 86
@@ -58,6 +58,7 @@
            i
            o
            @z-mod
+           lalt
            )
           (deflayer mouse
            _
@@ -75,6 +76,7 @@
            @click-left
            @click-middle
            @click-right
+           _
            _
            )
         '';
