@@ -807,13 +807,13 @@
       "locked": {
         "lastModified": 1744735823,
         "narHash": "sha256-cGi+PZfXaHa/pTzqxxLYxlw1wuqdL0g5dslBIs6/SSc=",
-        "owner": "Iorev",
+        "owner": "l0r3v",
         "repo": "inkscape-figures",
         "rev": "676d53dcf48e3856eb33aa1d7c61831dce94418e",
         "type": "github"
       },
       "original": {
-        "owner": "Iorev",
+        "owner": "l0r3v",
         "repo": "inkscape-figures",
         "type": "github"
       }
@@ -1539,13 +1539,13 @@
       "locked": {
         "lastModified": 1747133283,
         "narHash": "sha256-+d4SzKtswqdwn8lZPOPlSYBTD1QPw7j6ynal97jEb68=",
-        "owner": "Iorev",
+        "owner": "l0r3v",
         "repo": "university-setup",
         "rev": "be7395f139eded7c894f2f65c281e1a2412a7947",
         "type": "github"
       },
       "original": {
-        "owner": "Iorev",
+        "owner": "l0r3v",
         "repo": "university-setup",
         "type": "github"
       }
