@@ -5,6 +5,7 @@
     ./services
     ./remote-builder.nix
     ./backup-timers
+    ./factorio
     ../common/nix-helpers.nix
     ../common/sops.nix
     ../common/nix-maintenance.nix
@@ -100,6 +101,7 @@
     gnused
     nodejs
     tea
+    factorio-headless
   ];
 
   systemd.services.hacompanion = {
