@@ -14,6 +14,7 @@
     ../common/nix-helpers.nix
     ../common/sops.nix
     ../common/nix-maintenance.nix
+    ../common/zerotier.nix
     ./programs/stylix.nix
   ];
   # Bootloader.
