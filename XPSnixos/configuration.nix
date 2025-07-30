@@ -232,6 +232,7 @@
     socat
     ags
     playerctl
+    yafc-ce
   ];
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
@@ -254,7 +255,9 @@
     "x-scheme-handler/unknown" = "org.qutebrowser.qutebrowser.desktop";
   };
   #Install Steam
-  programs.steam.enable = true;
-
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+  };
   system.stateVersion = "24.05"; # Do not change this
 }
