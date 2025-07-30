@@ -178,7 +178,7 @@
     enable = true;
   };
 
-  networking.firewall.allowedTCPPorts = [22 8123 8080 8031 8083 2443 44];
+  networking.firewall.allowedTCPPorts = [22 8123 8080 8031 8083 2443 44 5423];
   networking.firewall.allowedUDPPorts = [8123 8031];
 
   nix.settings = {
