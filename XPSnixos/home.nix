@@ -73,6 +73,8 @@ in {
       pkgs.cider-2
       pkgs.tea
       pkgs.rofi-pulse-select
+      pkgs.scid
+      pkgs.stockfish
     ]; #END OF PACKAGES
   };
 
