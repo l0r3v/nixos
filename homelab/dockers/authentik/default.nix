@@ -5,7 +5,7 @@
   config,
   ...
 }: let
-  version = "2025.6.2";
+  version = "2025.8.1";
 in {
   # Runtime
   virtualisation.docker = {
