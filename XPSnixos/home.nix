@@ -75,6 +75,7 @@ in {
       pkgs.rofi-pulse-select
       pkgs.scid
       pkgs.stockfish
+      pkgs.feishin
     ]; #END OF PACKAGES
   };
 
