@@ -25,7 +25,7 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  services.logind.lidSwitch = "ignore";
+  services.logind.settings.Login.HandleLidSwitch = "ignore";
   # Set your time zone.
   time.timeZone = "Europe/Rome";
 
