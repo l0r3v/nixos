@@ -6,6 +6,7 @@
     ./paperless.nix
     ./navidrome.nix
     #./headscale.nix #non funziona senza ip pubblico
+    ./davis.nix
     ../../common/zerotier.nix
   ];
 }
