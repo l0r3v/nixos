@@ -12,6 +12,7 @@
     ./alacritty.nix
     ./qutebrowser
     ./mpv.nix
+    ./thunderbird.nix
     ./rbw.nix
     #./eww.nix
     ./ghostty.nix
