@@ -28,7 +28,7 @@
            j-mod (tap-hold $tap-time $hold-time j rmet)
            k-mod (tap-hold $tap-time $hold-time k rsft)
            l-mod (tap-hold $tap-time $hold-time l rctl)
-           ;-mod (tap-hold $tap-time $hold-time ; ralt)
+           ;-mod (tap-hold $tap-time $hold-time ; lalt)
            z-mod (tap-hold $tap-time $hold-time z <)
 
            mouse-control (layer-while-held mouse)
