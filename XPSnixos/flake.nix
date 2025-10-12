@@ -13,7 +13,6 @@
     nixos-cli.url = "github:nix-community/nixos-cli";
     nixvim = {
       url = "github:l0r3v/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     stylix.url = "github:danth/stylix";
