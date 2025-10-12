@@ -7,10 +7,6 @@ in {
     enable = true;
     qemu = {
       package = pkgs.qemu;
-      ovmf = {
-        enable = true;
-        packages = [pkgs.OVMF];
-      };
       runAsRoot = true;
     };
   };
