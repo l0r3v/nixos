@@ -116,7 +116,10 @@
       };
     };
     desktopManager.gnome.enable = true;
-    displayManager.gdm.enable = true;
+    displayManager.gdm= {
+      enable = true;
+      settings.daemon.DisplaysMode = "mirror";
+    };
     envfs.enable = true;
 
     # Disable CUPS to never print documents.
