@@ -12,7 +12,6 @@
         delete = ["generation" "delete"];
         clean = ["generation" "delete" "-k" "3"];
         build = ["apply" "--no-activate" "--no-boot" "--output" "result"];
-        opt = ["option" "-i"];
         test = ["apply" "--no-boot" "--no-activate"];
       };
     };
