@@ -6,7 +6,7 @@
 }: let
   inherit (pkgs.stdenv.hostPlatform) system;
   nixvim-package = inputs.nixvim.packages.${system}.full;
-  extended-nixvim = nixvim-package.extend config.lib.stylix.nixvim.config;
+  extended-nixvim = nixvim-package.extend config.stylix.targets.nixvim.exportedModule;
 in {
   home = {
     username = "lorev";
@@ -37,7 +37,6 @@ in {
       pkgs.libsecret
       pkgs.ripgrep
       pkgs.blueman
-      pkgs.stremio
       pkgs.alejandra
       pkgs.base16-schemes
       pkgs.onedrive
@@ -47,9 +46,6 @@ in {
       pkgs.tut
       pkgs.clang
       pkgs.ytfzf
-      pkgs.whatsie
-      pkgs.rclone
-      pkgs.rclone-browser
       pkgs.gimp
       pkgs.hacompanion
       pkgs.ckan
@@ -76,6 +72,7 @@ in {
       pkgs.scid
       pkgs.stockfish
       pkgs.feishin
+      pkgs.power-profiles-daemon
     ]; #END OF PACKAGES
   };
 
@@ -83,6 +80,7 @@ in {
     yazi = {
       enable = true;
     };
+
     keychain = {
       enable = true;
       enableZshIntegration = true;
@@ -104,40 +102,41 @@ in {
     };
     ssh = {
       enable = true;
-      addKeysToAgent = "confirm";
-      forwardAgent = true;
-      extraConfig = ''
-        host homelab-git
-          hostname homelab.tail0e73ab.ts.net
-          user git
-          port 2221
-          identityfile /home/lorev/.ssh/id_ed25519
-        host git.pasqui.casa
-          hostname git-ssh.pasqui.casa
-          user git
-          port 2221
-          identityfile /home/lorev/.ssh/id_ed25519
-          proxycommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h
-        host git-ssh.pasqui.casa
-          hostname git-ssh.pasqui.casa
-          user git
-          port 2221
-          identityfile /home/lorev/.ssh/id_ed25519
-          proxycommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h
-
-          host gitlab.pasqui.casa
-          hostname gitlab-ssh.pasqui.casa
-          user gitlab
-          port 44
-          identityfile /home/lorev/.ssh/id_ed25519
-          proxycommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h
-        host gitlab-ssh.pasqui.casa
-          hostname gitlab-ssh.pasqui.casa
-          user gitlab
-          port 44
-          identityfile /home/lorev/.ssh/id_ed25519
-          proxycommand ${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h
-      '';
+      enableDefaultConfig = false;
+      matchBlocks = {
+        "*" = {
+          forwardAgent = true;
+          addKeysToAgent = "confirm";
+          compression = false;
+          serverAliveInterval = 0;
+          serverAliveCountMax = 3;
+          hashKnownHosts = false;
+          userKnownHostsFile = "~/.ssh/known_hosts";
+          controlMaster = "no";
+          controlPath = "~/.ssh/master-%r@%n:%p";
+          controlPersist = "no";
+        };
+        "homelab-git" = {
+          hostname = "homelab.tail0e73ab.ts.net";
+          user = "git";
+          port = 2221;
+          identityFile = "/home/lorev/.ssh/id_ed25519";
+        };
+        "git.pasqui.casa" = {
+          hostname = "git-ssh.pasqui.casa";
+          user = "git";
+          port = 2221;
+          identityFile = "/home/lorev/.ssh/id_ed25519";
+          proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
+        };
+        "git-ssh.pasqui.casa" = {
+          hostname = "git-ssh.pasqui.casa";
+          user = "git";
+          port = 2221;
+          identityFile = "/home/lorev/.ssh/id_ed25519";
+          proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
+        };
+      };
     };
 
     git = {
@@ -207,11 +206,11 @@ in {
     enable = true;
     defaultApplications = {
       "application/pdf" = "org.pwmt.zathura.desktop";
-      "text/html" = "org.qutebrowser.qutebrowser.desktop";
-      "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
-      "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
-      "x-scheme-handler/about" = "org.qutebrowser.qutebrowser.desktop";
-      "x-scheme-handler/unknown" = "org.qutebrowser.qutebrowser.desktop";
+      #     "text/html" = "org.qutebrowser.qutebrowser.desktop";
+      #     "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
+      #     "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
+      #     "x-scheme-handler/about" = "org.qutebrowser.qutebrowser.desktop";
+      #     "x-scheme-handler/unknown" = "org.qutebrowser.qutebrowser.desktop";
     };
   };
   home.sessionVariables = {

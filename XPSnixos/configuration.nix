@@ -76,6 +76,7 @@
   };
 
   services = {
+    blueman.enable = true;
     pulseaudio.enable = false;
     pipewire = {
       enable = true;
@@ -92,7 +93,7 @@
       };
     };
     logind = {
-      lidSwitchDocked = "ignore";
+      settings.Login.HandleLidSwitchDocked = "ignore";
     };
     preload.enable = true;
     xserver = {
@@ -115,8 +116,7 @@
         variant = "";
       };
     };
-    desktopManager.gnome.enable = true;
-    displayManager.gdm= {
+    displayManager.gdm = {
       enable = true;
       settings.daemon.DisplaysMode = "mirror";
     };
@@ -135,6 +135,7 @@
 
   security = {
     rtkit.enable = true;
+    pam.services.gdm-password.enableGnomeKeyring = true;
   };
   users.users.lorev = {
     isNormalUser = true;
@@ -148,7 +149,7 @@
   programs.zsh.enable = true;
 
   programs.weylus = {
-    enable = true;
+    enable = false;
     openFirewall = true;
     users = ["lorev"];
   };
@@ -195,6 +196,7 @@
   virtualisation.spiceUSBRedirection.enable = true;
 
   hardware = {
+    bluetooth.enable = true;
     graphics.enable = true;
     nvidia = {
       modesetting.enable = true;
@@ -237,7 +239,7 @@
     ags
     playerctl
     yafc-ce
-    zeroad
+    zeroad-unwrapped
   ];
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 

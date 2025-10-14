@@ -5,7 +5,7 @@
 }: {
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi-wayland;
+    package = pkgs.rofi;
     theme = let
       # Use `mkLiteral` for string-like values that should show without
       # quotes, e.g.:

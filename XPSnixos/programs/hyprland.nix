@@ -70,9 +70,6 @@
         kb_layout = "it";
         #kb_options = "caps:swapescape";
       };
-      gestures = {
-        workspace_swipe = true;
-      };
       xwayland = {
         force_zero_scaling = true;
       };
@@ -83,7 +80,7 @@
       "$mainMod" = "SUPER";
       "$terminal" = "ghostty";
       "$menu" = "rofi -show drun";
-      "$browser" = "qutebrowser";
+      "$browser" = "firefox";
       bind = [
         "$mainMod, Return, exec, $terminal"
         "$mainMod, Q, killactive"
