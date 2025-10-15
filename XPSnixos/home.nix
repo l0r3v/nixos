@@ -217,6 +217,10 @@ in {
     EDITOR = "nvim";
     XDG_CONFIG_HOME = "/home/lorev/.config";
   };
+  services.gnome-keyring = {
+    enable = true;
+    components = [ "secrets" "pkcs11" "ssh" ];
+  };
 
   imports = [
     ./dotfiles
