@@ -219,7 +219,7 @@ in {
   };
   services.gnome-keyring = {
     enable = true;
-    components = [ "secrets" "pkcs11" "ssh" ];
+    components = ["secrets" "pkcs11" "ssh"];
   };
 
   imports = [
