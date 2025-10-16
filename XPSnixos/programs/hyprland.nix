@@ -7,6 +7,11 @@
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    systemd = {
+      enable = true;
+      enableXdgAutostart = true;
+      variables = [ "--all" ];
+    };
     settings = {
       general = {
         gaps_in = 2;
@@ -26,6 +31,9 @@
       monitor = [
         "eDP-1,preferred,auto,1.2"
         "DP-2,preferred,auto-right,auto"
+      ];
+      gesture = [
+        "3, horizontal, workspace"
       ];
       dwindle = {
         pseudotile = true;

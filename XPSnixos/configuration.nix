@@ -239,7 +239,7 @@
     ags
     playerctl
     yafc-ce
-    zeroad-unwrapped
+    zeroad
   ];
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
