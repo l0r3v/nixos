@@ -3,7 +3,6 @@
     ./hardware-configuration.nix
     ./dockers
     ./services
-    ./remote-builder.nix
     ./backup-timers
     ./factorio
     ../common/nix-helpers.nix

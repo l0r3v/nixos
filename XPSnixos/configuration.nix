@@ -8,7 +8,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./distributed-builds.nix
     ./services/homepage.nix
     ./services/kanata.nix
     ../common/nix-helpers.nix
