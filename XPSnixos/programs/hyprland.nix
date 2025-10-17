@@ -91,6 +91,7 @@
       "$menu" = "rofi -show drun";
       "$browser" = "firefox";
       bind = [
+        "$mainMod, Escape, exec, bash ~/.config/scripts/powermenu.sh "
         "$mainMod, Return, exec, $terminal"
         "$mainMod, Q, killactive"
         "$mainMod, M, exit"
