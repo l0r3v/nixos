@@ -27,9 +27,10 @@
         "gammastep-indicator -l 45.068371:7.683070"
         "hacompanion"
         "owncloud"
+        "bash /home/lorev/lid-monitor.sh"
       ];
       monitor = [
-        "eDP-1,preferred,auto,1.2"
+        "eDP-1,preferred,auto,1"
         "DP-2,preferred,auto-right,auto"
       ];
       gesture = [

@@ -16,12 +16,22 @@
     ../common/zerotier.nix
     ./programs/stylix.nix
   ];
+  boot={
+    resumeDevice = "/dev/disk/by-uuid/fdc651ed-f77f-4e32-98eb-a24a7a021853";
+    kernelParams = [ "resume_offset=80377856" ];
   # Bootloader.
-  boot.loader = {
+    loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
+    };
 
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 16 * 1024; # 16 GB
+    }
+  ];
   networking = {
     hostName = "XPSnixos"; # Define your hostname.
     networkmanager.enable = true;
@@ -84,13 +94,7 @@
       pulse.enable = true;
     };
 
-    fprintd = {
-      enable = true;
-      tod = {
-        enable = true;
-        driver = pkgs.libfprint-2-tod1-goodix;
-      };
-    };
+    power-profiles-daemon.enable = true;
     logind = {
       settings.Login.HandleLidSwitchDocked = "ignore";
     };
@@ -176,7 +180,7 @@
       if [[ "$LID_STATE" == "closed" && "$EXTERNAL" -gt 0 ]]; then
         hyprctl keyword monitor "eDP-1,disable"
       elif [[ "$LID_STATE" == "open" ]]; then
-        hyprctl keyword monitor "eDP-1,preferred,auto-left,1.25"
+        hyprctl keyword monitor "eDP-1,preferred,auto-left,1"
       fi
     '';
     wantedBy = ["tray.target"];
@@ -203,6 +207,7 @@
       primeBatterySaverSpecialisation = true;
     };
   };
+
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr];
 
