@@ -15,16 +15,17 @@
     ../common/nix-maintenance.nix
     ../common/zerotier.nix
     ./programs/stylix.nix
+    ./graphics.nix
   ];
-  boot={
+  boot = {
     resumeDevice = "/dev/disk/by-uuid/fdc651ed-f77f-4e32-98eb-a24a7a021853";
-    kernelParams = [ "resume_offset=80377856" ];
-  # Bootloader.
+    kernelParams = ["resume_offset=80377856"];
+    # Bootloader.
     loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
     };
+  };
 
   swapDevices = [
     {
@@ -200,12 +201,6 @@
 
   hardware = {
     bluetooth.enable = true;
-    graphics.enable = true;
-    nvidia = {
-      modesetting.enable = true;
-      open = true;
-      primeBatterySaverSpecialisation = true;
-    };
   };
 
   xdg.portal.enable = true;
