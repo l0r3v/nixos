@@ -28,7 +28,7 @@
             add_header 'Content-Length' 0;
             return 204;
           }
-          if ($request_method ~* '(GET|POST)') {
+          if ($request_method ~* '(GET|POST|DELETE)') {
               add_header 'Access-Control-Allow-Origin' '*' always;
               add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS' always;
               add_header 'Access-Control-Allow-Headers' 'X-Api-Key, User-Agent, Content-Type' always;
