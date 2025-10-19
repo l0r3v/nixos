@@ -19,7 +19,11 @@
   ];
   boot = {
     resumeDevice = "/dev/disk/by-uuid/fdc651ed-f77f-4e32-98eb-a24a7a021853";
-    kernelParams = ["resume_offset=80377856"];
+    kernelParams = [
+      "resume_offset=80377856"
+      "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+      "nvidia.NVreg_TemporaryFilePath=/var/tmp"
+    ];
     # Bootloader.
     loader = {
       systemd-boot.enable = true;
@@ -37,7 +41,7 @@
     hostName = "XPSnixos"; # Define your hostname.
     networkmanager.enable = true;
     firewall = {
-      allowedTCPPorts = [8080 8081 5829 8096];
+      allowedTCPPorts = [8080 8081 5829 8096 3000];
       #allowedUDPPorts = [ ... ];
     };
   };
@@ -265,5 +269,6 @@
     enable = true;
     remotePlay.openFirewall = true;
   };
+
   system.stateVersion = "24.05"; # Do not change this
 }
