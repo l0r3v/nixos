@@ -1019,11 +1019,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1760267132,
-        "narHash": "sha256-SRUZ6NhPIE6PCTOc8PRXRfLDvX4WaZUeLFzddFsxn28=",
+        "lastModified": 1760888645,
+        "narHash": "sha256-GxNOCH9q731pYmSxB0ORL+3v9XMdvrG7iGJAUQalMB8=",
         "owner": "l0r3v",
         "repo": "nixvim",
-        "rev": "d064552138243dd533d9f0cc3f0dbe0d4135c024",
+        "rev": "ee34db8f4904284f670fb2fbe3b2c58736cbbf7e",
         "type": "github"
       },
       "original": {
