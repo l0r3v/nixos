@@ -4,7 +4,7 @@
   ...
 }: let
   inherit (pkgs.stdenv.hostPlatform) system;
-  nixvim-package = inputs.nixvim.packages.${system}.bare;
+  nixvim-package = inputs.nixvim.packages.${system}.full;
 in {
   imports = [
     ./hardware-configuration.nix
