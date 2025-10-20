@@ -3,6 +3,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    nixvim = {
+      url = "github:l0r3v/nixvim";
+    };
     nixos-cli.url = "github:nix-community/nixos-cli";
 
     sops-nix = {

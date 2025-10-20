@@ -1,4 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: let
+  inherit (pkgs.stdenv.hostPlatform) system;
+  nixvim-package = inputs.nixvim.packages.${system}.bare;
+in {
   imports = [
     ./hardware-configuration.nix
     ./dockers
@@ -71,6 +78,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    nixvim-package
     btop
     wget
     vim
