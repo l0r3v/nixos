@@ -22,17 +22,17 @@
           if ($request_method = 'OPTIONS') {
             add_header 'Access-Control-Allow-Origin' '*' always;
             add_header 'Access-Control-Allow-Methods' 'GET, PUT, POST, DELETE, OPTIONS' always;
-            add_header 'Access-Control-Allow-Headers' 'X-Api-Key, User-Agent, Content-Type' always;
+            add_header 'Access-Control-Allow-Headers' 'Authorization, X-Api-Key, User-Agent, Content-Type' always;
             add_header 'Access-Control-Max-Age' 1728000;
             add_header 'Content-Type' 'text/plain charset=UTF-8';
             add_header 'Content-Length' 0;
             return 204;
           }
           if ($request_method ~* '(GET|POST|DELETE)') {
-              add_header 'Access-Control-Allow-Origin' '*' always;
-              add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS' always;
-              add_header 'Access-Control-Allow-Headers' 'X-Api-Key, User-Agent, Content-Type' always;
-              add_header 'Access-Control-Max-Age' 1728000;
+            add_header 'Access-Control-Allow-Origin' '*' always;
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS' always;
+            add_header 'Access-Control-Allow-Headers' 'Authorization, X-Api-Key, User-Agent, Content-Type' always;
+            add_header 'Access-Control-Max-Age' 1728000;
           }
         '';
       };
