@@ -188,7 +188,7 @@
         hyprctl keyword monitor "eDP-1,preferred,auto-left,1"
       fi
     '';
-    wantedBy = ["tray.target"];
+    wantedBy = ["hyprland-session.target"];
     serviceConfig = {
       Type = "oneshot";
     };

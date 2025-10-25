@@ -28,6 +28,7 @@
         "hacompanion"
         "owncloud"
         "bash /home/lorev/lid-monitor.sh"
+        "systemctl --user start lid-monitor.service"
       ];
       monitor = [
         "eDP-1,preferred,auto,1"
