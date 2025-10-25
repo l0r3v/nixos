@@ -185,7 +185,7 @@
       if [[ "$LID_STATE" == "closed" && "$EXTERNAL" -gt 0 ]]; then
         hyprctl keyword monitor "eDP-1,disable"
       elif [[ "$LID_STATE" == "open" ]]; then
-        hyprctl keyword monitor "eDP-1,preferred,auto,1"
+        hyprctl keyword monitor "eDP-1,preferred,auto-left,1"
       fi
     '';
     wantedBy = ["hyprland-session.target"];
