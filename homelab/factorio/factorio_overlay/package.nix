@@ -56,7 +56,7 @@ assert releaseType
       packageOverrides = pkgs: {
         factorio = pkgs.factorio.override {
           username = "FactorioPlayer1654";
-          token = "d5ad5a8971267c895c0da598688761";
+          token = "placeholder!";
         };
       };
     }
