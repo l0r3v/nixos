@@ -2,10 +2,18 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: let
   version = "0.33.1";
 in {
+  sops.secrets."dockers/dawarich/db_password" = {};
+
+  sops.templates."dawarich.env".content = ''
+    DATABASE_PASSWORD=${config.sops.placeholder."dockers/dawarich/db_password"}
+    POSTGRES_PASSWORD=${config.sops.placeholder."dockers/dawarich/db_password"}
+  '';
+
   # Runtime
   virtualisation.docker = {
     enable = true;
@@ -21,7 +29,6 @@ in {
       "APPLICATION_PROTOCOL" = "http";
       "DATABASE_HOST" = "dawarich_db";
       "DATABASE_NAME" = "dawarich_development";
-      "DATABASE_PASSWORD" = "password";
       "DATABASE_USERNAME" = "postgres";
       "MIN_MINUTES_SPENT_IN_CITY" = "60";
       "PROMETHEUS_EXPORTER_ENABLED" = "false";
@@ -33,6 +40,9 @@ in {
       "STORE_GEODATA" = "true";
       "TIME_ZONE" = "Europe/London";
     };
+    environmentFiles = [
+      config.sops.templates."dawarich.env".path
+    ];
     volumes = [
       "gps_dawarich_db_data:/dawarich_db_data:rw"
       "gps_dawarich_public:/var/app/public:rw"
@@ -92,9 +102,11 @@ in {
     image = "postgis/postgis:17-3.5-alpine";
     environment = {
       "POSTGRES_DB" = "dawarich_development";
-      "POSTGRES_PASSWORD" = "password";
       "POSTGRES_USER" = "postgres";
     };
+    environmentFiles = [
+      config.sops.templates."dawarich.env".path
+    ];
     volumes = [
       "gps_dawarich_db_data:/var/lib/postgresql/data:rw"
       "gps_dawarich_shared:/var/shared:rw"
@@ -182,7 +194,6 @@ in {
       "BACKGROUND_PROCESSING_CONCURRENCY" = "10";
       "DATABASE_HOST" = "dawarich_db";
       "DATABASE_NAME" = "dawarich_development";
-      "DATABASE_PASSWORD" = "password";
       "DATABASE_USERNAME" = "postgres";
       "PROMETHEUS_EXPORTER_ENABLED" = "false";
       "PROMETHEUS_EXPORTER_HOST" = "dawarich_app";
@@ -192,6 +203,9 @@ in {
       "SELF_HOSTED" = "true";
       "STORE_GEODATA" = "true";
     };
+    environmentFiles = [
+      config.sops.templates."dawarich.env".path
+    ];
     volumes = [
       "gps_dawarich_public:/var/app/public:rw"
       "gps_dawarich_storage:/var/app/storage:rw"
