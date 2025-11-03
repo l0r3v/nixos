@@ -48,5 +48,7 @@
     environment = {
       TZ = "Europe/Rome";
     };
+    accelerationDevices = null;
   };
+  users.users.immich.extraGroups = ["video" "render"];
 }
