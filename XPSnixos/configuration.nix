@@ -243,6 +243,7 @@
     playerctl
     yafc-ce
     zeroad
+    tigervnc
   ];
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
