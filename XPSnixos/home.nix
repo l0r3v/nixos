@@ -73,6 +73,8 @@ in {
       pkgs.stockfish
       pkgs.feishin
       pkgs.power-profiles-daemon
+      pkgs.godot
+      pkgs.vscodium
     ]; #END OF PACKAGES
   };
 
