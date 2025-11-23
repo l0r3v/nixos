@@ -143,9 +143,11 @@ in {
 
     git = {
       enable = true;
-      userName = "lorev";
-      userEmail = "lorenzopasqui@gmail.com";
-      extraConfig = {
+      settings = {
+        user = {
+          name = "lorev";
+          email = "lorenzopasqui@gmail.com";
+        };
         credential.helper = "${
           pkgs.git.override {withLibsecret = true;}
         }/bin/git-credential-libsecret";
