@@ -103,6 +103,7 @@
     logind = {
       settings.Login.HandleLidSwitchDocked = "ignore";
     };
+    flatpak.enable = true;
     preload.enable = true;
     xserver = {
       enable = true;
@@ -161,7 +162,6 @@
     openFirewall = true;
     users = ["lorev"];
   };
-
   # Install Hyperland
   programs.hyprland = {
     enable = true;
