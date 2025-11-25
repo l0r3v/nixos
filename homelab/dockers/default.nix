@@ -4,10 +4,10 @@
     ./calibre-web
     ./owncloud
     ./gitea
-    ./portainer
+    #./portainer
     ./tududi
     ./authentik
-    ./dawarich
+    #./dawarich
   ];
   virtualisation.docker.enable = true;
   users.users."hspasqui".extraGroups = ["docker"];
