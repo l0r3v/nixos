@@ -1,13 +1,11 @@
 {...}: {
   imports = [
     ./actual-budget
-    #./immich-docker
-    #./miniflux
     ./calibre-web
     ./owncloud
     ./gitea
     ./portainer
-    #./cloudflared
+    ./tududi
     ./authentik
     ./dawarich
   ];
