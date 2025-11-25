@@ -75,6 +75,7 @@ in {
       pkgs.power-profiles-daemon
       pkgs.godot
       pkgs.vscodium
+      pkgs.aseprite
     ]; #END OF PACKAGES
   };
 
