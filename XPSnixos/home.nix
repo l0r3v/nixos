@@ -4,7 +4,7 @@
   inputs,
   ...
 }: let
-  inherit (pkgs.stdenv.hostPlatform) system;
+  system = pkgs.stdenv.hostPlatform.system;
   nixvim-package = inputs.nixvim.packages.${system}.full;
   extended-nixvim = nixvim-package.extend config.stylix.targets.nixvim.exportedModule;
 in {
@@ -61,7 +61,7 @@ in {
       pkgs.gcr
       pkgs.seahorse
       pkgs.lazygit
-      pkgs.pinentry
+      pkgs.pinentry-curses
       pkgs.rbw
       pkgs.rofi-rbw-wayland
       pkgs.cloudflared
