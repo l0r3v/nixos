@@ -5,7 +5,7 @@
   config,
   ...
 }: let
-  version = "2025.8.4";
+  version = "2025.10.2";
 in {
   # Runtime
   virtualisation.docker = {
@@ -81,45 +81,6 @@ in {
       "docker-compose-auth-root.target"
     ];
   };
-  virtualisation.oci-containers.containers."auth-redis" = {
-    image = "docker.io/library/redis:alpine";
-    volumes = [
-      "auth_redis:/data:rw"
-    ];
-    cmd = ["--save" "60" "1" "--loglevel" "warning"];
-    log-driver = "journald";
-    extraOptions = [
-      "--health-cmd=redis-cli ping | grep PONG"
-      "--health-interval=30s"
-      "--health-retries=5"
-      "--health-start-period=20s"
-      "--health-timeout=3s"
-      "--network-alias=redis"
-      "--network=auth_default"
-    ];
-  };
-  systemd.services."docker-auth-redis" = {
-    serviceConfig = {
-      Restart = lib.mkOverride 90 "always";
-      RestartMaxDelaySec = lib.mkOverride 90 "1m";
-      RestartSec = lib.mkOverride 90 "100ms";
-      RestartSteps = lib.mkOverride 90 9;
-    };
-    after = [
-      "docker-network-auth_default.service"
-      "docker-volume-auth_redis.service"
-    ];
-    requires = [
-      "docker-network-auth_default.service"
-      "docker-volume-auth_redis.service"
-    ];
-    partOf = [
-      "docker-compose-auth-root.target"
-    ];
-    wantedBy = [
-      "docker-compose-auth-root.target"
-    ];
-  };
   virtualisation.oci-containers.containers."auth-server" = {
     image = "ghcr.io/goauthentik/server:${version}";
     environmentFiles = [
@@ -130,7 +91,6 @@ in {
       "AUTHENTIK_POSTGRESQL__NAME" = "authentik";
       "AUTHENTIK_POSTGRESQL__PASSWORD" = "\${PG_PASS}";
       "AUTHENTIK_POSTGRESQL__USER" = "authentik";
-      "AUTHENTIK_REDIS__HOST" = "redis";
     };
     volumes = [
       "/srv/archive/authentik/custom-templates:/templates:rw"
@@ -143,7 +103,6 @@ in {
     cmd = ["server"];
     dependsOn = [
       "auth-postgresql"
-      "auth-redis"
     ];
     log-driver = "journald";
     extraOptions = [
@@ -181,7 +140,6 @@ in {
       "AUTHENTIK_POSTGRESQL__NAME" = "authentik";
       "AUTHENTIK_POSTGRESQL__PASSWORD" = "\${PG_PASS}";
       "AUTHENTIK_POSTGRESQL__USER" = "authentik";
-      "AUTHENTIK_REDIS__HOST" = "redis";
     };
     volumes = [
       "/srv/archive/authentik/certs:/certs:rw"
@@ -192,7 +150,6 @@ in {
     cmd = ["worker"];
     dependsOn = [
       "auth-postgresql"
-      "auth-redis"
     ];
     user = "root";
     log-driver = "journald";
@@ -246,18 +203,6 @@ in {
     };
     script = ''
       docker volume inspect auth_database || docker volume create auth_database --driver=local
-    '';
-    partOf = ["docker-compose-auth-root.target"];
-    wantedBy = ["docker-compose-auth-root.target"];
-  };
-  systemd.services."docker-volume-auth_redis" = {
-    path = [pkgs.docker];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      docker volume inspect auth_redis || docker volume create auth_redis --driver=local
     '';
     partOf = ["docker-compose-auth-root.target"];
     wantedBy = ["docker-compose-auth-root.target"];
