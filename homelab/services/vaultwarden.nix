@@ -39,7 +39,7 @@
       SSO_SCOPES = "openid email profile offline_access";
       SSO_ALLOW_UNKNOWN_EMAIL_VERIFICATION = false;
       SSO_CLIENT_CACHE_EXPIRATION = 0;
-      SSO_ONLY = false; # Set to true to disable email+master password login and require SSO
+      SSO_ONLY = true; # Set to true to disable email+master password login and require SSO
       SSO_SIGNUPS_MATCH_EMAIL = true; # Match first SSO login to existing account by email
     };
   };
