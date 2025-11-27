@@ -74,6 +74,7 @@ in {
       pkgs.feishin
       pkgs.power-profiles-daemon
       pkgs.godot
+      pkgs.blender
       pkgs.vscodium
       pkgs.aseprite
     ]; #END OF PACKAGES
