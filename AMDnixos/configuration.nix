@@ -72,6 +72,10 @@
     };
     # Enable CUPS to print documents.
     printing.enable = false;
+    tailscale = {
+      enable = true;
+      useRoutingFeatures = "both";
+    };
   };
 
   # Configure console keymap
@@ -145,6 +149,7 @@
     playerctl
     yafc-ce
     zeroad
+    goverlay
   ];
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
   programs.thunar = {
