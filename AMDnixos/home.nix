@@ -72,7 +72,6 @@ in {
       pkgs.scid
       pkgs.stockfish
       pkgs.feishin
-      pkgs.power-profiles-daemon
       pkgs.godot
       pkgs.blender
       pkgs.vscodium

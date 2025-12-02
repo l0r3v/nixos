@@ -54,7 +54,7 @@
   in {
     formatter.${system} = inputs.alejandra.defaultPackage.${system};
     nixosConfigurations = {
-      XPSnixos = nixpkgs.lib.nixosSystem {
+      AMDnixos = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit system inputs;};
         modules = [
           ./configuration.nix
