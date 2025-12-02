@@ -104,7 +104,6 @@
       settings.Login.HandleLidSwitchDocked = "ignore";
     };
     flatpak.enable = true;
-    preload.enable = true;
     xserver = {
       enable = true;
       #displayManager.ly = {

@@ -56,7 +56,6 @@ in {
       pkgs.newsflash
       pkgs.owncloud-client
       pkgs.aria2
-      pkgs.preload
       pkgs.vorta
       pkgs.gcr
       pkgs.seahorse
