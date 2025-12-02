@@ -3,12 +3,14 @@
     enable = true;
     keyboards = {
       internalKeyboard = {
+        devices = [
+          "/dev/input/by-path/pci-0000:02:00.0-usb-0:2:1.1-event-kbd"
+          "/dev/input/by-path/pci-0000:02:00.0-usb-0:3:1.0-event-kbd"
+        ];
         extraDefCfg = ''
           process-unmapped-keys yes
         '';
         config = ''
-
-
           (defsrc
            caps a s d f g h j k l ; F1 u i o z lalt
           )
