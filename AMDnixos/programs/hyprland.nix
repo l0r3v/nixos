@@ -27,14 +27,10 @@
         "gammastep-indicator -l 45.068371:7.683070"
         "hacompanion"
         "owncloud"
-        "bash /home/lorev/lid-monitor.sh"
+        "steam"
       ];
       monitor = [
-        "eDP-1,preferred,auto,1"
-        "DP-2,preferred,auto-right,auto"
-      ];
-      gesture = [
-        "3, horizontal, workspace"
+        "HDMI-A-1,1920x1080@120,0x0,auto"
       ];
       dwindle = {
         pseudotile = true;
@@ -73,7 +69,9 @@
           "workspaces, 1, 6, default"
         ];
       };
-      misc = {disable_hyprland_logo = true;};
+      misc = {
+        disable_hyprland_logo = true;
+      };
 
       input = {
         kb_layout = "it";
