@@ -16,6 +16,7 @@
     ../common/zerotier.nix
     ./programs/stylix.nix
     ./graphics.nix
+    ../common/distributed-builds.nix
   ];
   boot = {
     resumeDevice = "/dev/disk/by-uuid/fdc651ed-f77f-4e32-98eb-a24a7a021853";

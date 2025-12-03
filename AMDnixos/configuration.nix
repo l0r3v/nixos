@@ -13,6 +13,7 @@
     ./services/kanata.nix
     ../common/nix-helpers.nix
     ../common/nix-maintenance.nix
+    ./remote-builder.nix
   ];
 
   # Bootloader.

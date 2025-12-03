@@ -15,6 +15,7 @@ in {
     ../common/nix-helpers.nix
     ../common/sops.nix
     ../common/nix-maintenance.nix
+    ../common/distributed-builds.nix
   ];
 
   hardware = {
