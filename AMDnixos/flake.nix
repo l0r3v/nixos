@@ -13,6 +13,7 @@
     nixos-cli.url = "github:nix-community/nixos-cli";
     nixvim = {
       url = "github:l0r3v/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     stylix = {
@@ -20,7 +21,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
@@ -45,7 +49,10 @@
       url = "github:kamadorueda/alejandra";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    optnix.url = "github:water-sucks/optnix";
+    optnix = {
+      url = "github:water-sucks/optnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {nixpkgs, ...} @ inputs: let
@@ -61,8 +68,6 @@
           inputs.stylix.nixosModules.stylix
           {
             home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
               backupFileExtension = "backup";
               users.lorev = import ./home.nix;
               extraSpecialArgs = {
