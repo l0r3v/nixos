@@ -152,7 +152,7 @@
     clinfo
     lact
     vim
-    openrgb-with-all-plugins # Include plugin utili per effetti extra
+    openrgb-with-all-plugins
     git
     dunst
     libnotify
