@@ -76,9 +76,9 @@
         layout = "it";
         variant = "";
       };
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
     };
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
     # Enable CUPS to print documents.
     printing.enable = false;
     tailscale = {
