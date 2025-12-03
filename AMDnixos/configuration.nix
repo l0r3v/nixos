@@ -59,7 +59,15 @@
     LC_TELEPHONE = "it_IT.UTF-8";
     LC_TIME = "it_IT.UTF-8";
   };
-  hardware.i2c.enable = true;
+  boot.initrd.kernelModules = ["amdgpu"];
+  hardware = {
+    i2c.enable = true;
+    amdgpu.opencl.enable = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+  };
   services.hardware.openrgb.enable = true;
   services = {
     xserver = {
@@ -141,6 +149,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    gemini-cli
+    clinfo
+    lact
     vim
     openrgb-with-all-plugins # Include plugin utili per effetti extra
     git
