@@ -13,7 +13,6 @@
     ./services/kanata.nix
     ../common/nix-helpers.nix
     ../common/nix-maintenance.nix
-    ./programs/stylix.nix
   ];
 
   # Bootloader.
