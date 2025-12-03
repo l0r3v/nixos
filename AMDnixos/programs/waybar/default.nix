@@ -6,14 +6,6 @@
     ".config/waybar/watch_course.sh".text = ''
       #!/bin/bash
       cat /tmp/current_course'';
-    ".config/waybar/get_powermode.sh" = {
-      source = ./scripts/get_powermode.sh;
-      executable = true;
-    };
-    ".config/waybar/set_powermode.sh" = {
-      source = ./scripts/set_powermode.sh;
-      executable = true;
-    };
     ".config/waybar/music.sh" = {
       source = ./scripts/music.sh;
       executable = true;
@@ -242,13 +234,6 @@
           "tooltip-format" = "{timeTo} {power}w";
         };
 
-        "custom/battery-mode" = {
-          "exec" = "bash ~/.config/waybar/get_powermode.sh";
-          "interval" = 5;
-          "format" = "{}";
-          "on-click" = "bash ~/.config/waybar/set_powermode.sh &6 bash ~/.config/waybar/get_powermode.sh";
-          "return-type" = " text ";
-        };
         "custom/file-text" = {
           "exec" = "bash ~/.config/waybar/watch_course.sh";
           "interval" = 5;
