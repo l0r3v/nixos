@@ -59,7 +59,8 @@
     LC_TELEPHONE = "it_IT.UTF-8";
     LC_TIME = "it_IT.UTF-8";
   };
-
+  hardware.i2c.enable = true;
+  services.hardware.openrgb.enable = true;
   services = {
     xserver = {
       enable = true;
@@ -77,6 +78,26 @@
       useRoutingFeatures = "both";
     };
   };
+  environment.gnome.excludePackages = with pkgs; [
+    papers
+    gnome-photos
+    gnome-tour
+    cheese
+    gnome-music
+    gnome-terminal
+    epiphany
+    geary
+    evince
+    totem
+    tali
+    iagno
+    hitori
+    atomix
+    gnome-weather
+    gnome-maps
+    simple-scan
+    gnome-contacts
+  ];
 
   # Configure console keymap
   console.keyMap = "it2";
@@ -120,8 +141,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     vim
+    openrgb-with-all-plugins # Include plugin utili per effetti extra
     git
     dunst
     libnotify
