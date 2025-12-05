@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  themeName = "darktooth";
+  themeName = "everforest-dark-soft";
   wallpaper-wing = ../dotfiles/wallpaper/wingInFlux.jpg;
   macchiato = ../dotfiles/wallpaper/nixos-wallpaper-catppuccin-mocha.png;
   inputImage = ../dotfiles/wallpaper/nix-transp.png;
