@@ -6,6 +6,7 @@
         devices = [
           "/dev/input/by-path/pci-0000:02:00.0-usb-0:2:1.1-event-kbd"
           "/dev/input/by-path/pci-0000:02:00.0-usb-0:3:1.0-event-kbd"
+          "/dev/input/by-id/usb-Compx_2.4G_Wireless_Receiver-event-kbd"
         ];
         extraDefCfg = ''
           process-unmapped-keys yes
