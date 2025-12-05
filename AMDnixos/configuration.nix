@@ -62,7 +62,11 @@
   boot.initrd.kernelModules = ["amdgpu"];
   hardware = {
     i2c.enable = true;
-    amdgpu.opencl.enable = true;
+    amdgpu = {
+      opencl.enable = true;
+      overdrive.enable = true;
+      initrd.enable = true;
+    };
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -70,6 +74,13 @@
   };
   services.hardware.openrgb.enable = true;
   services = {
+    sunshine = {
+      enable = true;
+      autoStart = true;
+      capSysAdmin = true;
+      openFirewall = true;
+    };
+    lact.enable = true;
     xserver = {
       enable = true;
       xkb = {
@@ -146,12 +157,12 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  programs.gamemode.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     gemini-cli
     clinfo
-    lact
     vim
     openrgb-with-all-plugins
     git
