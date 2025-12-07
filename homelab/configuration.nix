@@ -16,6 +16,7 @@ in {
     ../common/sops.nix
     ../common/nix-maintenance.nix
     ../common/distributed-builds.nix
+    ../common/get-remote-build.nix
   ];
 
   hardware = {

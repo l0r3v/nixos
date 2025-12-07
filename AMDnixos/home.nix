@@ -88,6 +88,7 @@ in {
       enableZshIntegration = true;
       keys = [
         "~/.ssh/id_ed25519"
+        "/home/lorev/.ssh/nixos-builder"
       ];
     };
 
@@ -130,6 +131,18 @@ in {
           port = 2221;
           identityFile = "/home/lorev/.ssh/id_ed25519";
           proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
+        };
+        "xpsnixos.lan" = {
+          hostname = "xpsnixos.lan";
+          user = "nixos-builder";
+          port = 22;
+          identityFile = "/home/lorev/.ssh/nixos-builder";
+        };
+        "homelab.lan" = {
+          hostname = "homelab.lan";
+          user = "nixos-builder";
+          port = 22;
+          identityFile = "/home/lorev/.ssh/nixos-builder";
         };
         "git-ssh.pasqui.casa" = {
           hostname = "git-ssh.pasqui.casa";
