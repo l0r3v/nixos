@@ -27,7 +27,7 @@
         "gammastep-indicator -l 45.068371:7.683070"
         "hacompanion"
         "owncloud"
-        "steam"
+        "steam -silent"
       ];
       monitor = [
         "HDMI-A-1,1920x1080@120,0x0,auto"
