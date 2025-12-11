@@ -230,6 +230,7 @@ in {
   imports = [
     ./dotfiles
     ./programs
+    ../common/texlive.nix
   ];
 
   # This value determines the Home Manager release that your configuration is

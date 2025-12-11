@@ -22,6 +22,7 @@
       tikzfill
       pdfcol
       listingsutf8
+      xargs
       ;
   };
 in {

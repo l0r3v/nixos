@@ -7,7 +7,6 @@
     ./waybar
     ./firefox.nix
     ./kitty.nix
-    ./texlive.nix
     ./hyprland.nix
     ./alacritty.nix
     #./qutebrowser unfortunately qt5 is not secure. Need to wait for qutebrowser to be ported in qt6
