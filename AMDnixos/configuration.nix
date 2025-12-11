@@ -16,9 +16,16 @@
     ./remote-builder.nix
   ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Boot
+  boot = {
+    initrd.kernelModules = ["amdgpu"];
+    kernel.sysctl."vm.max_map_count" = 2147483642;
+    loader = {
+      efi.canTouchEfiVariables = true;
+      systemd-boot.enable = true;
+    };
+  };
+  time.hardwareClockInLocalTime = true;
 
   networking.hostName = "AMDnixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -59,7 +66,6 @@
     LC_TELEPHONE = "it_IT.UTF-8";
     LC_TIME = "it_IT.UTF-8";
   };
-  boot.initrd.kernelModules = ["amdgpu"];
   hardware = {
     i2c.enable = true;
     amdgpu = {
@@ -161,6 +167,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    mangohud
     protontricks
     gemini-cli
     clinfo
@@ -218,6 +225,9 @@
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
+    extraCompatPackages = [
+      pkgs.proton-ge-bin
+    ];
   };
 
   programs.hyprland = {
