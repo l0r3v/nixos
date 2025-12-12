@@ -31,6 +31,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     inkscape-figures = {
       url = "github:l0r3v/inkscape-figures";
       inputs.nixpkgs.follows = "nixpkgs";

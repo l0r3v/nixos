@@ -183,6 +183,7 @@
     waybar
     jdk
     zoxide
+    sops
     zathura
     htop-vim
     jq
