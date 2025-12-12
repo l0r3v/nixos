@@ -2,6 +2,7 @@
   imports = [
     ./immich.nix
     ./miniflux.nix
+    ./linkwarden.nix
     ./cloudflared.nix
     ./paperless.nix
     ./navidrome.nix
