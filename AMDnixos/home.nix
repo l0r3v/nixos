@@ -23,6 +23,7 @@ in {
       pkgs.eza #modern replacement for ls
       pkgs.fzf #cli fuzzy finder
       pkgs.yq
+      pkgs.protonup-qt
       pkgs.zoxide
       pkgs.vlc
       pkgs.graphicsmagick

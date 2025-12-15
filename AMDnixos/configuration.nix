@@ -19,6 +19,7 @@
   # Boot
   boot = {
     initrd.kernelModules = ["amdgpu"];
+    kernelParams = ["amdgpu.ppfeaturemask=0xffffffff"];
     kernel.sysctl."vm.max_map_count" = 2147483642;
     loader = {
       efi.canTouchEfiVariables = true;
@@ -89,6 +90,7 @@
     lact.enable = true;
     xserver = {
       enable = true;
+      videoDrivers = ["amdgpu"];
       xkb = {
         layout = "it";
         variant = "";
