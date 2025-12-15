@@ -18,6 +18,7 @@
   services.linkwarden = {
     enable = true;
     port = 3390;
+    openFirewall = true;
     storageLocation = "/srv/archive/linkwarden";
     environmentFile = config.sops.templates."linkwarden.env".path;
   };
