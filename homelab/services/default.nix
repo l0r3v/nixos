@@ -5,6 +5,7 @@
     ./linkwarden.nix
     ./cloudflared.nix
     ./paperless.nix
+    ./postgresql.nix
     ./navidrome.nix
     #./headscale.nix #non funziona senza ip pubblico
     ./davis.nix
