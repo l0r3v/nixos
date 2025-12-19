@@ -95,7 +95,7 @@
         "$mainMod, M, exit"
         "$mainMod, E, exec, $browser"
         "$mainMod, Space, togglefloating"
-        "$mainMod, R, exec, $menu"
+        "Alt_R,Space, exec, $menu"
         "$mainMod, P, pseudo"
         "$mainMod, V, togglesplit"
 
