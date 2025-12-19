@@ -14,6 +14,7 @@
     ../common/nix-helpers.nix
     ../common/nix-maintenance.nix
     ./remote-builder.nix
+    ./remote-vacation.nix
   ];
 
   # Boot
@@ -81,12 +82,6 @@
   };
   services.hardware.openrgb.enable = true;
   services = {
-    sunshine = {
-      enable = true;
-      autoStart = true;
-      capSysAdmin = true;
-      openFirewall = true;
-    };
     lact.enable = true;
     xserver = {
       enable = true;

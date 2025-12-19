@@ -9,9 +9,6 @@ in {
   # MODULO VACANZE: Tailscale, Sunshine, Autologin & SSH
   # =================================================================
 
-  # --- 1. RETE & VPN (Tailscale) ---
-  services.tailscale.enable = true;
-
   # Considera l'interfaccia di Tailscale "sicura" per il firewall
   networking.firewall.trustedInterfaces = ["tailscale0"];
 
