@@ -343,7 +343,7 @@ show_status() {
 
 # Funzione per pulire vecchie build
 cleanup_builds() {
-    local keep_last=${1:-10}
+    local keep_last=${1:-1}
     
     echo ""
     log_info "Cleaning up old builds (keeping last ${keep_last} per target)..."
@@ -765,7 +765,7 @@ cleanup_builds() {
     
             cleanup)
     
-                cleanup_builds "${2:-10}"
+                cleanup_builds "${2:-1}"
     
                 ;;
     
