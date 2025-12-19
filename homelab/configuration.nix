@@ -28,7 +28,12 @@ in {
       nvidiaSettings = false;
     };
   };
-
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 8192;
+    }
+  ];
   services.xserver.videoDrivers = ["nvidia"];
 
   # Bootloader.
