@@ -6,7 +6,7 @@
     ./gitea
     #./portainer
     ./tududi
-    ./authentik
+    #./authentik
     #./dawarich
   ];
   virtualisation.docker.enable = true;

@@ -8,6 +8,10 @@
     };
     nixos-cli.url = "github:nix-community/nixos-cli";
 
+    authentik-nix = {
+      url = "github:nix-community/authentik-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,6 +33,7 @@
         specialArgs = {inherit inputs;};
         modules = [
           inputs.sops-nix.nixosModules.sops
+          inputs.authentik-nix.nixosModules.default
           ./configuration.nix
         ];
       };
