@@ -46,7 +46,7 @@ in {
       config.sops.templates."authentik-docker.env".path
     ];
     volumes = [
-      "auth_database:/var/lib/postgresql/data:rw"
+      "/srv/archive/authentik/database:/var/lib/postgresql/data:rw"
     ];
     log-driver = "journald";
     extraOptions = [
@@ -68,11 +68,9 @@ in {
     };
     after = [
       "docker-network-auth_default.service"
-      "docker-volume-auth_database.service"
     ];
     requires = [
       "docker-network-auth_default.service"
-      "docker-volume-auth_database.service"
     ];
     partOf = [
       "docker-compose-auth-root.target"
@@ -189,20 +187,6 @@ in {
     };
     script = ''
       docker network inspect auth_default || docker network create auth_default
-    '';
-    partOf = ["docker-compose-auth-root.target"];
-    wantedBy = ["docker-compose-auth-root.target"];
-  };
-
-  # Volumes
-  systemd.services."docker-volume-auth_database" = {
-    path = [pkgs.docker];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      docker volume inspect auth_database || docker volume create auth_database --driver=local
     '';
     partOf = ["docker-compose-auth-root.target"];
     wantedBy = ["docker-compose-auth-root.target"];
