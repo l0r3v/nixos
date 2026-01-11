@@ -164,7 +164,6 @@
     extraGroups = ["dialout" "libvirtd" "networkmanager" "wheel"];
   };
 
-  programs.adb.enable = true;
   programs.zsh.enable = true;
 
   programs.weylus = {
@@ -260,7 +259,7 @@
 
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-bare thunar-vcs-plugin];
+    plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-vcs-plugin];
   };
 
   fonts.packages = with pkgs; [
