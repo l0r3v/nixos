@@ -14,7 +14,7 @@
     ../common/nix-helpers.nix
     ../common/nix-maintenance.nix
     ./remote-builder.nix
-    ./remote-vacation.nix
+    #./remote-vacation.nix
   ];
 
   # Boot
@@ -203,7 +203,6 @@
     ags
     playerctl
     yafc-ce
-    zeroad
     goverlay
   ];
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
