@@ -208,7 +208,7 @@
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-bare thunar-vcs-plugin];
+    plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-vcs-plugin];
   };
 
   fonts.packages = with pkgs; [
