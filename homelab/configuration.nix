@@ -93,6 +93,7 @@ in {
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    tmux
     nixvim-package
     btop
     wget
