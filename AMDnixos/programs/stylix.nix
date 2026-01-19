@@ -41,5 +41,9 @@ in {
         name = "Fira Code nerd font mono";
       };
     };
+    targets = {
+      fuzzel.fonts.enable = false;
+      obsidian.fonts.enable = false;
+    };
   };
 }

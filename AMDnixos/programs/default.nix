@@ -1,19 +1,20 @@
 {...}: {
   imports = [
-    ./nnn.nix
-    ./zsh.nix
-    ./zathura.nix
-    ./rofi.nix
-    ./waybar
-    ./firefox.nix
-    ./kitty.nix
-    ./hyprland.nix
-    ./alacritty.nix
-    #./qutebrowser
-    ./mpv.nix
-    ./thunderbird.nix
-    ./rbw.nix
     #./eww.nix
+    #./qutebrowser
+    ./alacritty.nix
+    ./firefox.nix
     ./ghostty.nix
+    ./hyprland.nix
+    ./kitty.nix
+    ./mpv.nix
+    ./nnn.nix
+    ./obsidian.nix
+    ./rbw.nix
+    ./rofi.nix
+    ./thunderbird.nix
+    ./waybar
+    ./zathura.nix
+    ./zsh.nix
   ];
 }

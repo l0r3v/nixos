@@ -80,6 +80,7 @@ in {
   };
 
   programs = {
+    fuzzel.enable = true;
     yazi = {
       enable = true;
     };
@@ -220,6 +221,7 @@ in {
     java.enable = true;
   };
 
+  xdg.configFile."niri/config.kdl".source = ./config.kdl;
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {

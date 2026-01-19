@@ -151,7 +151,8 @@
     hashedPassword = "$y$j9T$/Zd2ewjXuVjuKz3YzWA3L/$iUOruuv0a6FT1QjzY1ZhTI5OkBxX88ZHXdpAJ6.tBk4";
     extraGroups = ["networkmanager" "wheel"];
   };
-
+  programs.xwayland.enable = true;
+  programs.niri.enable = true;
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -167,6 +168,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    xwayland-satellite
     lutris
     winetricks
     heroic
