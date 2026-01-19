@@ -27,9 +27,9 @@
     ''
   );
 in {
-  nixpkgs.overlays = [
-    (import ./factorio-overlay.nix)
-  ];
+  #nixpkgs.overlays = [
+  #  (import ./factorio-overlay.nix)
+  #];
   sops.secrets = {
     "factorio/game-pass" = {};
   };
