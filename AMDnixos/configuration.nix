@@ -13,6 +13,7 @@
     ./services/kanata.nix
     ../common/nix-helpers.nix
     ../common/nix-maintenance.nix
+    ../common/zerotier.nix
     ./remote-builder.nix
     #./remote-vacation.nix
   ];
