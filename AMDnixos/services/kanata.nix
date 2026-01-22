@@ -34,7 +34,14 @@
            ;-mod (tap-hold $tap-time $hold-time ; lalt)
            z-mod (tap-hold $tap-time $hold-time z <)
 
-           mouse-control (layer-while-held mouse)
+
+           mouse-control (tap-hold 200 200 F1 (layer-toggle mouse))
+
+           to-game (layer-switch game)
+           to-base (layer-switch base)
+
+           f1-game (tap-hold 200 200 F1 (layer-toggle game-exit))
+
            mouse-left (movemouse-left 100 20)
            mouse-right (movemouse-right 100 20)
            mouse-up (movemouse-up 100 20)
@@ -63,13 +70,14 @@
            @z-mod
            lalt
            )
+
           (deflayer mouse
            _
            _
            _
            _
            _
-           _
+           @to-game
            @mouse-left
            @mouse-down
            @mouse-up
@@ -79,6 +87,46 @@
            @click-left
            @click-middle
            @click-right
+           _
+           _
+           )
+
+          (deflayer game
+           esc
+           a
+           s
+           d
+           f
+           g
+           h
+           j
+           k
+           l
+           ;
+           @f1-game
+           u
+           i
+           o
+           z
+           lalt
+           )
+
+          (deflayer game-exit
+           _
+           _
+           _
+           _
+           _
+           @to-base
+           _
+           _
+           _
+           _
+           _
+           _
+           _
+           _
+           _
            _
            _
            )
