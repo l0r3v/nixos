@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     #./eww.nix
+    #./obsidian.nix
     #./qutebrowser
     ./alacritty.nix
     ./firefox.nix
@@ -9,7 +10,6 @@
     ./kitty.nix
     ./mpv.nix
     ./nnn.nix
-    ./obsidian.nix
     ./rbw.nix
     ./rofi.nix
     ./thunderbird.nix

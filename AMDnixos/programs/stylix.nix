@@ -43,7 +43,6 @@ in {
     };
     targets = {
       fuzzel.fonts.enable = false;
-      obsidian.fonts.enable = false;
     };
   };
 }
