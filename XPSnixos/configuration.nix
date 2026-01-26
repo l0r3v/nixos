@@ -223,6 +223,7 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     moonlight-qt
+    obsidian
     vim
     git
     dunst
