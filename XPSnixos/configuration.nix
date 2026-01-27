@@ -4,7 +4,6 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./services/homepage.nix
     ../common/sops.nix
@@ -53,7 +52,6 @@
       "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
       "nvidia.NVreg_TemporaryFilePath=/var/tmp"
     ];
-    # Bootloader.
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -67,11 +65,10 @@
     }
   ];
   networking = {
-    hostName = "XPSnixos"; # Define your hostname.
+    hostName = "XPSnixos";
     networkmanager.enable = true;
     firewall = {
       allowedTCPPorts = [8080 8081 5829 8096 3000];
-      #allowedUDPPorts = [ ... ];
     };
   };
 
@@ -87,7 +84,6 @@
     trusted-users = ["root" "@wheel"];
   };
 
-  # Enable network manager applet
   programs = {
     nm-applet.enable = true;
 
@@ -98,10 +94,8 @@
       icu
     ];
   };
-  # Set your time zone.
   time.timeZone = "Europe/Rome";
 
-  # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
@@ -142,19 +136,6 @@
     flatpak.enable = true;
     xserver = {
       enable = true;
-      #displayManager.ly = {
-      #  enable = false;
-      #  settings = {
-      #    animation = "matrix";
-      #    animation_timeout_sec = 10;
-      #    asterisk = "\#";
-      #    auth_fails = 3;
-      #    bigclock = "en";
-      #    clear_password = true;
-      #    clock = "%a %d %b %R";
-      #    lang = "it";
-      #  };
-      #};
       xkb = {
         layout = "it";
         variant = "";
@@ -166,7 +147,6 @@
     };
     envfs.enable = true;
 
-    # Disable CUPS to never print documents.
     printing.enable = false;
     tailscale = {
       enable = true;
@@ -174,7 +154,6 @@
     };
   };
 
-  # Configure console keymap
   console.keyMap = "it2";
 
   security = {
@@ -196,7 +175,6 @@
     openFirewall = true;
     users = ["lorev"];
   };
-  # Install Hyperland
   environment.sessionVariables = {
     # Wayland stuff
     WLR_NO_HARDWARE_CURSORS = "1";

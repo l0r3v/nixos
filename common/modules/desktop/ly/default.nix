@@ -15,6 +15,10 @@ in {
 
       settings = {
         animation = "doom";
+        asterisk = "/#";
+        bigclock = "it";
+        clock = "%a %d %b %R";
+        lang = "it";
         hide_borders = true;
         text_input_frame = "none";
 

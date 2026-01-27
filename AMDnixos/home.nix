@@ -216,16 +216,6 @@ in {
     java.enable = true;
   };
 
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      #     "text/html" = "org.qutebrowser.qutebrowser.desktop";
-      #     "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
-      #     "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
-      #     "x-scheme-handler/about" = "org.qutebrowser.qutebrowser.desktop";
-      #     "x-scheme-handler/unknown" = "org.qutebrowser.qutebrowser.desktop";
-    };
-  };
   home.sessionVariables = {
     XDG_CONFIG_HOME = "/home/lorev/.config";
   };
@@ -238,18 +228,10 @@ in {
     ./programs
   ];
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-
   nixpkgs.config = {
     allowUnfree = true;
   };
 
-  home.stateVersion = "24.05"; # Please read the comment before changing.
-  # Let Home Manager install and manage itself.
+  home.stateVersion = "24.05";
   programs.home-manager.enable = true;
 }
