@@ -168,8 +168,6 @@
     extraGroups = ["dialout" "libvirtd" "networkmanager" "wheel"];
   };
 
-  programs.zsh.enable = true;
-
   programs.weylus = {
     enable = false;
     openFirewall = true;

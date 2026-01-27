@@ -6,6 +6,7 @@
   ...
 }: let
   cfg = config.modules.nix-helpers;
+  hostname = config.networking.hostName;
 in {
   options.modules.nix-helpers = {
     enable = lib.mkEnableOption "A suit of different nix related utils";
@@ -28,9 +29,9 @@ in {
     };
     environment = {
       sessionVariables = {
-        NH_FLAKE = "$HOME/nixos/$HOST";
-        FLAKE = "$HOME/nixos/$HOST";
-        NIXOS_CONFIG = "$HOME/nixos/$HOST";
+        NH_FLAKE = "$HOME/nixos/${hostname}";
+        FLAKE = "$HOME/nixos/${hostname}";
+        NIXOS_CONFIG = "$HOME/nixos/${hostname}";
       };
       systemPackages = with pkgs; [
         inputs.optnix.packages."${pkgs.stdenv.hostPlatform.system}".optnix

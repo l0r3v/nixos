@@ -444,7 +444,7 @@ cleanup_builds() {
     
             echo -e "${BLUE}╔═══════════════════════════════════════════╗${NC}"
     
-            echo -e "${BLUE}║   NixOS Distributed Manager              ║${NC}"
+            echo -e "${BLUE}║   NixOS Distributed Manager               ║${NC}"
     
             echo -e "${BLUE}╚═══════════════════════════════════════════╝${NC}"
     
@@ -507,7 +507,7 @@ cleanup_builds() {
     
                 echo -e "${BLUE}╔═══════════════════════════════════════════╗${NC}"
     
-                echo -e "${BLUE}║   NixOS Flake Update Manager             ║${NC}"
+                echo -e "${BLUE}║   NixOS Flake Update Manager              ║${NC}"
     
                 echo -e "${BLUE}╚═══════════════════════════════════════════╝${NC}"
     
@@ -633,7 +633,7 @@ cleanup_builds() {
     
                 echo -e "${BLUE}╔═══════════════════════════════════════════╗${NC}"
     
-                echo -e "${BLUE}║   NixOS Distributed Rebuild Manager      ║${NC}"
+                echo -e "${BLUE}║   NixOS Distributed Rebuild Manager       ║${NC}"
     
                 echo -e "${BLUE}╚═══════════════════════════════════════════╝${NC}"
     

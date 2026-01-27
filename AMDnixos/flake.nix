@@ -58,6 +58,7 @@
       url = "github:water-sucks/optnix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs = {nixpkgs, ...} @ inputs: let

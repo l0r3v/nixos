@@ -57,7 +57,6 @@
   time.hardwareClockInLocalTime = true;
 
   networking.hostName = "AMDnixos";
-
   nix.settings = {
     download-buffer-size = 524288000;
     experimental-features = ["nix-command" "flakes"];
@@ -96,7 +95,6 @@
       enable32Bit = true;
     };
   };
-  services
   services = {
     hardware.openrgb.enable = true;
     lact.enable = true;
@@ -122,8 +120,8 @@
 
   users.users.lorev = {
     isNormalUser = true;
-    description = "Lorenzo Pasqui";
     shell = pkgs.zsh;
+    description = "Lorenzo Pasqui";
     hashedPassword = "$y$j9T$/Zd2ewjXuVjuKz3YzWA3L/$iUOruuv0a6FT1QjzY1ZhTI5OkBxX88ZHXdpAJ6.tBk4";
     extraGroups = ["networkmanager" "wheel"];
   };

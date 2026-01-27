@@ -10,6 +10,10 @@ in {
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.lorev = {pkgs, ...}: {
+      home.file."Studio/.obsidian.vimrc".text = ''
+        nnoremap ò :
+        vnoremap ò :
+      '';
       programs.obsidian = {
         enable = true;
         vaults.Studio = {
