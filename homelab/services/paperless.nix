@@ -1,7 +1,7 @@
 {config, ...}: {
   nixpkgs.overlays = [
-    (self: super: {
-      paperless-ngx = super.paperless-ngx.overrideAttrs (old: {
+    (_self: super: {
+      paperless-ngx = super.paperless-ngx.overrideAttrs (_old: {
         doCheck = false;
       });
     })

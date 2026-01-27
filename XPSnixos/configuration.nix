@@ -1,24 +1,51 @@
 {
   pkgs,
   inputs,
-  config,
-  lib,
   ...
 }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./services/homepage.nix
-    ./services/kanata.nix
-    ../common/nix-helpers.nix
     ../common/sops.nix
-    ../common/nix-maintenance.nix
     ../common/zerotier.nix
-    ./programs/stylix.nix
     ./graphics.nix
     ../common/distributed-builds.nix
     ../common/get-remote-build.nix
+    ../common/modules
   ];
+  modules = {
+    nix-helpers.enable = true;
+    desktop = {
+      niri.enable = true;
+      gnome.enable = true;
+      hyprland.enable = false;
+      ly.enable = true;
+    };
+    programs = {
+      thunar.enable = true;
+      obsidian.enable = true;
+      texlive.enable = true;
+      gaming.enable = true;
+      ghostty.enable = true;
+      nixvim.enable = true;
+      firefox.enable = true;
+      rofi.enable = true;
+      zathura.enable = true;
+      zsh.enable = true;
+      waybar.enable = true;
+      kanata = {
+        enable = true;
+        devices = [
+        ];
+      };
+    };
+    theme.stylix = {
+      enable = true;
+      scheme = "${pkgs.base16-schemes}/share/themes/espresso.yaml";
+    };
+  };
+
   boot = {
     resumeDevice = "/dev/disk/by-uuid/fdc651ed-f77f-4e32-98eb-a24a7a021853";
     kernelParams = [
@@ -52,11 +79,9 @@
     download-buffer-size = 524288000;
     experimental-features = ["nix-command" "flakes"];
     substituters = [
-      "https://hyprland.cachix.org"
       "https://nix-community.cachix.org"
     ];
     trusted-public-keys = [
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
     trusted-users = ["root" "@wheel"];
@@ -172,40 +197,11 @@
     users = ["lorev"];
   };
   # Install Hyperland
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-  };
   environment.sessionVariables = {
     # Wayland stuff
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
-    #my sessionVariables
-    EDITOR = "nvim";
   };
-  # configuration.nix
-  systemd.user.services."lid-monitor" = {
-    description = "Lid close monitor handler";
-    script = ''
-      #!/usr/bin/env bash
-      LID_STATE=$(cat /proc/acpi/button/lid/*/state | awk '{print $2}')
-      EXTERNAL=$(hyprctl monitors -j | jq '[.[] | select(.name!="eDP-1" and .active)] | length')
-      if [[ "$LID_STATE" == "closed" && "$EXTERNAL" -gt 0 ]]; then
-        hyprctl keyword monitor "eDP-1,disable"
-      elif [[ "$LID_STATE" == "open" ]]; then
-        hyprctl keyword monitor "eDP-1,preferred,auto-left,1"
-      fi
-    '';
-    wantedBy = ["tray.target"];
-    serviceConfig = {
-      Type = "oneshot";
-    };
-  };
-
-  services.udev.extraRules = ''
-    ACTION=="change", SUBSYSTEM=="power_supply", KERNEL=="*lid*", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}+="lid-monitor.service"
-  '';
 
   programs.virt-manager.enable = true;
   users.groups.libvirtd.members = ["lorev"];
@@ -223,7 +219,6 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     moonlight-qt
-    obsidian
     vim
     git
     dunst
@@ -235,7 +230,6 @@
     waybar
     jdk
     zoxide
-    zathura
     htop-vim
     jq
     openresolv
@@ -248,7 +242,6 @@
     wlroots
     libxkbcommon
     ripgrep
-    steam-tui
     socat
     ags
     playerctl
@@ -258,29 +251,11 @@
   ];
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-vcs-plugin];
-  };
-
   fonts.packages = with pkgs; [
     fira-code
     fira-code-symbols
     nerd-fonts.fira-code
     nerd-fonts.mononoki
   ];
-  xdg.mime.defaultApplications = {
-    "text/html" = "org.qutebrowser.qutebrowser.desktop";
-    "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
-    "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
-    "x-scheme-handler/about" = "org.qutebrowser.qutebrowser.desktop";
-    "x-scheme-handler/unknown" = "org.qutebrowser.qutebrowser.desktop";
-  };
-  #Install Steam
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-  };
-
   system.stateVersion = "24.05"; # Do not change this
 }

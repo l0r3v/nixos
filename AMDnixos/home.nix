@@ -1,25 +1,20 @@
 {
-  config,
   pkgs,
   inputs,
   ...
 }: let
   system = pkgs.stdenv.hostPlatform.system;
-  nixvim-package = inputs.nixvim.packages.${system}.full;
-  extended-nixvim = nixvim-package.extend config.stylix.targets.nixvim.exportedModule;
 in {
   home = {
     username = "lorev";
     homeDirectory = "/home/lorev";
     packages = [
       #FROM FLAKES
-      extended-nixvim
       inputs.yt-x.packages."${system}".default
       inputs.inkscape-figures.packages."${system}".inkscape-figures
       inputs.university-setup.packages."${system}".default
 
       pkgs.htop-vim # system monitor with vim keybindings
-      pkgs.zathura # pdf viewer with vim keybindings
       pkgs.eza #modern replacement for ls
       pkgs.fzf #cli fuzzy finder
       pkgs.yq
@@ -221,11 +216,9 @@ in {
     java.enable = true;
   };
 
-  xdg.configFile."niri/config.kdl".source = ./config.kdl;
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "application/pdf" = "org.pwmt.zathura.desktop";
       #     "text/html" = "org.qutebrowser.qutebrowser.desktop";
       #     "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
       #     "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
@@ -234,7 +227,6 @@ in {
     };
   };
   home.sessionVariables = {
-    EDITOR = "nvim";
     XDG_CONFIG_HOME = "/home/lorev/.config";
   };
   services.gnome-keyring = {
@@ -243,11 +235,7 @@ in {
   };
 
   imports = [
-    inputs.stylix.homeModules.stylix
-    ./programs/stylix.nix
-    ./dotfiles
     ./programs
-    ../common/texlive.nix
   ];
 
   # This value determines the Home Manager release that your configuration is

@@ -1,5 +1,5 @@
 {...}: {
   imports = [
-    ./homepage.nix
+    ./stylix
   ];
 }

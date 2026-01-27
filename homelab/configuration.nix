@@ -12,13 +12,13 @@ in {
     ./services
     ./backup-timers
     ./factorio
-    ../common/nix-helpers.nix
     ../common/sops.nix
-    ../common/nix-maintenance.nix
+    ../common/modules/nix-helpers.nix
     ../common/distributed-builds.nix
     ../common/get-remote-build.nix
   ];
 
+  modules.nix-helpers.enable = true;
   hardware = {
     graphics.enable = true;
     nvidia-container-toolkit.enable = true;

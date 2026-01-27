@@ -3,21 +3,51 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   inputs,
-  config,
   pkgs,
   ...
 }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./services/kanata.nix
-    ../common/nix-helpers.nix
-    ../common/nix-maintenance.nix
     ../common/zerotier.nix
     ./remote-builder.nix
+    ../common/modules
     #./remote-vacation.nix
   ];
 
+  modules = {
+    nix-helpers.enable = true;
+    desktop = {
+      niri.enable = true;
+      gnome.enable = true;
+      hyprland.enable = true;
+    };
+    programs = {
+      thunar.enable = true;
+      obsidian.enable = true;
+      texlive.enable = true;
+      gaming.enable = true;
+      ghostty.enable = true;
+      nixvim.enable = true;
+      firefox.enable = true;
+      rofi.enable = true;
+      zsh.enable = true;
+      zathura.enable = true;
+      waybar.enable = true;
+      kanata = {
+        enable = true;
+        devices = [
+          "/dev/input/by-path/pci-0000:02:00.0-usb-0:2:1.1-event-kbd"
+          "/dev/input/by-path/pci-0000:02:00.0-usb-0:3:1.0-event-kbd"
+          "/dev/input/by-id/usb-Compx_2.4G_Wireless_Receiver-event-kbd"
+        ];
+      };
+    };
+    theme.stylix = {
+      enable = true;
+      scheme = "${pkgs.base16-schemes}/share/themes/everforest-dark-soft.yaml";
+    };
+  };
   # Boot
   boot = {
     initrd.kernelModules = ["amdgpu"];
@@ -36,11 +66,9 @@
     download-buffer-size = 524288000;
     experimental-features = ["nix-command" "flakes"];
     substituters = [
-      "https://hyprland.cachix.org"
       "https://nix-community.cachix.org"
     ];
     trusted-public-keys = [
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
@@ -93,7 +121,6 @@
       };
     };
     displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
     # Enable CUPS to print documents.
     printing.enable = false;
     tailscale = {
@@ -101,26 +128,6 @@
       useRoutingFeatures = "both";
     };
   };
-  environment.gnome.excludePackages = with pkgs; [
-    papers
-    gnome-photos
-    gnome-tour
-    cheese
-    gnome-music
-    gnome-terminal
-    epiphany
-    geary
-    evince
-    totem
-    tali
-    iagno
-    hitori
-    atomix
-    gnome-weather
-    gnome-maps
-    simple-scan
-    gnome-contacts
-  ];
 
   # Configure console keymap
   console.keyMap = "it2";
@@ -152,30 +159,13 @@
     hashedPassword = "$y$j9T$/Zd2ewjXuVjuKz3YzWA3L/$iUOruuv0a6FT1QjzY1ZhTI5OkBxX88ZHXdpAJ6.tBk4";
     extraGroups = ["networkmanager" "wheel"];
   };
-  programs.xwayland.enable = true;
-  programs.niri.enable = true;
-  # Install firefox.
-  programs.firefox.enable = true;
 
-  programs.zsh.enable = true;
-
-  programs.gamescope = {
-    enable = true;
-  };
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  programs.gamemode.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    obsidian
-    xwayland-satellite
-    lutris
-    winetricks
-    heroic
-    mangohud
-    protontricks
     gemini-cli
     clinfo
     vim
@@ -202,18 +192,12 @@
     wlroots
     libxkbcommon
     ripgrep
-    steam-tui
     socat
     ags
     playerctl
     yafc-ce
-    goverlay
   ];
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [thunar-archive-plugin thunar-volman thunar-vcs-plugin];
-  };
 
   fonts.packages = with pkgs; [
     fira-code
@@ -221,33 +205,10 @@
     nerd-fonts.fira-code
     nerd-fonts.mononoki
   ];
-  xdg.mime.defaultApplications = {
-    "text/html" = "org.qutebrowser.qutebrowser.desktop";
-    "x-scheme-handler/http" = "org.qutebrowser.qutebrowser.desktop";
-    "x-scheme-handler/https" = "org.qutebrowser.qutebrowser.desktop";
-    "x-scheme-handler/about" = "org.qutebrowser.qutebrowser.desktop";
-    "x-scheme-handler/unknown" = "org.qutebrowser.qutebrowser.desktop";
-  };
-  #Install Steam
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    extraCompatPackages = [
-      pkgs.proton-ge-bin
-    ];
-  };
-
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-  };
   environment.sessionVariables = {
     # Wayland stuff
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
-    #my sessionVariables
-    EDITOR = "nvim";
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

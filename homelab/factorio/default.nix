@@ -3,30 +3,7 @@
   config,
   lib,
   ...
-}: let
-  mod-list-json = pkgs.writeText "mod-list.json" (
-    builtins.toJSON ''
-      mods = [
-        {
-          name = "base";
-          enabled = true;
-        }
-        {
-          name = "elevated-rails";
-          enabled = true;
-        }
-        {
-          name = "quality";
-          enabled = true;
-        }
-        {
-          name = "space-age";
-          enabled = true;
-        }
-      ];
-    ''
-  );
-in {
+}: {
   #nixpkgs.overlays = [
   #  (import ./factorio-overlay.nix)
   #];

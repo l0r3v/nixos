@@ -60,7 +60,6 @@
           ./configuration.nix
           inputs.home-manager.nixosModules.home-manager
           inputs.nixos-hardware.nixosModules.dell-xps-15-9500-nvidia
-          inputs.stylix.nixosModules.stylix
           inputs.sops-nix.nixosModules.sops
           {
             home-manager = {

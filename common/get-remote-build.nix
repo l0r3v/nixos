@@ -1,11 +1,6 @@
 # Configurazione per server remoti NixOS
 # Da includere nella configuration.nix dei server remoti
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   # User dedicato per il rebuild remoto
   users.users.nixos-builder = {
     isNormalUser = true;
