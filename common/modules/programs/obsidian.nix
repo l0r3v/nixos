@@ -25,13 +25,13 @@ in {
               newFileLocation = "current";
             };
             appearance = {
-              baseFontSize = 16;
+              baseFontSize = 18;
               enabledCssSnippets = [
                 "Stylix Config"
               ];
-              interfaceFontFamily = "Courier New";
-              textFontFamily = "Courier New";
-              monospaceFontFamily = "Courier New";
+              interfaceFontFamily = "${config.stylix.fonts.monospace.name}";
+              textFontFamily = "${config.stylix.fonts.monospace.name}";
+              monospaceFontFamily = "${config.stylix.fonts.monospace.name}";
             };
             communityPlugins = [
               # --- 1. LATEX SUITE ---

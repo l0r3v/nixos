@@ -50,19 +50,15 @@ in {
         size = 24;
       };
 
-      fonts = {
-        serif = {
-          package = pkgs.fira-sans;
-          name = "FiraSans";
+      fonts = let
+        font = {
+          package = pkgs.julia-mono;
+          name = "JuliaMono-Black";
         };
-        sansSerif = {
-          package = pkgs.fira-sans;
-          name = "FiraSans";
-        };
-        monospace = {
-          package = pkgs.fira-mono;
-          name = "Fira Code nerd font mono";
-        };
+      in {
+        serif = font;
+        sansSerif = font;
+        monospace = font;
       };
     };
 
