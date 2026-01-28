@@ -1,4 +1,5 @@
-#!/bin/bash
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p bash
 
 CHOICE=$(echo -e "⏻ shutdown\n reboot\n suspend\n hibernate\n logout" | \
          rofi -dmenu -p "Power Menu:" \

@@ -1,4 +1,5 @@
-#!/bin/bash
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p bash
 modes=("performance" "balanced" "power-saver")
 current_mode=$(powerprofilesctl get)
 current_index=$(echo "${modes[@]}" | tr ' ' '\n' | grep -n "^$current_mode$" | cut -d ':' -f 1)

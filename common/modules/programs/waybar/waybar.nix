@@ -4,8 +4,9 @@
   ];
   home.file = {
     ".config/waybar/watch_course.sh".text = ''
-      #!/bin/bash
-      cat /tmp/current_course'';
+      #! /usr/bin/env nix-shell
+      #! nix-shell -i bash -p bash
+            cat /tmp/current_course'';
     ".config/waybar/music.sh" = {
       source = ./scripts/music.sh;
       executable = true;
@@ -26,7 +27,7 @@
         modules-left = [
           #"idle_inhibitor"
           "group/mobo_drawer"
-          "hyprland/workspaces#rw"
+          #"hyprland/workspaces#rw"
         ];
 
         modules-center = [
