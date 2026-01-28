@@ -21,7 +21,7 @@ The project follows a **multi-host, modular architecture**:
 - **Sops-nix:** Handles secret management (encrypted secrets in `secrets/` directories).
 - **Stylix:** Unified system theming.
 - **Wayland Compositors:** Supports Hyprland and Niri.
-- **Nixvim:** Declarative Neovim configuration (pulled as an input).
+- **Nixvim:** Declarative Neovim configuration (pulled as an input from [my repo](https://github.com/l0r3v/nixvim)).
 
 ## Building and Running
 
