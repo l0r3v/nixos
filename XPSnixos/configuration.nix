@@ -19,7 +19,6 @@
       niri.enable = true;
       gnome.enable = true;
       hyprland.enable = false;
-      ly.enable = true;
     };
     programs = {
       thunar.enable = true;
