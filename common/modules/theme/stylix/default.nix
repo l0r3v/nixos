@@ -28,7 +28,7 @@ in {
       enable = true;
       base16Scheme = cfg.scheme;
       polarity = cfg.polarity;
-      targets.qt.platform = lib.mkForce "qtct";
+      # targets.qt.platform = lib.mkForce "qtct";
 
       image =
         pkgs.runCommand "nix-colored.png" {
