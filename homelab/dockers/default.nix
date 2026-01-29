@@ -4,7 +4,6 @@
     #./portainer
     #./tududi
     ./actual-budget
-    ./authentik
     ./calibre-web
     ./gitea
     ./owncloud
