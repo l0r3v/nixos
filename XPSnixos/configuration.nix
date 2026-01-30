@@ -178,10 +178,10 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  programs.virt-manager.enable = true;
-  users.groups.libvirtd.members = ["lorev"];
-  virtualisation.libvirtd.enable = true;
-  virtualisation.spiceUSBRedirection.enable = true;
+  #programs.virt-manager.enable = true;
+  #users.groups.libvirtd.members = ["lorev"];
+  #virtualisation.libvirtd.enable = true;
+  #virtualisation.spiceUSBRedirection.enable = true;
 
   hardware = {
     bluetooth.enable = true;
