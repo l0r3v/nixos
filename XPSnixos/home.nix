@@ -47,7 +47,9 @@ in {
       pkgs.inkscape
       pkgs.latexrun
       pkgs.newsflash
-      pkgs.owncloud-client
+      (pkgs.owncloud-client.overrideAttrs (old: {
+        buildInputs = (old.buildInputs or []) ++ [pkgs.adwaita-qt];
+      }))
       pkgs.aria2
       pkgs.vorta
       pkgs.gcr
