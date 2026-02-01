@@ -27,7 +27,7 @@ in {
       moonlight-qt
       ckan
     ];
-    home-manager.users.lorev = {...}: {
+    home-manager.users.lorev = _: {
     };
   };
 }

@@ -1,4 +1,4 @@
-{...}: {
+_: {
   services.caddy = {
     enable = false;
     extraConfig = ''

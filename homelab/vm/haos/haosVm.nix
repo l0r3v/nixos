@@ -1,5 +1,5 @@
 {inputs, ...}: let
-  nixvirt = inputs.nixvirt;
+  inherit (inputs) nixvirt;
 in {
   virtualisation = {
     libvirt = {

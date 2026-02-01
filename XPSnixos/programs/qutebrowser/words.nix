@@ -1,4 +1,4 @@
-{...}: {
+_: {
   home.file.".config/qutebrowser/words".text = ''
     a
     abc

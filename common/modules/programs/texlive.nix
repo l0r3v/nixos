@@ -34,7 +34,7 @@
 in {
   options.modules.programs.texlive.enable = lib.mkEnableOption "texlive";
   config = lib.mkIf cfg.enable {
-    home-manager.users.lorev = {...}: {
+    home-manager.users.lorev = _: {
       home.packages = [tex];
     };
   };

@@ -16,7 +16,7 @@ in {
       config,
       ...
     }: let
-      system = pkgs.stdenv.hostPlatform.system;
+      inherit (pkgs.stdenv.hostPlatform) system;
 
       nixvim-package = inputs.nixvim.packages.${system}.full;
 

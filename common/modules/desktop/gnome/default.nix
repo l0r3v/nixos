@@ -36,7 +36,7 @@ in {
     environment.systemPackages = with pkgs; [
     ];
 
-    home-manager.users.lorev = {...}: {
+    home-manager.users.lorev = _: {
     };
   };
 }

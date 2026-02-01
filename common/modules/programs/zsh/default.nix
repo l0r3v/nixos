@@ -13,7 +13,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.zsh.enable = true;
-    home-manager.users.lorev = {...}: {
+    home-manager.users.lorev = _: {
       home.file = {
         ".p10k.zsh".source = ./p10k.zsh;
       };

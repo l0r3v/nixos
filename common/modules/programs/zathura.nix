@@ -10,7 +10,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home-manager.users.lorev = {...}: {
+    home-manager.users.lorev = _: {
       programs.zathura = {
         enable = true;
         mappings = {

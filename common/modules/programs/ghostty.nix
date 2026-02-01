@@ -7,7 +7,7 @@
 in {
   options.modules.programs.ghostty.enable = lib.mkEnableOption "ghostty";
   config = lib.mkIf cfg.enable {
-    home-manager.users.lorev = {...}: {
+    home-manager.users.lorev = _: {
       programs.ghostty = {
         enable = true;
         settings = {

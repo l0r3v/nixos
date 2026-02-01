@@ -48,7 +48,7 @@ in {
       pkgs.niri
     ];
 
-    home-manager.users.lorev = {...}: {
+    home-manager.users.lorev = _: {
       programs.fuzzel.enable = true;
       stylix.targets.fuzzel.fonts.enable = false;
 
@@ -194,8 +194,7 @@ in {
           ];
 
           # --- Key Bindings ---
-          binds = let
-          in {
+          binds = {
             # Apps Essential
             "Mod+Return".action.spawn = "ghostty";
             "Mod+E".action.spawn = "firefox";

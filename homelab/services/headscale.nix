@@ -1,4 +1,4 @@
-{...}: {
+_: {
   services.headscale = {
     enable = true;
     port = 5423;

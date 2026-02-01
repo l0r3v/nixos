@@ -27,7 +27,7 @@ in {
     stylix = {
       enable = true;
       base16Scheme = cfg.scheme;
-      polarity = cfg.polarity;
+      inherit (cfg) polarity;
       # targets.qt.platform = lib.mkForce "qtct";
 
       image =
@@ -62,7 +62,7 @@ in {
       };
     };
 
-    home-manager.users.lorev = {...}: {
+    home-manager.users.lorev = _: {
     };
   };
 }

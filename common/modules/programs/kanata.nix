@@ -21,7 +21,7 @@ in {
       enable = true;
       keyboards = {
         internalKeyboard = {
-          devices = cfg.devices;
+          inherit (cfg) devices;
 
           extraDefCfg = ''
             process-unmapped-keys yes

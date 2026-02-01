@@ -315,4 +315,4 @@ assert releaseType
     expansion = alpha;
   };
 in
-  stdenv.mkDerivation (releases.${releaseType})
+  stdenv.mkDerivation releases.${releaseType}
