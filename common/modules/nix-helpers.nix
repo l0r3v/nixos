@@ -29,9 +29,9 @@ in {
     };
     environment = {
       sessionVariables = {
-        NH_FLAKE = "$HOME/nixos/${hostname}";
-        FLAKE = "$HOME/nixos/${hostname}";
-        NIXOS_CONFIG = "$HOME/nixos/${hostname}";
+        NH_FLAKE = "$HOME/nixos";
+        FLAKE = "$HOME/nixos";
+        NIXOS_CONFIG = "$HOME/nixos";
       };
       systemPackages = with pkgs; [
         inputs.optnix.packages."${pkgs.stdenv.hostPlatform.system}".optnix

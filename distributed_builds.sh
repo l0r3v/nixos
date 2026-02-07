@@ -7,9 +7,9 @@ set -euo pipefail
 # - flake_path: percorso al flake (es: ./AMDnixos)
 # - hostname: nome della configurazione nel flake (es: AMDnixos)
 declare -A TARGETS=(
-    ["AMDnixos"]="localhost:./AMDnixos:AMDnixos"
-    ["XPSnixos"]="xpsnixos.lan:./XPSnixos:XPSnixos"
-    ["homelab"]="homelab.lan:./homelab:homelab"
+    ["AMDnixos"]="localhost:.:AMDnixos"
+    ["XPSnixos"]="xpsnixos.lan:.:XPSnixos"
+    ["homelab"]="homelab.lan:.:homelab"
 )
 
 # User per il rebuild remoto
