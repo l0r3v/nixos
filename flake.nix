@@ -25,7 +25,6 @@
 
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     firefox-addons = {
@@ -66,8 +65,7 @@
     niri.url = "github:sodiboo/niri-flake";
 
     authentik-nix = {
-      url = "github:nix-community/authentik-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/authentik-nix/e929253deddb8398c7010b28187d9d43603db950";
     };
 
     deploy-rs = {
