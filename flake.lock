@@ -71,18 +71,14 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1769348998,
-        "narHash": "sha256-nP4gw7bdwYGa+TQEvpMrYrp6/wsGklrC2cmIUjP4HNI=",
-        "owner": "nix-community",
-        "repo": "authentik-nix",
-        "rev": "eee255ff2ffd90477889740a56ee75cf7020886e",
-        "type": "github"
+        "path": "./homelab/authentik-nix",
+        "type": "path"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "authentik-nix",
-        "type": "github"
-      }
+        "path": "./homelab/authentik-nix",
+        "type": "path"
+      },
+      "parent": []
     },
     "authentik-src": {
       "flake": false,

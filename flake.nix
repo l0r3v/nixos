@@ -12,7 +12,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nixos-cli.url = "github:nix-community/nixos-cli";
-    
+
     nixvim = {
       url = "github:l0r3v/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -66,7 +66,7 @@
     niri.url = "github:sodiboo/niri-flake";
 
     authentik-nix = {
-      url = "github:nix-community/authentik-nix";
+      url = "path:./homelab/authentik-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -76,27 +76,30 @@
     };
   };
 
-  outputs = { self, nixpkgs, deploy-rs, ... } @ inputs: let
+  outputs = {
+    self,
+    nixpkgs,
+    deploy-rs,
+    ...
+  } @ inputs: let
     system = "x86_64-linux";
-    
+
     # Function to construct deploy nodes easier
     mkDeployNode = hostname: configName: {
       hostname = hostname;
       profiles.system = {
         user = "root";
-        sshUser = "root";
+        sshUser = "nixos-builder";
         path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.${configName};
       };
     };
-
   in {
     formatter.${system} = inputs.alejandra.defaultPackage.${system};
 
     nixosConfigurations = {
-      
       AMDnixos = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs system; };
+        specialArgs = {inherit inputs system;};
         modules = [
           ./AMDnixos/configuration.nix
           inputs.home-manager.nixosModules.home-manager
@@ -104,7 +107,7 @@
             home-manager = {
               backupFileExtension = "backup";
               users.lorev = import ./AMDnixos/home.nix;
-              extraSpecialArgs = { inherit inputs system; };
+              extraSpecialArgs = {inherit inputs system;};
             };
           }
         ];
@@ -112,7 +115,7 @@
 
       XPSnixos = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs system; };
+        specialArgs = {inherit inputs system;};
         modules = [
           ./XPSnixos/configuration.nix
           inputs.home-manager.nixosModules.home-manager
@@ -124,7 +127,7 @@
               useUserPackages = true;
               backupFileExtension = "backup";
               users.lorev = import ./XPSnixos/home.nix;
-              extraSpecialArgs = { inherit inputs system; };
+              extraSpecialArgs = {inherit inputs system;};
             };
           }
         ];
@@ -132,7 +135,7 @@
 
       homelab = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs; };
+        specialArgs = {inherit inputs;};
         modules = [
           inputs.sops-nix.nixosModules.sops
           inputs.authentik-nix.nixosModules.default
