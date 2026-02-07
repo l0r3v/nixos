@@ -5,7 +5,7 @@
 
     buildMachines = [
       {
-        hostName = "amdnixos.tail0e73ab.ts.net";
+        hostName = "amdnixos.lan";
         sshUser = "remotebuild";
         sshKey = "/root/.ssh/remotebuild";
         inherit (pkgs.stdenv.hostPlatform) system;
