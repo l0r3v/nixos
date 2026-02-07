@@ -66,7 +66,7 @@
     niri.url = "github:sodiboo/niri-flake";
 
     authentik-nix = {
-      url = "path:./homelab/authentik-nix";
+      url = "github:nix-community/authentik-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
