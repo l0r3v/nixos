@@ -35,6 +35,7 @@ in {
       };
       systemPackages = with pkgs; [
         inputs.optnix.packages."${pkgs.stdenv.hostPlatform.system}".optnix
+        deploy-rs
         nh # nix-helper (wrapper per nixos-rebuild + gc + flake)
         nix-index # indicizza comandi nei pacchetti
         nix-tree # visualizza dipendenze di uno store path

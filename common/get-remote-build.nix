@@ -85,14 +85,10 @@
 
     # Regole extra per limitare l'accesso SSH alla rete locale
     extraCommands = ''
-      # Permetti SSH solo dalla rete locale (192.168.x.x)
-      # IMPORTANTE: Adatta questo range alla tua rete locale
       iptables -A nixos-fw -p tcp --dport 22 -s 192.168.1.0/16 -j nixos-fw-accept
 
-      # Opzionale: permetti anche da 10.x.x.x se usi questa rete
-      # iptables -A nixos-fw -p tcp --dport 22 -s 10.0.0.0/8 -j nixos-fw-accept
+      iptables -A nixos-fw -p tcp --dport 22 -s 100.0.0.0/8 -j nixos-fw-accept
 
-      # Blocca SSH da altre reti
       iptables -A nixos-fw -p tcp --dport 22 -j nixos-fw-log-refuse
     '';
   };
