@@ -42,7 +42,7 @@ in {
       pkgs.niri
     ];
 
-    home-manager.users.lorev = _: {
+    home-manager.users.lorev = {config, ...}: {
       programs.fuzzel.enable = true;
       stylix.targets.fuzzel.fonts.enable = false;
 
@@ -128,21 +128,14 @@ in {
           };
 
           # --- Startup ---
-          spawn-at-startup = [
-            {argv = ["waybar"];}
-            {argv = ["nm-applet"];}
-            {argv = ["dunst"];}
-            {argv = ["blueman-applet"];}
-            {argv = ["hacompanion"];}
-            {argv = ["owncloud"];}
-            # Usa sh -c per comandi complessi
-            {argv = ["gammastep-indicator" "-l" "45.068371:7.683070"];}
-
-            # FIX: Wallpaper dinamico con Stylix
-            {
-              argv = ["swaybg" "-m" "fill" "-i" "${config.stylix.image}"];
-            }
-          ];
+          spawn-at-startup =
+            [
+              # FIX: Wallpaper dinamico con Stylix
+              {
+                argv = ["swaybg" "-m" "fill" "-i" "${config.stylix.image}"];
+              }
+            ]
+            ++ (builtins.map (cmd: {argv = ["sh" "-c" cmd];}) config.modules.startup.programs);
 
           # --- Misc Settings ---
           prefer-no-csd = true;

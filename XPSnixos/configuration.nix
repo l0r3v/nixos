@@ -42,6 +42,15 @@
       enable = true;
       scheme = "${pkgs.base16-schemes}/share/themes/espresso.yaml";
     };
+    startup.programs = [
+      "nm-applet --indicator"
+      "waybar"
+      "dunst"
+      "blueman-applet"
+      "gammastep-indicator -l 45.068371:7.683070"
+      "hacompanion"
+      "owncloud"
+    ];
   };
 
   boot = {

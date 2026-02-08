@@ -47,7 +47,7 @@ in {
       ACTION=="change", SUBSYSTEM=="power_supply", KERNEL=="*lid*", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}+="lid-monitor.service"
     '';
 
-    home-manager.users.lorev = {pkgs, ...}: {
+    home-manager.users.lorev = {pkgs, config, ...}: {
       wayland.windowManager.hyprland = {
         enable = true;
         package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -64,15 +64,7 @@ in {
             border_size = 2;
             layout = "dwindle";
           };
-          exec-once = [
-            "nm-applet --indicator"
-            "waybar"
-            "dunst"
-            "blueman-applet"
-            "gammastep-indicator -l 45.068371:7.683070"
-            "hacompanion"
-            "owncloud"
-          ];
+          exec-once = config.modules.startup.programs;
           monitor = [
             "HDMI-A-1,1920x1080@60,0x0,auto"
           ];
