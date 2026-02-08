@@ -50,9 +50,18 @@ in {
       pkgs.latexrun
       pkgs.xdotool
       pkgs.newsflash
-      (pkgs.owncloud-client.overrideAttrs (old: {
-        buildInputs = (old.buildInputs or []) ++ [pkgs.adwaita-qt];
-      }))
+      (pkgs.symlinkJoin {
+        name = "owncloud-client-wrapped";
+        paths = [pkgs.owncloud-client];
+        buildInputs = [pkgs.makeWrapper];
+        postBuild = ''
+          for bin in $out/bin/*; do
+            target=$(readlink -f "$bin")
+            rm "$bin"
+            makeWrapper "$target" "$bin" --unset QT_STYLE_OVERRIDE
+          done
+        '';
+      })
       pkgs.aria2
       pkgs.vorta
       pkgs.gcr
