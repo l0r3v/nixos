@@ -16,18 +16,12 @@ in {
     xdg.portal = {
       enable = true;
       extraPortals = [
-        pkgs.xdg-desktop-portal-gnome # Ottimo per dark mode e settings su Niri
-        pkgs.xdg-desktop-portal-gtk # Fallback solido
+        pkgs.xdg-desktop-portal-gtk
       ];
       config = {
-        # Per Niri, usa gnome come primario, gtk come fallback
         niri = {
-          default = ["gnome" "gtk"];
-          # Per gli screenshot/screencast niri gestisce da solo, o delega a gnome
-          "org.freedesktop.impl.portal.ScreenCast" = ["gnome"];
-          "org.freedesktop.impl.portal.Screenshot" = ["gnome"];
+          default = ["gtk"];
         };
-        # Fallback generico
         common = {
           default = ["gtk"];
         };
