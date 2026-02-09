@@ -10,7 +10,6 @@
     ./navidrome.nix
     #./headscale.nix #non funziona senza ip pubblico
     ./davis.nix
-    ./monitoring.nix
     #./vaultwarden.nix questo funziona ma non ha senso fare il cambio se non funziona con sso, che è quello che volevo fare
     ../../common/zerotier.nix
   ];
