@@ -9,7 +9,7 @@
         ${config.sops.placeholder."davis/adminPass"}
       '';
 
-      sops.templates."davis-apppass".content = ''
+      "davis-apppass".content = ''
         ${config.sops.placeholder."davis/appPass"}
       '';
     };
