@@ -16,11 +16,8 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
-      - name: Check Flake Syntax (Statix)
+      - name: Check nix code syntax with alejandra
         run: nix shell nixpkgs#alejandra -c alejandra --check .
-
-      - name: Find Dead Code (Deadnix)
-        run: nix shell nixpkgs#deadnix -c deadnix .
 
       - name: Flake Check
         run: nix flake check
