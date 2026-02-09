@@ -18,7 +18,7 @@ in {
     nix = {
       gc = {
         automatic = true;
-        dates = "Mon *-*-* 05:00:00";
+        dates = "daily";
         options = "--delete-older-than 3d";
       };
       optimise = {
