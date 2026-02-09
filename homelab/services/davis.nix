@@ -1,16 +1,19 @@
 {config, ...}: {
-  sops.secrets = {
-    "davis/adminPass" = {};
-    "davis/appPass" = {};
+  sops = {
+    secrets = {
+      "davis/adminPass" = {};
+      "davis/appPass" = {};
+    };
+    templates = {
+      "davis-adminpass".content = ''
+        ${config.sops.placeholder."davis/adminPass"}
+      '';
+
+      sops.templates."davis-apppass".content = ''
+        ${config.sops.placeholder."davis/appPass"}
+      '';
+    };
   };
-
-  sops.templates."davis-adminpass".content = ''
-    ${config.sops.placeholder."davis/adminPass"}
-  '';
-
-  sops.templates."davis-apppass".content = ''
-    ${config.sops.placeholder."davis/appPass"}
-  '';
   services.davis = {
     enable = true;
     adminLogin = "lorev";

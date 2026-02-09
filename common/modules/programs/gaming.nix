@@ -8,14 +8,16 @@
 in {
   options.modules.programs.gaming.enable = lib.mkEnableOption "gaming";
   config = lib.mkIf cfg.enable {
-    programs.gamemode.enable = true;
-    programs.gamescope.enable = true;
-    programs.steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      extraCompatPackages = [
-        pkgs.proton-ge-bin
-      ];
+    programs = {
+      gamemode.enable = true;
+      gamescope.enable = true;
+      steam = {
+        enable = true;
+        remotePlay.openFirewall = true;
+        extraCompatPackages = [
+          pkgs.proton-ge-bin
+        ];
+      };
     };
     environment.systemPackages = with pkgs; [
       lutris

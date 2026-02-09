@@ -84,7 +84,7 @@
 
     # Function to construct deploy nodes easier
     mkDeployNode = hostname: configName: {
-      hostname = hostname;
+      inherit hostname;
       profiles.system = {
         user = "root";
         sshUser = "nixos-builder";
@@ -149,6 +149,6 @@
     };
 
     # Checks for deploy-rs to allow `nix flake check`
-    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+    checks = builtins.mapAttrs (_system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
 }

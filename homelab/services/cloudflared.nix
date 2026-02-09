@@ -1,17 +1,21 @@
 {config, ...}: {
-  sops.secrets = {
-    "cloudflared/json/AccountTag" = {};
-    "cloudflared/json/TunnelSecret" = {};
-    "cloudflared/json/TunnelID" = {};
-    "cloudflared/json/Endpoint" = {};
-    "cloudflared/cert" = {};
+  sops = {
+    secrets = {
+      "cloudflared/json/AccountTag" = {};
+      "cloudflared/json/TunnelSecret" = {};
+      "cloudflared/json/TunnelID" = {};
+      "cloudflared/json/Endpoint" = {};
+      "cloudflared/cert" = {};
+    };
+    templates = {
+      "cloudflared-cert.pem".content = ''
+        ${config.sops.placeholder."cloudflared/cert"}
+      '';
+      "cloudflared-uuidjson".content = ''
+        {"AccountTag":"${config.sops.placeholder."cloudflared/json/AccountTag"}","TunnelSecret":"${config.sops.placeholder."cloudflared/json/TunnelSecret"}","TunnelID":"${config.sops.placeholder."cloudflared/json/TunnelID"}","Endpoint":""}
+      '';
+    };
   };
-  sops.templates."cloudflared-cert.pem".content = ''
-    ${config.sops.placeholder."cloudflared/cert"}
-  '';
-  sops.templates."cloudflared-uuidjson".content = ''
-    {"AccountTag":"${config.sops.placeholder."cloudflared/json/AccountTag"}","TunnelSecret":"${config.sops.placeholder."cloudflared/json/TunnelSecret"}","TunnelID":"${config.sops.placeholder."cloudflared/json/TunnelID"}","Endpoint":""}
-  '';
 
   services.cloudflared = {
     enable = true;

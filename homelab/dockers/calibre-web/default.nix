@@ -7,11 +7,13 @@
   version = "0.6.24";
 in {
   # Runtime
-  virtualisation.docker = {
-    enable = true;
-    autoPrune.enable = true;
+  virtualisation = {
+    docker = {
+      enable = true;
+      autoPrune.enable = true;
+    };
+    oci-containers.backend = "docker";
   };
-  virtualisation.oci-containers.backend = "docker";
 
   # Containers
   virtualisation.oci-containers.containers."calibre-web" = {

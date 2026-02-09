@@ -1,8 +1,10 @@
-{ lib, config, ... }:
-let
-  sysStartup = config.modules.startup.programs;
-in
 {
+  lib,
+  config,
+  ...
+}: let
+  sysStartup = config.modules.startup.programs;
+in {
   options.modules.startup.programs = lib.mkOption {
     type = lib.types.listOf lib.types.str;
     default = [];
@@ -12,7 +14,7 @@ in
   # Usiamo mkIf per assicurarci che questa parte venga valutata SOLO SE
   # il modulo Home Manager è effettivamente caricato nel sistema.
   config = lib.mkIf (config ? home-manager) {
-    home-manager.users.lorev = { lib, ... }: {
+    home-manager.users.lorev = {lib, ...}: {
       options.modules.startup.programs = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         default = [];

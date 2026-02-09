@@ -11,10 +11,12 @@
     };
   };
 
-  sops.secrets."borgbase/actual/remote_host" = {};
-  sops.secrets."borgbase/actual/password" = {};
-  sops.secrets."borgbase/actual/url" = {};
-  sops.secrets."borgbase/actual/sync_id" = {};
+  sops.secrets = {
+    "borgbase/actual/remote_host" = {};
+    "borgbase/actual/password" = {};
+    "borgbase/actual/url" = {};
+    "borgbase/actual/sync_id" = {};
+  };
   systemd.services."backup-actual" = {
     path = with pkgs; [borgbackup curl jq];
     script = ''

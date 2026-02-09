@@ -14,24 +14,26 @@ in {
   };
   virtualisation.oci-containers.backend = "docker";
 
-  sops.secrets = {
-    "dockers/owncloud/password" = {};
-    "dockers/owncloud/admin_user" = {};
-    "dockers/owncloud/admin_pass" = {};
-    "dockers/owncloud/trusted_domain" = {};
-  };
-  sops.templates."owncloud-docker.env".content = ''
-    OWNCLOUD_ADMIN_PASS=${config.sops.placeholder."dockers/owncloud/admin_pass"}
-    OWNCLOUD_ADMIN_USERNAME=${config.sops.placeholder."dockers/owncloud/admin_user"}
-    MYSQL_PASSWORD=${config.sops.placeholder."dockers/owncloud/password"}
-    MYSQL_ROOT_PASSWORD=${config.sops.placeholder."dockers/owncloud/password"}
-    OWNCLOUD_DB_PASSWORD=${config.sops.placeholder."dockers/owncloud/password"}
+  sops = {
+    secrets = {
+      "dockers/owncloud/password" = {};
+      "dockers/owncloud/admin_user" = {};
+      "dockers/owncloud/admin_pass" = {};
+      "dockers/owncloud/trusted_domain" = {};
+    };
+    templates."owncloud-docker.env".content = ''
+      OWNCLOUD_ADMIN_PASS=${config.sops.placeholder."dockers/owncloud/admin_pass"}
+      OWNCLOUD_ADMIN_USERNAME=${config.sops.placeholder."dockers/owncloud/admin_user"}
+      MYSQL_PASSWORD=${config.sops.placeholder."dockers/owncloud/password"}
+      MYSQL_ROOT_PASSWORD=${config.sops.placeholder."dockers/owncloud/password"}
+      OWNCLOUD_DB_PASSWORD=${config.sops.placeholder."dockers/owncloud/password"}
 
-    OWNCLOUD_TRUSTED_DOMAINS=${config.sops.placeholder."dockers/owncloud/trusted_domain"}
-    OWNCLOUD_VERSION=${version}
-    OWNCLOUD_DOMAIN=localhost:8080
-    HTTP_PORT=2424
-  '';
+      OWNCLOUD_TRUSTED_DOMAINS=${config.sops.placeholder."dockers/owncloud/trusted_domain"}
+      OWNCLOUD_VERSION=${version}
+      OWNCLOUD_DOMAIN=localhost:8080
+      HTTP_PORT=2424
+    '';
+  };
   # Containers
   virtualisation.oci-containers.containers."owncloud_mariadb" = {
     image = "mariadb:10.11";

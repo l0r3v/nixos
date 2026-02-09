@@ -47,7 +47,11 @@ in {
       ACTION=="change", SUBSYSTEM=="power_supply", KERNEL=="*lid*", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}+="lid-monitor.service"
     '';
 
-    home-manager.users.lorev = {pkgs, config, ...}: {
+    home-manager.users.lorev = {
+      pkgs,
+      config,
+      ...
+    }: {
       wayland.windowManager.hyprland = {
         enable = true;
         package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;

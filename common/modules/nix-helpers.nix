@@ -6,7 +6,6 @@
   ...
 }: let
   cfg = config.modules.nix-helpers;
-  hostname = config.networking.hostName;
 in {
   options.modules.nix-helpers = {
     enable = lib.mkEnableOption "A suit of different nix related utils";
@@ -49,9 +48,13 @@ in {
         nix-diff
       ];
     };
-    programs.nix-index.enable = true; # auto run post-activation
-    programs.nix-index.enableZshIntegration = false;
-    programs.nix-index.enableBashIntegration = false;
+    programs = {
+      nix-index = {
+        enable = true; # auto run post-activation
+        enableZshIntegration = false;
+        enableBashIntegration = false;
+      };
+    };
 
     services.nixos-cli = {
       enable = true;

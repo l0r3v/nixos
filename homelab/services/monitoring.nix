@@ -1,15 +1,13 @@
-{ config, pkgs, ... }:
-
-{
+_: {
   services.prometheus = {
     enable = true;
     port = 9090;
-    
+
     # Raccoglitori di metriche (Exporters)
     exporters = {
       node = {
         enable = true;
-        enabledCollectors = [ "systemd" ];
+        enabledCollectors = ["systemd"];
         port = 9100;
       };
     };
@@ -18,9 +16,11 @@
     scrapeConfigs = [
       {
         job_name = "homelab";
-        static_configs = [{
-          targets = [ "127.0.0.1:9100" ];
-        }];
+        static_configs = [
+          {
+            targets = ["127.0.0.1:9100"];
+          }
+        ];
       }
     ];
   };

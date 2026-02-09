@@ -149,9 +149,7 @@ in {
           };
 
           # --- Window Rules ---
-          window-rules = let
-            colors = config.lib.stylix.colors.withHashtag;
-          in [
+          window-rules = [
             {
               geometry-corner-radius = let
                 r = 12.0;
