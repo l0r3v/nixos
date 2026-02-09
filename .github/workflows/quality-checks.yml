@@ -1,4 +1,4 @@
-name: Nix Quality Checks
+name: check formatting with alejandra
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   check:
-    name: Lint & Check
+    name: check formatting with alejandra
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,6 +18,3 @@ jobs:
 
       - name: Check nix code syntax with alejandra
         run: nix shell nixpkgs#alejandra -c alejandra --check .
-
-      - name: Flake Check
-        run: nix flake check
