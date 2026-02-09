@@ -1,22 +1,23 @@
 # NixOS Configurations
 
-This repository contains the **NixOS configurations** for multiple hosts, organized as a collection of independent Nix Flakes sharing common modules. It is designed to manage personal workstations, laptops, and a homelab server using Infrastructure as Code principles.
+This repository contains the **NixOS configurations** for multiple hosts. It is designed to manage my devices.
 
 ## Architecture
 
-The project follows a **multi-host, modular architecture**:
+The configuration is composed by a sigle flake and some modules (mainly for amd and xps since they have similar usecases).
 
-- **Host Directories:** Each machine has its own directory containing a `flake.nix`, `configuration.nix`, and host-specific settings.
+- **Host Directories:** Each machine has its own directory containing a configuration.nix where the modules are called. I am in the process of modulazing the configuration some more, to potentially only have modules setting in the configuration files.
   - `AMDnixos/`: Configuration for the main desktop workstation.
-  - `XPSnixos/`: Configuration for a Dell XPS 15 9500 laptop.
-  - `homelab/`: Configuration for a home server/lab environment.
+  - `XPSnixos/`: Configuration for Dell XPS 15 9500 laptop.
+  - `homelab/`: Configuration for home server/lab environment.
 - **Common Modules:**
   - `common/`: Contains shared Nix modules used across hosts to avoid duplication.
-  - `common/modules/`: structured sub-modules for `desktop` environments (Hyprland, Niri, Gnome), `programs` (CLI tools, GUI apps), and `theme` (Stylix integration).
+  - `common/modules/`: structured sub-modules for `desktop` environments (Hyprland, Niri, Gnome), `programs` (CLI tools, GUI apps), and `theme` (Stylix integration). This is what i want to expand more.
 
-## Key Technologies
+## Some features
 
-- **NixOS & Flakes:** The core configuration management system.
+-**Flake based configuration**
+
 - **Home Manager:** Manages user-specific configurations (dotfiles) integrated as a NixOS module.
 - **Sops-nix:** Handles secret management (encrypted secrets in `secrets/` directories).
 - **Stylix:** Unified system theming.
@@ -25,26 +26,26 @@ The project follows a **multi-host, modular architecture**:
 
 ## Building and Running
 
-Since each host has its own flake, commands are typically run from the respective host directory or by referencing the specific flake URI.
-
-### Applying Configuration
-
-To rebuild the system for a specific host (e.g., `XPSnixos`):
+This is as simple as writing in a terminal
 
 ```bash
-# Navigate to the host directory
-cd XPSnixos
-
-# Apply configuration
-sudo nixos-rebuild switch --flake .#XPSnixos
+deploy .
 ```
+
+All is built on the local machine and then copied to the others through tailscale ssh.
 
 ### Formatting
 
 The project uses `alejandra` for formatting Nix files.
 
 ```bash
-nix fmt
+alejandra .
+```
+
+or
+
+```bash
+nix fmt .
 ```
 
 ### Secret Management
@@ -52,7 +53,7 @@ nix fmt
 Secrets are managed with `sops`. To edit secrets for a specific host:
 
 ```bash
-cd XPSnixos
+cd $HOST
 sops secrets/secrets.yaml
 ```
 
@@ -64,4 +65,4 @@ sops secrets/secrets.yaml
 - `common/`:
   - `modules/`: Reusable NixOS modules.
   - `distributed-builds.nix`: Config for remote building.
-- `.github/`: CI/CD workflows (formatting checks, flake updates).
+- `.github/`: CI/CD workflows (formatting checks, flake updates). This is currently a mess since there are both github specific and gitea ones.
