@@ -15,7 +15,7 @@
   modules = {
     nix-helpers.enable = true;
     desktop = {
-      ly.enable = true;
+      #ly.enable = true;
       niri.enable = true;
       gnome.enable = true;
       hyprland.enable = false;
@@ -107,6 +107,10 @@
     };
   };
   services = {
+    displayManager.gdm = {
+      enable = true;
+      settings.daemon.DisplaysMode = "mirror";
+    };
     hardware.openrgb.enable = true;
     lact.enable = true;
     xserver = {
