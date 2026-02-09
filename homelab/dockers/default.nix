@@ -1,7 +1,6 @@
 {...}: {
   imports = [
     #./dawarich
-    #./portainer
     #./tududi
     ./actual-budget
     ./calibre-web
