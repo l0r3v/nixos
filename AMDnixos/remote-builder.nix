@@ -9,5 +9,5 @@
 
   users.groups.remotebuild = {};
 
-  nix.settings.trusted-users = ["remotebuild"];
+  nix.settings.trusted-users = ["remotebuild" "lorev"];
 }
