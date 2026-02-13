@@ -8,6 +8,7 @@
     ./postgresql.nix
     ./authentik.nix
     ./navidrome.nix
+    ./gonic.nix
     #./headscale.nix #non funziona senza ip pubblico
     ./davis.nix
     #./vaultwarden.nix questo funziona ma non ha senso fare il cambio se non funziona con sso, che è quello che volevo fare
