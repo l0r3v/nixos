@@ -42,7 +42,7 @@ in {
         statix # linter per codice nix
         deadnix # trova codice morto
         nix-init # inizializza package.nix
-
+        devenv
         nvd
         nix-output-monitor
         nix-diff
