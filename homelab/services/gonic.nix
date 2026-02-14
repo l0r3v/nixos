@@ -3,9 +3,9 @@
     enable = true;
     settings = {
       "music-path" = "/srv/archive/music";
-      "podcast-path" = "/var/lib/gonic/podcasts";
-      "playlists-path" = "/var/lib/gonic/playlists";
-      "data-path" = "/var/lib/gonic";
+      "podcast-path" = "/srv/archive/gonic/podcasts";
+      "playlists-path" = "/srv/archive/gonic/playlists";
+      "data-path" = "/srv/archive/gonic";
       "port" = 8080;
     };
   };
@@ -19,6 +19,6 @@
     extraGroups = ["music"];
   };
   systemd.services.gonic.serviceConfig.ReadWritePaths = [
-    "/var/lib/gonic"
+    "/srv/archive/gonic"
   ];
 }
