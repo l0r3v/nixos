@@ -6,7 +6,6 @@
       "podcast-path" = "/srv/archive/gonic/podcasts";
       "playlists-path" = "/srv/archive/gonic/playlists";
       "data-path" = "/srv/archive/gonic";
-      "port" = 8080;
     };
   };
 
