@@ -133,6 +133,7 @@
     };
   };
   services = {
+    usbmuxd.enable = true;
     displayManager.gdm = {
       enable = true;
       settings.daemon.DisplaysMode = "mirror";
