@@ -34,7 +34,7 @@
 
   services.homepage-dashboard = {
     enable = true;
-    environmentFile = config.sops.templates."homepage-dashboard.env".path;
+    environmentFiles = [config.sops.templates."homepage-dashboard.env".path];
 
     settings = {
       title = "Homepage";

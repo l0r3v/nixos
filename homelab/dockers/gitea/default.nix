@@ -8,7 +8,7 @@
   version = "1.24";
 in {
   imports = [
-    ./gitea-action-runner.nix
+    #./gitea-action-runner.nix
   ];
   # Runtime
   virtualisation.docker = {

@@ -89,6 +89,7 @@ in {
     fuzzel.enable = true;
     yazi = {
       enable = true;
+      shellWrapperName = "y";
     };
 
     keychain = {

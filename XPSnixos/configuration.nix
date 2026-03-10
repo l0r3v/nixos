@@ -150,7 +150,6 @@
       package = pkgs.fprintd-tod;
       tod = {
         enable = true;
-        driver = pkgs.libfprint-2-tod1-goodix;
       };
     };
     blueman.enable = true;
@@ -255,7 +254,6 @@
     ags
     playerctl
     yafc-ce
-    zeroad
     tigervnc
   ];
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];

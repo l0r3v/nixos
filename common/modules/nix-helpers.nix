@@ -56,9 +56,9 @@ in {
       };
     };
 
-    services.nixos-cli = {
+    programs.nixos-cli = {
       enable = true;
-      config = {
+      settings = {
         aliases = {
           list = ["generation" "list"];
           switch = ["generation" "switch"];
