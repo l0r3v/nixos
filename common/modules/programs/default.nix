@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./firefox.nix
+    ./chess.nix
     ./gaming.nix
     ./ghostty.nix
     ./kanata.nix
