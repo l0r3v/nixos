@@ -232,7 +232,7 @@
     git
     dunst
     libnotify
-    swww
+    awww
     networkmanagerapplet
     brightnessctl
     pavucontrol
