@@ -29,6 +29,7 @@
       ghostty.enable = true;
       nixvim.enable = true;
       firefox.enable = true;
+      zen.enable = true;
       rofi.enable = true;
       zsh.enable = true;
       zathura.enable = true;

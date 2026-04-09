@@ -11,11 +11,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    # 1. Configurazione Sistema (per il binary wrapper)
     programs.firefox = {
       enable = true;
 
-      # Esempio: Policy aziendali/globali (opzionale)
       policies = {
         DisableTelemetry = true;
         DisableFirefoxStudies = true;
@@ -24,7 +22,6 @@ in {
       };
     };
 
-    # 2. Configurazione Utente (Home Manager)
     home-manager.users.lorev = {pkgs, ...}: {
       stylix.targets.firefox = {
         profileNames = ["lorev"];
@@ -93,7 +90,7 @@ in {
               enabled = true;
               "account.device.name" = "lorev nixOS";
             };
-            "signon.rememberSignons" = false;
+            "signon.rememberSignons" = true;
             "browser.translation.enabled " = false;
             "findbar.highlightAll" = true;
             browser = {
@@ -123,7 +120,6 @@ in {
             facebook-container
             youtube-shorts-block
             dearrow
-            foxyproxy-standard
             firefox-color
           ];
           extensions.force = true;

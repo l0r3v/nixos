@@ -1438,7 +1438,8 @@
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "university-setup": "university-setup",
-        "yt-x": "yt-x"
+        "yt-x": "yt-x",
+        "zen-browser": "zen-browser"
       }
     },
     "rust-analyzer-src": {
@@ -1851,6 +1852,26 @@
       "original": {
         "owner": "Benexl",
         "repo": "yt-x",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775710180,
+        "narHash": "sha256-sCokvdNvl8zIzsnjgG0TN5h3RUI7GJyWW9ErfmEj0rM=",
+        "owner": "youwen5",
+        "repo": "zen-browser-flake",
+        "rev": "2c138beb648d1cbbfae76695a8230ee04e4db25a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "youwen5",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

@@ -77,7 +77,6 @@ in {
       pkgs.godot
       pkgs.blender
       pkgs.vscodium
-      pkgs.aseprite
     ]; #END OF PACKAGES
   };
 
