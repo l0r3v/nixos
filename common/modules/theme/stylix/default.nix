@@ -62,7 +62,8 @@ in {
       };
     };
 
-    home-manager.users.lorev = _: {
+    home-manager.users.lorev = {config, ...}: {
+      gtk.gtk4.theme = config.gtk.theme;
     };
   };
 }
