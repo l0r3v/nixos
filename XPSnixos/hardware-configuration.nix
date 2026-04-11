@@ -32,6 +32,7 @@
     };
     "/home/lorev/archive" = {
       device = "/dev/disk/by-uuid/a6d24636-2630-4c47-b91a-563a9539cdb0";
+      fsType = "ext4";
       options = ["nofail"];
     };
   };
