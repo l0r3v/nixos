@@ -46,7 +46,6 @@ in {
       pkgs.hacompanion
       pkgs.ckan
       pkgs.audacity
-      pkgs.inkscape
       pkgs.latexrun
       pkgs.xdotool
       pkgs.newsflash

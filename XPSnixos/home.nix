@@ -44,7 +44,6 @@ in {
       pkgs.gimp
       pkgs.hacompanion
       pkgs.audacity
-      pkgs.inkscape
       pkgs.latexrun
       pkgs.newsflash
       (pkgs.symlinkJoin {
