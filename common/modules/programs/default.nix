@@ -4,6 +4,7 @@
     ./firefox.nix
     ./gaming.nix
     ./ghostty.nix
+    ./git.nix
     ./kanata.nix
     ./nixvim.nix
     ./obsidian.nix

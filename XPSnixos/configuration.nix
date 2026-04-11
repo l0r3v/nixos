@@ -21,6 +21,7 @@
       hyprland.enable = false;
     };
     programs = {
+      git.enable = true;
       chess.enable = true;
       thunar.enable = true;
       obsidian.enable = true;
