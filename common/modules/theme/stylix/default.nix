@@ -63,6 +63,11 @@ in {
     };
 
     home-manager.users.lorev = {config, ...}: {
+      qt = {
+        enable = true;
+        platformTheme.name = lib.mkForce "qtct";
+        style.name = lib.mkForce "kvantum";
+      };
       gtk.gtk4.theme = config.gtk.theme;
     };
   };
