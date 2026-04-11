@@ -182,7 +182,7 @@ in {
           binds = {
             # Apps Essential
             "Mod+Return".action.spawn = "ghostty";
-            "Mod+E".action.spawn = "firefox";
+            "Mod+E".action.spawn = "zen";
             "Mod+Space".action.spawn = "fuzzel";
             "Mod+Escape".action.spawn = "/home/lorev/.config/scripts/powermenu.sh";
 

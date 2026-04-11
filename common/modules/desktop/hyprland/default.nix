@@ -127,7 +127,7 @@ in {
           "$mainMod" = "SUPER";
           "$terminal" = "ghostty";
           "$menu" = "rofi -show drun";
-          "$browser" = "firefox";
+          "$browser" = "zen";
           bind = [
             "$mainMod, Escape, exec, bash ~/.config/scripts/powermenu.sh "
             "$mainMod, Return, exec, $terminal"
