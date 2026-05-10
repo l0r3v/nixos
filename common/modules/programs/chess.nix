@@ -9,9 +9,7 @@ in {
   options.modules.programs.chess.enable = lib.mkEnableOption "chess";
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      scid
       en-croissant
-      pawn-appetit
       stockfish
       chessx
       chessdb
