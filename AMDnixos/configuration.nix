@@ -10,6 +10,7 @@
     ../common/modules
     ../common/get-remote-build.nix
     #./remote-vacation.nix
+    ./airplay.nix
   ];
 
   modules = {
@@ -66,6 +67,7 @@
     IPQoS throughput
     IdentityFile /home/lorev/.ssh/nixbuild-key
   '';
+  programs.corectrl.enable = true;
 
   programs.ssh.knownHosts = {
     nixbuild = {
@@ -168,7 +170,7 @@
     shell = pkgs.zsh;
     description = "Lorenzo Pasqui";
     hashedPassword = "$y$j9T$/Zd2ewjXuVjuKz3YzWA3L/$iUOruuv0a6FT1QjzY1ZhTI5OkBxX88ZHXdpAJ6.tBk4";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "corectrl"];
   };
 
   # Allow unfree packages
