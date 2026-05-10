@@ -20,7 +20,6 @@ in {
       };
     };
     environment.systemPackages = with pkgs; [
-      lutris
       winetricks
       heroic
       mangohud
