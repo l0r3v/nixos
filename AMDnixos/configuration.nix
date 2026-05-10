@@ -177,6 +177,21 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    (pkgs.symlinkJoin {
+      name = "librepods-wrapped";
+      paths = [pkgs.librepods];
+      buildInputs = [pkgs.makeWrapper];
+      postBuild = ''
+        for bin in $out/bin/*; do
+          target=$(readlink -f "$bin")
+          rm "$bin"
+          makeWrapper "$target" "$bin" --unset QT_STYLE_OVERRIDE
+        done
+      '';
+    })
+
+    libsForQt5.qtstyleplugin-kvantum
+
     gemini-cli
     clinfo
     vim
