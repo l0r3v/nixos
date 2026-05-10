@@ -48,7 +48,6 @@ in {
       pkgs.audacity
       pkgs.latexrun
       pkgs.xdotool
-      pkgs.newsflash
       (pkgs.symlinkJoin {
         name = "owncloud-client-wrapped";
         paths = [pkgs.owncloud-client];
@@ -74,8 +73,6 @@ in {
       pkgs.cider-2
       pkgs.tea
       pkgs.rofi-pulse-select
-      pkgs.scid
-      pkgs.stockfish
       pkgs.feishin
       pkgs.godot
       pkgs.blender

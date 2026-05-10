@@ -45,7 +45,6 @@ in {
       pkgs.hacompanion
       pkgs.audacity
       pkgs.latexrun
-      pkgs.newsflash
       (pkgs.symlinkJoin {
         name = "owncloud-client-wrapped";
         paths = [pkgs.owncloud-client];
@@ -69,8 +68,6 @@ in {
       pkgs.libqalculate
       pkgs.cider-2
       pkgs.tea
-      pkgs.scid
-      pkgs.stockfish
       pkgs.feishin
       pkgs.power-profiles-daemon
       pkgs.godot
