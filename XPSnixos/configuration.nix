@@ -137,6 +137,7 @@
   };
 
   services = {
+    usbmuxd.enable = true;
     fprintd = {
       enable = true;
       package = pkgs.fprintd-tod;
