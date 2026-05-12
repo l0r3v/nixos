@@ -70,17 +70,6 @@
     };
   };
 
-  nix = {
-    distributedBuilds = true;
-    buildMachines = [
-      {
-        hostName = "eu.nixbuild.net";
-        system = "x86_64-linux";
-        maxJobs = 100;
-        supportedFeatures = ["benchmark" "big-parallel"];
-      }
-    ];
-  };
   boot = {
     resumeDevice = "/dev/disk/by-uuid/fdc651ed-f77f-4e32-98eb-a24a7a021853";
     kernelParams = [
