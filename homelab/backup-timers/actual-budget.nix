@@ -74,7 +74,7 @@
         MESSAGE="❌ Errore nel backup @Lorevocator"
       fi
       echo status $STATUS: $MESSAGE
-      curl -X POST https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage -d chat_id=-1002509650347 -d text="#actual-budget: $MESSAGE Tempo impiegato: $minutes min e $seconds sec"
+      curl -X POST https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage -d chat_id=-1002509650347 -d message_thread_id=5596 -d text="#actual-budget: $MESSAGE Tempo impiegato: $minutes min e $seconds sec"
       exit $STATUS
     '';
     serviceConfig = {
