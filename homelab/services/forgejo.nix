@@ -8,6 +8,12 @@
       "forgejo/db_pass" = {
         owner = "forgejo";
       };
+      "forgejo/smtp_user" = {
+        owner = "forgejo";
+      };
+      "forgejo/smtp_password" = {
+        owner = "forgejo";
+      };
       "borgbase/forgejo/remote_host" = {};
       "borgbase/passphrase" = {};
       "borgbase/ssh_key" = {};
@@ -24,7 +30,33 @@
       name = "forgejo";
       passwordFile = config.sops.secrets."forgejo/db_pass".path;
     };
-    settings.server.HTTP_PORT = 3001;
+    settings = {
+      mailer = {
+        ENABLED = true;
+        PROTOCOL = "smtp";
+        SMTP_ADDR = "smtp.mail.me.com";
+        SMTP_PORT = 587;
+        FROM = "info@pasqui.casa";
+      };
+      service = {
+        DISABLE_REGISTRATION = true;
+      };
+      server = {
+        START_SSH_SERVER = true;
+        SSH_PORT = 2211;
+        SSH_DOMAIN = "forge-ssh.pasqui.casa";
+        HTTP_PORT = 3001;
+        DOMAIN = "forge.pasqui.casa";
+        ROOT_URL = "https://forge.pasqui.casa/";
+        COOKIE_SECURE = true;
+      };
+    };
+    secrets = {
+      mailer = {
+        USER = config.sops.secrets."forgejo/smtp_user".path;
+        PASSWD = config.sops.secrets."forgejo/smtp_password".path;
+      };
+    };
   };
 
   systemd.timers."backup-forgejo" = {
