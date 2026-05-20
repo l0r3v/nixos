@@ -9,6 +9,7 @@
     ./nixvim.nix
     ./obsidian.nix
     ./rofi
+    ./ssh.nix
     ./texlive.nix
     ./thunar.nix
     ./waybar

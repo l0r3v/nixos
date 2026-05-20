@@ -21,20 +21,21 @@
       hyprland.enable = false;
     };
     programs = {
-      git.enable = true;
       chess.enable = true;
-      thunar.enable = true;
-      obsidian.enable = true;
-      texlive.enable = true;
+      firefox.enable = true;
       gaming.enable = true;
       ghostty.enable = true;
+      git.enable = true;
       nixvim.enable = true;
-      firefox.enable = true;
-      zen.enable = true;
+      obsidian.enable = true;
       rofi.enable = true;
-      zathura.enable = true;
-      zsh.enable = true;
+      ssh.enable = true;
+      texlive.enable = true;
+      thunar.enable = true;
       waybar.enable = true;
+      zathura.enable = true;
+      zen.enable = true;
+      zsh.enable = true;
       kanata = {
         enable = true;
         devices = [
@@ -54,20 +55,6 @@
       "hacompanion"
       "owncloud"
     ];
-  };
-  programs.ssh.extraConfig = ''
-    Host eu.nixbuild.net
-    PubkeyAcceptedKeyTypes ssh-ed25519
-    ServerAliveInterval 60
-    IPQoS throughput
-    IdentityFile /home/lorev/.ssh/my-nixbuild-key
-  '';
-
-  programs.ssh.knownHosts = {
-    nixbuild = {
-      hostNames = ["eu.nixbuild.net"];
-      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
-    };
   };
 
   boot = {
