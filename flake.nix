@@ -14,7 +14,7 @@
     nixos-cli.url = "github:nix-community/nixos-cli";
 
     nixvim = {
-      url = "github:l0r3v/nixvim";
+      url = "git+https://forge.pasqui.casa/lorev/nixvim";
     };
 
     stylix = {
@@ -42,7 +42,7 @@
     };
 
     university-setup = {
-      url = "github:l0r3v/university-setup";
+      url = "git+https://forge.pasqui.casa/lorev/university-setup";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -1224,15 +1224,15 @@
       "locked": {
         "lastModified": 1775902062,
         "narHash": "sha256-IqMX05CVNA4PnGFR10e/cLZgZpFLfoVbuACZfbO4W9g=",
-        "owner": "l0r3v",
-        "repo": "nixvim",
+        "ref": "refs/heads/main",
         "rev": "83fefc54b548a61ac33836610d24a6694c1ffd31",
-        "type": "github"
+        "revCount": 149,
+        "type": "git",
+        "url": "https://forge.pasqui.casa/lorev/nixvim"
       },
       "original": {
-        "owner": "l0r3v",
-        "repo": "nixvim",
-        "type": "github"
+        "type": "git",
+        "url": "https://forge.pasqui.casa/lorev/nixvim"
       }
     },
     "nixvim_2": {
@@ -1718,17 +1718,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1770740879,
-        "narHash": "sha256-N2I0YCEsxLhy4E/ywAAckD+NAxpk1kHsZW0JcRwUMPw=",
-        "owner": "l0r3v",
-        "repo": "university-setup",
-        "rev": "a0c6e9963b796397157ac6bab90dc0f71d81aac7",
-        "type": "github"
+        "lastModified": 1769612133,
+        "narHash": "sha256-z+JkaNPN/CtjAoAOq7MmpXqjXlAPKIFOJr+kjtJd9h0=",
+        "ref": "refs/heads/master",
+        "rev": "e7a70060d2ba9be69307062c07f4397556b4e7dc",
+        "revCount": 57,
+        "type": "git",
+        "url": "https://forge.pasqui.casa/lorev/university-setup"
       },
       "original": {
-        "owner": "l0r3v",
-        "repo": "university-setup",
-        "type": "github"
+        "type": "git",
+        "url": "https://forge.pasqui.casa/lorev/university-setup"
       }
     },
     "utils": {
