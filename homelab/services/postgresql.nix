@@ -8,11 +8,6 @@
     authentication = lib.mkForce ''
       # TYPE  DATABASE        USER            ADDRESS                 METHOD
 
-      local   all             postgres                                peer
-
-      local   authentik       authentik                               scram-sha-256
-      local   miniflux        miniflux                                scram-sha-256
-
       local   all             all                                     peer
 
       host    all             all             127.0.0.1/32            scram-sha-256

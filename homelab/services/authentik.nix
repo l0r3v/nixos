@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   services.authentik = {
     enable = true;
 
@@ -63,4 +67,14 @@
     location = "/var/backup/postgresql";
     compression = "zstd";
   };
+  users.groups.authentik = {};
+  users.users.authentik = {
+    isSystemUser = true;
+    group = "authentik";
+  };
+
+  # Disattiviamo il DynamicUser per tutti i demoni di Authentik
+  systemd.services.authentik-server.serviceConfig.DynamicUser = lib.mkForce false;
+  systemd.services.authentik-worker.serviceConfig.DynamicUser = lib.mkForce false;
+  systemd.services.authentik-migrate.serviceConfig.DynamicUser = lib.mkForce false;
 }
