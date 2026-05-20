@@ -4,7 +4,7 @@
     #./tududi
     ./actual-budget
     ./calibre-web
-    ./gitea
+    #./gitea
     ./owncloud
   ];
   virtualisation.docker.enable = true;
