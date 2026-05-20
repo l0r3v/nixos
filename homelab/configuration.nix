@@ -107,8 +107,10 @@ in {
     enableBashIntegration = true;
     nix-direnv.enable = true;
   };
-  nixpkgs.config.allowUnfree = true;
-
+  nixpkgs.config = {
+    allowUnfree = true;
+    nvidia.acceptLicense = true;
+  };
   environment.systemPackages = with pkgs; [
     tmux
     nixvim-package
