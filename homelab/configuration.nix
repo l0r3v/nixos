@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: let
   inherit (pkgs.stdenv.hostPlatform) system;
@@ -26,6 +27,7 @@ in {
       modesetting.enable = true;
       open = false;
       nvidiaSettings = false;
+      package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
     };
   };
   programs.ssh.extraConfig = ''
