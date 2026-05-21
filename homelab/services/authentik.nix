@@ -9,6 +9,13 @@
     environmentFile = config.sops.templates."authentik.env".path;
 
     settings = {
+      # Forza la connessione tramite Unix Socket per usare l'autenticazione 'peer'
+      postgresql = {
+        name = "authentik";
+        user = "authentik";
+        host = "/run/postgresql";
+      };
+
       listen = {
         http = "127.0.0.1:9091";
         https = "127.0.0.1:9443";
@@ -36,7 +43,6 @@
   };
 
   sops.secrets = {
-    "authentik/pg_pass" = {};
     "authentik/secret_key" = {};
     "authentik/email_host" = {};
     "authentik/email_password" = {};
@@ -46,7 +52,6 @@
 
   sops.templates."authentik.env" = {
     content = ''
-      PG_PASS=${config.sops.placeholder."authentik/pg_pass"}
       AUTHENTIK_SECRET_KEY=${config.sops.placeholder."authentik/secret_key"}
       AUTHENTIK_EMAIL__HOST=${config.sops.placeholder."authentik/email_host"}
       AUTHENTIK_EMAIL__PASSWORD=${config.sops.placeholder."authentik/email_password"}
@@ -63,20 +68,10 @@
   services.postgresqlBackup = {
     enable = true;
     databases = ["authentik"];
-    startAt = "*-*-* 03:00:00"; # Backup giornaliero alle 3 AM
+    startAt = "*-*-* 03:00:00";
     location = "/var/backup/postgresql";
     compression = "zstd";
   };
-  users.groups.authentik = {};
-  users.users.authentik = {
-    isSystemUser = true;
-    group = "authentik";
-  };
-
-  # Disattiviamo il DynamicUser per tutti i demoni di Authentik
-  systemd.services.authentik-server.serviceConfig.DynamicUser = lib.mkForce false;
-  systemd.services.authentik-worker.serviceConfig.DynamicUser = lib.mkForce false;
-  systemd.services.authentik-migrate.serviceConfig.DynamicUser = lib.mkForce false;
 
   ############
   ###BACKUP###

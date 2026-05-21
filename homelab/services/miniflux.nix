@@ -29,12 +29,4 @@
       LISTEN_ADDR = "0.0.0.0:8031";
     };
   };
-  ## USER STATICO
-  users.groups.miniflux = {};
-  users.users.miniflux = {
-    isSystemUser = true;
-    group = "miniflux";
-  };
-  systemd.services.miniflux.serviceConfig.DynamicUser = lib.mkForce false;
-  systemd.services.miniflux-dbsetup.serviceConfig.DynamicUser = lib.mkForce false;
 }
