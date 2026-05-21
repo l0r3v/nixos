@@ -16,7 +16,7 @@ in {
     ../common/modules/nix-helpers.nix
     ../common/distributed-builds.nix
     ../common/get-remote-build.nix
-    ./vm/haos/define_haos.nix
+    ./vm/haos/haos.nix
   ];
 
   modules.nix-helpers.enable = true;
