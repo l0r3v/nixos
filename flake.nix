@@ -77,7 +77,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvirt = {
-      url = "github:AshleyYakeley/NixVirt";
+      url = "https://flakehub.com/f/AshleyYakeley/NixVirt/0.6.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
