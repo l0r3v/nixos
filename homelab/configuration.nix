@@ -11,7 +11,6 @@ in {
     ./hardware-configuration.nix
     ./dockers
     ./services
-    ./backup-timers
     ./factorio
     ../common/sops.nix
     ../common/modules/nix-helpers.nix
