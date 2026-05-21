@@ -76,6 +76,10 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvirt = {
+      url = "github:AshleyYakeley/NixVirt";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -141,6 +145,7 @@
         modules = [
           inputs.sops-nix.nixosModules.sops
           inputs.authentik-nix.nixosModules.default
+          inputs.nixvirt.nixosModules.default
           ./homelab/configuration.nix
         ];
       };
