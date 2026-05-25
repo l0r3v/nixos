@@ -34,7 +34,7 @@ in {
         enable = true;
         enableDefaultConfig = false;
 
-        matchBlocks = {
+        settings = {
           "*" = {
             forwardAgent = true;
             addKeysToAgent = "confirm";

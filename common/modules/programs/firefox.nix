@@ -29,6 +29,7 @@ in {
       };
       programs.firefox = {
         enable = true;
+        configPath = ".config/mozilla/firefox";
         profiles.lorev = {
           search = {
             default = "ddg";
@@ -91,7 +92,7 @@ in {
               "account.device.name" = "lorev nixOS";
             };
             "signon.rememberSignons" = true;
-            "browser.translation.enabled " = false;
+            "browser.translation.enabled" = false;
             "findbar.highlightAll" = true;
             browser = {
               warnOnClose = true;
