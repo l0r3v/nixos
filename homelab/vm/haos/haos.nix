@@ -3,6 +3,7 @@
 in {
   # Blacklist driver host per i device passati alla VM
   boot.blacklistedKernelModules = ["ax88179_178a" "cdc_ncm"];
+  networking.networkmanager.unmanaged = ["mac:08:26:ae:3a:ef:0e"];
 
   virtualisation.libvirt = {
     enable = true;
