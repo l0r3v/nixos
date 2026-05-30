@@ -6,7 +6,13 @@
   ...
 }: let
   version = "26.5.0";
+  port = 5006;
 in {
+  homelab.tunnelRoutes = {
+    "budget.pasqui.casa" = "http://localhost:${toString port}";
+    "budget-api.pasqui.casa" = "http://192.168.1.228:5007";
+  };
+
   # Runtime
   virtualisation.docker = {
     enable = true;
@@ -18,14 +24,14 @@ in {
   virtualisation.oci-containers.containers."actual_server-actual_server" = {
     image = "docker.io/actualbudget/actual-server:${version}";
     environment = {
-      "ACTUAL_PORT" = "5006";
+      "ACTUAL_PORT" = "${toString port}";
       "ACTUAL_LOGIN_METHOD" = "openid";
     };
     volumes = [
       "/srv/archive/actual-budget/actual-data:/data:rw"
     ];
     ports = [
-      "5006:5006/tcp"
+      "${toString port}:${toString port}/tcp"
     ];
     log-driver = "journald";
     extraOptions = [

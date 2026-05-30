@@ -1,4 +1,8 @@
 {config, ...}: {
+  homelab.tunnelRoutes = {
+    "ricette.pasqui.casa" = "http://localhost:${toString config.services.mealie.port}";
+  };
+
   sops.secrets = {
     "mealie/smtp_password" = {};
     "mealie/smtp_username" = {};

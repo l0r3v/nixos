@@ -6,7 +6,14 @@
   ...
 }: let
   version = "1.24";
+  httpPort = 8222;
+  sshPort = 2221;
 in {
+  homelab.tunnelRoutes = {
+    "git.pasqui.casa" = "http://localhost:${toString httpPort}";
+    "git-ssh.pasqui.casa" = "ssh://localhost:${toString sshPort}";
+  };
+
   imports = [
     #./gitea-action-runner.nix
   ];
@@ -50,8 +57,8 @@ in {
       "/srv/archive/gitea/data:/data:rw"
     ];
     ports = [
-      "8222:3000/tcp"
-      "2221:22/tcp"
+      "${toString httpPort}:3000/tcp"
+      "${toString sshPort}:22/tcp"
     ];
     dependsOn = [
       "gitea-db"

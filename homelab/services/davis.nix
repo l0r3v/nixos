@@ -1,4 +1,10 @@
-{config, ...}: {
+{config, ...}: let
+  port = 80;
+in {
+  homelab.tunnelRoutes = {
+    "cal.pasqui.casa" = "http://localhost:${toString port}";
+  };
+
   sops = {
     secrets = {
       "davis/adminPass" = {};

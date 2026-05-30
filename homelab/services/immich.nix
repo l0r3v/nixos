@@ -2,7 +2,15 @@
   pkgs,
   config,
   ...
-}: {
+}: let
+  corsPort = 2285;
+in {
+  homelab.tunnelRoutes = {
+    "foto.pasqui.casa" = "http://localhost:${toString config.services.immich.port}";
+    "foto.pasqui.casa/api" = "http://localhost:2284";
+    "fotoapi.pasqui.casa" = "http://localhost:${toString corsPort}";
+  };
+
   sops.secrets = {
     "immich/db_password" = {};
   };
@@ -17,7 +25,7 @@
       listen = [
         {
           addr = "127.0.0.1";
-          port = 2285;
+          port = corsPort;
         }
       ];
       locations."/" = {

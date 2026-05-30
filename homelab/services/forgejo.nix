@@ -3,6 +3,11 @@
   config,
   ...
 }: {
+  homelab.tunnelRoutes = {
+    "forge.pasqui.casa" = "http://localhost:${toString config.services.forgejo.settings.server.HTTP_PORT}";
+    "forge-ssh.pasqui.casa" = "ssh://localhost:${toString config.services.forgejo.settings.server.SSH_PORT}";
+  };
+
   sops = {
     secrets = {
       "forgejo/db_pass" = {

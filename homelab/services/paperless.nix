@@ -1,4 +1,8 @@
 {config, ...}: {
+  homelab.tunnelRoutes = {
+    "papers.pasqui.casa" = "http://localhost:${toString config.services.paperless.port}";
+  };
+
   nixpkgs.overlays = [
     (_self: super: {
       paperless-ngx = super.paperless-ngx.overrideAttrs (_old: {

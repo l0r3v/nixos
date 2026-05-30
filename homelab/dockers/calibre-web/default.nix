@@ -5,7 +5,12 @@
   ...
 }: let
   version = "0.6.24";
+  port = 8083;
 in {
+  homelab.tunnelRoutes = {
+    "books.pasqui.casa" = "http://localhost:${toString port}";
+  };
+
   # Runtime
   virtualisation = {
     docker = {
@@ -29,7 +34,7 @@ in {
       "/srv/archive/calibre-web/library:/books:rw"
     ];
     ports = [
-      "8083:8083/tcp"
+      "${toString port}:${toString port}/tcp"
     ];
     log-driver = "journald";
     extraOptions = [
