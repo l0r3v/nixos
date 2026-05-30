@@ -74,8 +74,6 @@ in {
       pkgs.tea
       pkgs.rofi-pulse-select
       pkgs.feishin
-      pkgs.godot
-      pkgs.blender
       pkgs.vscodium
     ]; #END OF PACKAGES
   };

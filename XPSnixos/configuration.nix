@@ -23,6 +23,7 @@
     programs = {
       chess.enable = true;
       firefox.enable = true;
+      game-dev.enable = true;
       gaming.enable = true;
       ghostty.enable = true;
       git.enable = true;

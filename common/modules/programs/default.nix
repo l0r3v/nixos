@@ -2,6 +2,7 @@
   imports = [
     ./chess.nix
     ./firefox.nix
+    ./game-dev.nix
     ./gaming.nix
     ./ghostty.nix
     ./git.nix

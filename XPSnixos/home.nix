@@ -70,8 +70,6 @@ in {
       pkgs.tea
       pkgs.feishin
       pkgs.power-profiles-daemon
-      pkgs.godot
-      pkgs.blender
       pkgs.vscodium
     ]; #END OF PACKAGES
   };
