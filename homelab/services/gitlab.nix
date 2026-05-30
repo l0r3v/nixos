@@ -1,10 +1,17 @@
-{config, ...}: {
+{config, ...}: let
+  sshPort = 44;
+in {
+  homelab.tunnelRoutes = {
+    "gitlab.pasqui.casa" = "unix:/run/gitlab/gitlab-workhorse.socket";
+    "gitlab-ssh.pasqui.casa" = "ssh://localhost:${toString sshPort}";
+  };
+
   services.gitlab = {
     enable = true;
     databasePasswordFile = "${config.sops.templates.gitlab_db.path}";
     initialRootPasswordFile = "${config.sops.templates.gitlab_pass.path}";
     host = "gitlab.pasqui.casa";
-    port = 44;
+    port = sshPort;
     user = "gitlab";
     databaseUsername = "gitlab";
     secrets = {

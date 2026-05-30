@@ -1,4 +1,10 @@
-{config, ...}: {
+{config, ...}: let
+  port = 7277;
+in {
+  homelab.tunnelRoutes = {
+    "pass.pasqui.casa" = "http://localhost:${toString port}";
+  };
+
   sops.secrets = {
     "vaultwarden/admin_token" = {};
     "vaultwarden/smtp_password" = {};
@@ -16,7 +22,7 @@
     DOMAIN=https://pass.pasqui.casa
     SIGNUPS_ALLOWED=false
     ROCKET_ADDRESS=127.0.0.1
-    ROCKET_PORT=7277
+    ROCKET_PORT=${toString port}
     ROCKET_LOG=critical
     SMTP_HOST=smtp.mail.me.com
     SMTP_PORT=587

@@ -2,7 +2,13 @@
   lib,
   config,
   ...
-}: {
+}: let
+  port = 8031;
+in {
+  homelab.tunnelRoutes = {
+    "rss.pasqui.casa" = "http://localhost:${toString port}";
+  };
+
   sops.secrets = {
     "miniflux/admin_password" = {};
     "miniflux/oauth2_client_id" = {};
@@ -26,7 +32,7 @@
     config = {
       OAUTH2_PROVIDER = "oidc";
       OAUTH2_USER_CREATION = 1;
-      LISTEN_ADDR = "0.0.0.0:8031";
+      LISTEN_ADDR = "0.0.0.0:${toString port}";
     };
   };
 }

@@ -6,7 +6,12 @@
   ...
 }: let
   version = "10.15.3";
+  port = 2424;
 in {
+  homelab.tunnelRoutes = {
+    "files.pasqui.casa" = "http://localhost:${toString port}";
+  };
+
   # Runtime
   virtualisation.docker = {
     enable = true;
@@ -31,7 +36,7 @@ in {
       OWNCLOUD_TRUSTED_DOMAINS=${config.sops.placeholder."dockers/owncloud/trusted_domain"}
       OWNCLOUD_VERSION=${version}
       OWNCLOUD_DOMAIN=localhost:8080
-      HTTP_PORT=2424
+      HTTP_PORT=${toString port}
     '';
   };
   # Containers
@@ -136,7 +141,7 @@ in {
       "/srv/archive/owncloud/files:/mnt/data:rw"
     ];
     ports = [
-      "2424:8080/tcp"
+      "${toString port}:8080/tcp"
     ];
     dependsOn = [
       "owncloud_mariadb"

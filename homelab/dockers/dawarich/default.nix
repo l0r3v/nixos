@@ -6,7 +6,12 @@
   ...
 }: let
   version = "0.33.1";
+  port = 3000;
 in {
+  homelab.tunnelRoutes = {
+    "gps.pasqui.casa" = "http://localhost:${toString port}";
+  };
+
   sops.secrets."dockers/dawarich/db_password" = {};
 
   sops.templates."dawarich.env".content = ''
@@ -25,7 +30,7 @@ in {
   virtualisation.oci-containers.containers."dawarich_app" = {
     image = "freikin/dawarich:${version}";
     environment = {
-      "APPLICATION_HOSTS" = "localhost,homelab:3000,gps.pasqui.casa,''";
+      "APPLICATION_HOSTS" = "localhost,homelab:${toString port},gps.pasqui.casa,''";
       "APPLICATION_PROTOCOL" = "http";
       "DATABASE_HOST" = "dawarich_db";
       "DATABASE_NAME" = "dawarich_development";
@@ -50,9 +55,9 @@ in {
       "gps_dawarich_watched:/var/app/tmp/imports/watched:rw"
     ];
     ports = [
-      "3000:3000/tcp"
+      "${toString port}:${toString port}/tcp"
     ];
-    cmd = ["bin/rails" "server" "-p" "3000" "-b" "::"];
+    cmd = ["bin/rails" "server" "-p" "${toString port}" "-b" "::"];
     dependsOn = [
       "dawarich_db"
       "dawarich_redis"

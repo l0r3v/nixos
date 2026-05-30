@@ -57,6 +57,26 @@ cd $HOST
 sops secrets/secrets.yaml
 ```
 
+### Tunnel Routes (homelab)
+
+The homelab Cloudflare tunnel uses a declarative route system via the `homelab.tunnelRoutes` option. Each service module contributes its own routes:
+
+```nix
+{
+  homelab.tunnelRoutes = {
+    "service.pasqui.casa" = "http://localhost:${toString config.services.myservice.port}";
+    "service-ssh.pasqui.casa" = "ssh://localhost:${toString sshPort}";
+  };
+}
+```
+
+Routes are automatically merged into `services.cloudflared.tunnels."homelab-tunnel".ingress`. Removing a module from `services/default.nix` or `dockers/default.nix` removes its routes from the tunnel.
+
+**Port references:**
+- Services with typed port options (immich, mealie, paperless, forgejo) reference `config.services.*.port` directly
+- Docker services and services without typed ports use `let` bindings to define ports once and reuse them in both service config and tunnel routes
+- Routes without a corresponding module are hardcoded in `homelab/services/cloudflared.nix`
+
 ## Directory Structure
 
 - `AMDnixos/`: Host config for AMD Desktop.

@@ -2,7 +2,13 @@
   pkgs,
   config,
   ...
-}: {
+}: let
+  httpPort = 9091;
+in {
+  homelab.tunnelRoutes = {
+    "auth.pasqui.casa" = "http://localhost:${toString httpPort}";
+  };
+
   services.authentik = {
     enable = true;
 
@@ -17,7 +23,7 @@
       };
 
       listen = {
-        http = "127.0.0.1:9091";
+        http = "127.0.0.1:${toString httpPort}";
         https = "127.0.0.1:9443";
       };
 
