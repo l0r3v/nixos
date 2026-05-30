@@ -6,7 +6,6 @@
   imports = [
     ./hardware-configuration.nix
     ../common/zerotier.nix
-    ./remote-builder.nix
     ../common/modules
     ../common/get-remote-build.nix
     ./remote-vacation.nix

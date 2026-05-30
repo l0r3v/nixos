@@ -23,8 +23,8 @@
     # Punta all'istanza locale di Ollama
     environment = {
       OLLAMA_BASE_URL = "http://127.0.0.1:11434";
-      WEBUI_AUTH = false; # Disabilita il login se lo usi solo tu sul PC locale
-      ENABLE_SIGNUP = false;
+      WEBUI_AUTH = "false";
+      ENABLE_SIGNUP = "false";
     };
   };
 

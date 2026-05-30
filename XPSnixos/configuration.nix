@@ -9,7 +9,7 @@
     ../common/sops.nix
     ../common/zerotier.nix
     ./graphics.nix
-    ../common/distributed-builds.nix
+    ../common/nixbuild.nix
     ../common/get-remote-build.nix
     ../common/modules
   ];
@@ -81,6 +81,33 @@
     networkmanager.enable = true;
     firewall = {
       allowedTCPPorts = [8080 8081 5829 8096 3000];
+      extraCommands = ''
+        iptables -A nixos-fw -p tcp --dport 22 -s 192.168.1.0/16 -j nixos-fw-accept
+        iptables -A nixos-fw -p tcp --dport 22 -s 100.0.0.0/8 -j nixos-fw-accept
+        iptables -A nixos-fw -p tcp --dport 22 -j nixos-fw-log-refuse
+      '';
+    };
+  };
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
+
+  services.fail2ban = {
+    enable = true;
+    jails.sshd = {
+      enabled = true;
+      settings = {
+        filter = "sshd";
+        maxretry = 3;
+        findtime = 600;
+        bantime = 3600;
+      };
     };
   };
 
