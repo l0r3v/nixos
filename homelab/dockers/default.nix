@@ -2,8 +2,6 @@
   imports = [
     #./dawarich
     #./tududi
-    ./actual-budget
-    ./calibre-web
     #./gitea
     ./owncloud
   ];

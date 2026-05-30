@@ -4,7 +4,9 @@
     #./linkwarden.nix
     #./vaultwarden.nix questo funziona ma non ha senso fare il cambio se non funziona con sso, che è quello che volevo fare
     ../../common/zerotier.nix
+    ./actual-budget.nix
     ./authentik.nix
+    ./calibre-web.nix
     ./cloudflared.nix
     ./davis.nix
     ./forgejo.nix
