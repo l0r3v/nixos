@@ -16,9 +16,9 @@
   modules = {
     nix-helpers.enable = true;
     desktop = {
-      #ly.enable = true;
+      greetd.enable = true;
+      polkit.enable = true;
       niri.enable = true;
-      gnome.enable = true;
       hyprland.enable = false;
     };
     programs = {
@@ -115,10 +115,6 @@
   };
   services = {
     usbmuxd.enable = true;
-    displayManager.gdm = {
-      enable = true;
-      settings.daemon.DisplaysMode = "mirror";
-    };
     hardware.openrgb.enable = true;
     lact.enable = true;
     xserver = {

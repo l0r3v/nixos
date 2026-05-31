@@ -4,5 +4,7 @@
     ./hyprland
     ./gnome
     ./ly
+    ./greetd
+    ./polkit
   ];
 }

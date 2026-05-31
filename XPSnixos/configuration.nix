@@ -16,8 +16,12 @@
   modules = {
     nix-helpers.enable = true;
     desktop = {
+      greetd = {
+        enable = true;
+        greeter = "gtkgreet";
+      };
+      polkit.enable = true;
       niri.enable = true;
-      gnome.enable = true;
       hyprland.enable = false;
     };
     programs = {
@@ -180,10 +184,6 @@
         variant = "";
       };
     };
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-    };
     envfs.enable = true;
 
     printing.enable = false;
@@ -197,7 +197,6 @@
 
   security = {
     rtkit.enable = true;
-    pam.services.gdm-password.enableGnomeKeyring = true;
   };
   users.users.lorev = {
     isNormalUser = true;
