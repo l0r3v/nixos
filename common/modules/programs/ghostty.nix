@@ -24,6 +24,7 @@ in {
         enable = true;
 
         keyMode = "vi";
+        shortcut = "a";
         baseIndex = 1;
         clock24 = true;
         terminal = "tmux-256color";
