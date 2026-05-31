@@ -1,9 +1,24 @@
 {inputs, ...}: let
   nixvirt = inputs.nixvirt;
 in {
-  # Blacklist driver host per i device passati alla VM
-  boot.blacklistedKernelModules = ["ax88179_178a" "cdc_ncm"];
+  # Blacklist driver host per i device passati alla VM (a livello kernel)
+  boot.kernelParams = ["module_blacklist=cdc_ncm,cdc_mbim,ax88179_178a"];
   networking.networkmanager.unmanaged = ["mac:08:26:ae:3a:ef:0e"];
+
+  # Fallback: unbind driver se comunque caricato
+  systemd.services.unbind-usb-ethernet = {
+    description = "Unbind USB ethernet driver for VM passthrough";
+    wantedBy = ["multi-user.target"];
+    before = ["libvirtd.service"];
+    script = ''
+      for dev in /sys/bus/usb/drivers/cdc_ncm/*/; do
+        if [ -d "$dev" ]; then
+          basename "$dev" > /sys/bus/usb/drivers/cdc_ncm/unbind 2>/dev/null || true
+        fi
+      done
+    '';
+    serviceConfig.Type = "oneshot";
+  };
 
   virtualisation.libvirt = {
     enable = true;
