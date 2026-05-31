@@ -51,7 +51,6 @@
       "nm-applet --indicator"
       "waybar"
       "dunst"
-      "blueman-applet"
       "gammastep-indicator -l 45.068371:7.683070"
       "hacompanion"
       "owncloud"
@@ -181,9 +180,9 @@
         variant = "";
       };
     };
-    displayManager.gdm = {
+    displayManager.sddm = {
       enable = true;
-      settings.daemon.DisplaysMode = "mirror";
+      wayland.enable = true;
     };
     envfs.enable = true;
 
