@@ -28,6 +28,7 @@
       gaming.enable = true;
       ghostty.enable = true;
       git.enable = true;
+      tmux.enable = true;
       nixvim.enable = true;
       obsidian.enable = true;
       rofi.enable = true;

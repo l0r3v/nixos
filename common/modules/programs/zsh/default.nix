@@ -28,6 +28,9 @@ in {
                 fi
                 eval "$(zoxide init --cmd cd zsh)"
                 source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+                if [ -z "$TMUX" ]; then
+                  ${pkgs.tmux}/bin/tmux new-session -A -s main
+                fi
                 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
                 function y() {
           	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd

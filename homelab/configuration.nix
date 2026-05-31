@@ -14,12 +14,14 @@ in {
     ./factorio
     ../common/sops.nix
     ../common/modules/nix-helpers.nix
+    ../common/modules/programs/tmux.nix
     ../common/nixbuild.nix
     ../common/get-remote-build.nix
     ./vm/haos/haos.nix
   ];
 
   modules.nix-helpers.enable = true;
+  modules.programs.tmux.enable = true;
   hardware = {
     graphics.enable = true;
     nvidia-container-toolkit.enable = true;
@@ -112,7 +114,6 @@ in {
     nvidia.acceptLicense = true;
   };
   environment.systemPackages = with pkgs; [
-    tmux
     nixvim-package
     btop
     wget
@@ -187,6 +188,9 @@ in {
       fi
       eval "$(zoxide init --cmd cd zsh)"
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+      if [ -z "$TMUX" ]; then
+        ${pkgs.tmux}/bin/tmux new-session -A -s main
+      fi
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
     '';
     ohMyZsh = {

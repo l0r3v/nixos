@@ -6,6 +6,7 @@
     ./gaming.nix
     ./ghostty.nix
     ./git.nix
+    ./tmux.nix
     ./kanata.nix
     ./nixvim.nix
     ./obsidian.nix

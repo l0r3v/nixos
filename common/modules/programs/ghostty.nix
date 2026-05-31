@@ -15,22 +15,7 @@ in {
         settings = {
           confirm-close-surface = true;
           quit-after-last-window-closed-delay = "1h";
-
-          command = "${pkgs.tmux}/bin/tmux";
         };
-      };
-
-      programs.tmux = {
-        enable = true;
-
-        keyMode = "vi";
-        shortcut = "a";
-        baseIndex = 1;
-        clock24 = true;
-        terminal = "tmux-256color";
-        historyLimit = 50000;
-        newSession = true;
-        extraConfig = "set -g allow-passthrough on";
       };
     };
   };
