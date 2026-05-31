@@ -16,10 +16,7 @@
   modules = {
     nix-helpers.enable = true;
     desktop = {
-      greetd = {
-        enable = true;
-        greeter = "gtkgreet";
-      };
+      greetd.enable = true;
       polkit.enable = true;
       niri.enable = true;
       hyprland.enable = false;
