@@ -36,6 +36,11 @@ in {
       };
     };
 
+    sunshine = {
+      enable = true;
+      capSysAdmin = true; # Necessario per la cattura KMS su Wayland
+      openFirewall = true;
+    };
     displayManager = {
       autoLogin.enable = true;
       autoLogin.user = user;
@@ -52,15 +57,4 @@ in {
   environment.systemPackages = [pkgs.sunshine];
 
   boot.kernelModules = ["uinput"];
-  systemd.user.services.sunshine = {
-    description = "Sunshine Game Stream Server";
-    wantedBy = ["graphical-session.target"];
-    partOf = ["graphical-session.target"];
-
-    serviceConfig = {
-      ExecStart = "${pkgs.sunshine}/bin/sunshine";
-      Restart = "on-failure";
-      RestartSec = "5s";
-    };
-  };
 }
