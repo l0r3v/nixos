@@ -14,6 +14,13 @@ in {
       description = "Lista dei path dei device (tastiere) da intercettare.";
       example = ["/dev/input/by-id/usb-Logitech_Keyboard-event-kbd"];
     };
+
+    mouseDevices = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [];
+      description = "Lista dei path dei dispositivi mouse da intercettare.";
+      example = ["/dev/input/by-id/usb-Logitech_Mouse-event-mouse"];
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -96,6 +103,26 @@ in {
 
             (deflayer game-exit
              _ _ _ _ _ @to-base _ _ _ _ _ _ _ _ _ _ _
+            )
+          '';
+        };
+
+        internalMouse = lib.mkIf (cfg.mouseDevices != []) {
+          devices = cfg.mouseDevices;
+
+          extraDefCfg = ''
+            process-unmapped-keys yes
+          '';
+
+          config = ''
+            (defsrc
+              mlft mrgt mmid extra mbck
+            )
+            (deflocalkeys-linux
+              extra 276
+            )
+            (deflayer base
+              mlft mrgt mmid lmet mbck
             )
           '';
         };

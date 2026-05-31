@@ -46,6 +46,9 @@
           "/dev/input/by-path/pci-0000:02:00.0-usb-0:3:1.0-event-kbd"
           "/dev/input/by-id/usb-Compx_2.4G_Wireless_Receiver-event-kbd"
         ];
+        mouseDevices = [
+          "/dev/input/by-id/usb-CoolerMaster_SENTINEL_III-event-mouse"
+        ];
       };
     };
     theme.stylix = {
