@@ -106,6 +106,7 @@
     LC_TIME = "it_IT.UTF-8";
   };
   hardware = {
+    bluetooth.enable = true;
     i2c.enable = true;
     amdgpu = {
       opencl.enable = true;
@@ -118,6 +119,7 @@
     };
   };
   services = {
+    blueman.enable = true;
     usbmuxd.enable = true;
     hardware.openrgb.enable = true;
     lact.enable = true;
