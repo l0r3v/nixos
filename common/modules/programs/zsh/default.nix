@@ -39,6 +39,9 @@ in {
           	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
           	rm -f -- "$tmp"
           }
+
+          alias -s pdf="zathura"
+          alias -s nix="$EDITOR"
         '';
         oh-my-zsh = {
           enable = true;
