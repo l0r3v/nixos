@@ -19,7 +19,10 @@
       greetd.enable = true;
       polkit.enable = true;
       niri.enable = true;
-      hyprland.enable = false;
+      hyprland = {
+        enable = false;
+        monitors = ["DP-3,1920x1080@60,0x0,1"];
+      };
     };
     programs = {
       chess.enable = true;

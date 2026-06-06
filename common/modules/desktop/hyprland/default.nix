@@ -9,6 +9,11 @@
 in {
   options.modules.desktop.hyprland = {
     enable = lib.mkEnableOption "hyprland";
+    monitors = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [];
+      description = "Hyprland monitor configuration strings, e.g. ['DP-3,1920x1080@60,0x0,1']";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -20,38 +25,43 @@ in {
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];
     };
+
     programs.hyprland = {
       enable = true;
       xwayland.enable = true;
       package = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".hyprland;
-    };
-    systemd.user.services."lid-monitor" = {
-      description = "Lid close monitor handler";
-      script = ''
-        #!/usr/bin/env bash
-        LID_STATE=$(cat /proc/acpi/button/lid/*/state | awk '{print $2}')
-        EXTERNAL=$(hyprctl monitors -j | jq '[.[] | select(.name!="eDP-1" and .active)] | length')
-        if [[ "$LID_STATE" == "closed" && "$EXTERNAL" -gt 0 ]]; then
-          hyprctl keyword monitor "eDP-1,disable"
-        elif [[ "$LID_STATE" == "open" ]]; then
-          hyprctl keyword monitor "eDP-1,preferred,auto-left,1"
-        fi
-      '';
-      wantedBy = ["tray.target"];
-      serviceConfig = {
-        Type = "oneshot";
-      };
+      portalPackage = inputs.hyprland.packages."${pkgs.stdenv.hostPlatform.system}".xdg-desktop-portal-hyprland;
     };
 
-    services.udev.extraRules = ''
-      ACTION=="change", SUBSYSTEM=="power_supply", KERNEL=="*lid*", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}+="lid-monitor.service"
-    '';
+    environment.systemPackages = with pkgs; [
+      fuzzel
+    ];
+
+    xdg.portal = {
+      enable = true;
+      config = {
+        hyprland = {
+          default = ["hyprland"];
+        };
+        common = {
+          default = ["hyprland"];
+        };
+      };
+    };
 
     home-manager.users.lorev = {
       pkgs,
       config,
       ...
     }: {
+      home.sessionVariables = {
+        NIXOS_OZONE_WL = "1";
+        MOZ_ENABLE_WAYLAND = "1";
+        XDG_SESSION_TYPE = "wayland";
+        XDG_CURRENT_DESKTOP = "Hyprland";
+        XDG_SESSION_DESKTOP = "Hyprland";
+      };
+
       wayland.windowManager.hyprland = {
         enable = true;
         package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -63,21 +73,22 @@ in {
         };
         settings = {
           general = {
-            gaps_in = 2;
-            gaps_out = 4;
+            gaps_in = 6;
+            gaps_out = 6;
             border_size = 2;
-            layout = "dwindle";
           };
+
           exec-once = config.modules.startup.programs;
-          monitor = [
-            "HDMI-A-1,1920x1080@60,0x0,auto"
-          ];
+
+          monitor = cfg.monitors;
+
           dwindle = {
             pseudotile = true;
             preserve_split = true;
           };
+
           decoration = {
-            rounding = 10;
+            rounding = 12;
             rounding_power = 2;
             active_opacity = 1;
             inactive_opacity = 1;
@@ -97,6 +108,7 @@ in {
               render_power = 3;
             };
           };
+
           animations = {
             enabled = false;
             bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
@@ -109,43 +121,52 @@ in {
               "workspaces, 1, 6, default"
             ];
           };
+
           misc = {
             disable_hyprland_logo = true;
           };
 
           input = {
             kb_layout = "it";
-            #kb_options = "caps:swapescape";
           };
+
           xwayland = {
             force_zero_scaling = true;
           };
+
           env = [
             "GTK_SCALE,2"
             "XCURSOR_SIZE,32"
           ];
+
           "$mainMod" = "SUPER";
           "$terminal" = "ghostty";
-          "$menu" = "rofi -show drun";
+          "$menu" = "fuzzel";
           "$browser" = "zen";
+
           bind = [
-            "$mainMod, Escape, exec, bash ~/.config/scripts/powermenu.sh "
+            "$mainMod, Escape, exec, bash ~/.config/scripts/powermenu.sh"
             "$mainMod, Return, exec, $terminal"
             "$mainMod, Q, killactive"
-            "$mainMod, M, exit"
             "$mainMod, E, exec, $browser"
-            "$mainMod, Space, togglefloating"
-            "Alt_R,Space, exec, $menu"
+            "$mainMod, Space, exec, $menu"
+            "$mainMod, V, togglefloating"
             "$mainMod, P, pseudo"
-            "$mainMod, V, togglesplit"
+            "$mainMod, F, fullscreen"
 
-            # Move focus with mainMod + arrow keys
+            # Focus navigation
             "$mainMod, H, movefocus, l"
             "$mainMod, L, movefocus, r"
             "$mainMod, K, movefocus, u"
             "$mainMod, J, movefocus, d"
 
-            # Switch workspaces with mainMod + [0-9]
+            # Move windows
+            "$mainMod SHIFT, H, movewindow, l"
+            "$mainMod SHIFT, L, movewindow, r"
+            "$mainMod SHIFT, K, movewindow, u"
+            "$mainMod SHIFT, J, movewindow, d"
+
+            # Workspaces 1-9
             "$mainMod, 1, workspace, 1"
             "$mainMod, 2, workspace, 2"
             "$mainMod, 3, workspace, 3"
@@ -155,72 +176,65 @@ in {
             "$mainMod, 7, workspace, 7"
             "$mainMod, 8, workspace, 8"
             "$mainMod, 9, workspace, 9"
-            "$mainMod, 0, workspace, 10"
 
-            # Move active window to a workspace with mainMod + SHIFT + [0-9]
-            "$mainMod SHIFT, 1, movetoworkspace, 1"
-            "$mainMod SHIFT, 2, movetoworkspace, 2"
-            "$mainMod SHIFT, 3, movetoworkspace, 3"
-            "$mainMod SHIFT, 4, movetoworkspace, 4"
-            "$mainMod SHIFT, 5, movetoworkspace, 5"
-            "$mainMod SHIFT, 6, movetoworkspace, 6"
-            "$mainMod SHIFT, 7, movetoworkspace, 7"
-            "$mainMod SHIFT, 8, movetoworkspace, 8"
-            "$mainMod SHIFT, 9, movetoworkspace, 9"
-            "$mainMod SHIFT, 0, movetoworkspace, 10"
+            # Move window to workspace
+            "$mainMod CTRL, 1, movetoworkspacesilent, 1"
+            "$mainMod CTRL, 2, movetoworkspacesilent, 2"
+            "$mainMod CTRL, 3, movetoworkspacesilent, 3"
+            "$mainMod CTRL, 4, movetoworkspacesilent, 4"
+            "$mainMod CTRL, 5, movetoworkspacesilent, 5"
+            "$mainMod CTRL, 6, movetoworkspacesilent, 6"
+            "$mainMod CTRL, 7, movetoworkspacesilent, 7"
+            "$mainMod CTRL, 8, movetoworkspacesilent, 8"
+            "$mainMod CTRL, 9, movetoworkspacesilent, 9"
 
-            # Example special workspace (scratchpad)
-            "$mainMod, S, togglespecialworkspace, magic"
-            "$mainMod SHIFT, S, movetoworkspace, special:magic"
-
-            # Scroll through existing workspaces with mainMod + scroll
-            "$mainMod SHIFT, K, workspace, e+1"
-            "$mainMod SHIFT, J, workspace, e-1"
+            # Scroll through workspaces
             "$mainMod, mouse_down, workspace, e+1"
             "$mainMod, mouse_up, workspace, e-1"
-            "$mainMod, N, workspace, +1"
-            "$mainMod SHIFT, N, movetoworkspace, +1"
-            "$mainMod, B, workspace, -1"
-            "$mainMod SHIFT, B, movetoworkspace, -1"
+            "$mainMod SHIFT, K, workspace, e+1"
+            "$mainMod SHIFT, J, workspace, e-1"
 
-            "$mainMod, f, fullscreen"
-            "$mainMod, c, exec, zathura ~/calendar"
+            # Quit / power off monitor
+            "$mainMod SHIFT, E, exit"
+            "$mainMod SHIFT, P, exec, hyprctl dispatch dpms off"
+
+            # Screenshots
+            ", Print, exec, grim -g \"$(slurp)\""
+            "CTRL, Print, exec, grim"
 
             # University shortcuts
-            "Control_L&Alt_R, t, exec, $terminal -d ~/current_course"
-            "Control_L&Alt_R, n, exec, $terminal -d ~/current_course --hold sh -c nvim"
-            "Control_L&Alt_R, l, exec, rofi-lectures"
-            "Control_L&Alt_R, c, exec, rofi-courses"
-            "Control_L&Alt_R, v, exec, rofi-lectures-view"
-            "Control_L&Alt_R, b, exec, backup-uni"
-            "Control_L&Alt_R, s, exec, bash ~/university-setup/other/select_subfolder"
-            "Control_L&Alt_R, p, exec, select_file-uni"
-            "Control_L&Alt_R, y, exec, select_file-uni rec"
-            "Control_L&Alt_R, i, exec, bash ~/university-setup/other/scrsht_util.sh"
+            "Control_L&Alt_R, T, exec, $terminal -d ~/current_course"
+            "Control_L&Alt_R, N, exec, $terminal -d ~/current_course --hold sh -c nvim"
+            "Control_L&Alt_R, L, exec, rofi-lectures"
+            "Control_L&Alt_R, C, exec, rofi-courses"
+            "Control_L&Alt_R, V, exec, rofi-lectures-view"
+            "Control_L&Alt_R, B, exec, backup-uni"
+            "Control_L&Alt_R, S, exec, bash ~/university-setup/other/select_subfolder"
+            "Control_L&Alt_R, P, exec, select_file-uni"
+            "Control_L&Alt_R, Y, exec, select_file-uni rec"
+            "Control_L&Alt_R, I, exec, bash ~/university-setup/other/scrsht_util.sh"
 
-            "Control_L&Alt_R, w, exec, $browser -new-tab $(yq .link ~/current_course/info.yaml | tr -d '\"')"
-            "Control_L&Alt_R, x, exec, $browser -new-tab $(yq .extra ~/current_course/info.yaml | tr -d '\"')"
-            "Control_L&Alt_R, g, exec, $browser -new-tab $(yq .goodnotes ~/current_course/info.yaml | tr -d '\"')"
-
-            #Bitwarden rofi
-            "Control_L&SHIFT, l, exec,rofi-rbw --no-help --keybindings Ctrl+1:type:username,Ctrl+2:type:password,Ctrl+3:type:totp"
-            "Control_L&SHIFT, a, exec,rofi-pulse-select sink"
+            # Bitwarden rofi
+            "Control_L&SHIFT, L, exec, rofi-rbw --no-help --keybindings Ctrl+1:type:username,Ctrl+2:type:password,Ctrl+3:type:totp"
+            "Control_L&SHIFT, A, exec, rofi-pulse-select sink"
           ];
+
           bindel = [
-            ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-            ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-            ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle "
+            ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"
+            ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"
+            ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
             ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-            ",XF86MonBrightnessUp, exec, brightnessctl s 5%+"
-            ",XF86MonBrightnessDown, exec, brightnessctl s 5%-"
+            ",XF86AudioPlay, exec, playerctl play-pause"
+            ",XF86AudioStop, exec, playerctl stop"
+            ",XF86AudioPrev, exec, playerctl previous"
+            ",XF86AudioNext, exec, playerctl next"
+            ",XF86MonBrightnessUp, exec, brightnessctl set 10%+"
+            ",XF86MonBrightnessDown, exec, brightnessctl set 10%-"
           ];
+
           bindm = [
             "$mainMod, mouse:272, movewindow"
             "$mainMod, mouse:273, resizewindow"
-          ];
-
-          bindl = [
-            ", switch:Lid Switch, exec,bash ~/lid-monitor.sh"
           ];
         };
       };
