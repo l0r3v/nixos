@@ -11,10 +11,12 @@
     ./davis.nix
     ./forgejo.nix
     ./immich.nix
+    ./lidarr.nix
     ./mealie.nix
     ./miniflux.nix
     ./navidrome.nix
     ./paperless.nix
     ./postgresql.nix
+    ./prowlarr.nix
   ];
 }
