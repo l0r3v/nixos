@@ -23,8 +23,8 @@ in {
       };
 
       listen = {
-        http = "127.0.0.1:${toString httpPort}";
-        https = "127.0.0.1:9443";
+        http = ["127.0.0.1:${toString httpPort}"];
+        https = ["127.0.0.1:9443"];
       };
 
       email = {
