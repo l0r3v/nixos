@@ -9,7 +9,6 @@
     HASS_TOKEN=${config.sops.placeholder."hermes/hass_token"}
     TELEGRAM_BOT_TOKEN=${config.sops.placeholder."hermes/telegrambot_api"}
     TERMINAL_ENV=local
-    HASS_URL=http://homeassistant.local:8123
   '';
   services.hermes-agent = {
     enable = true;
