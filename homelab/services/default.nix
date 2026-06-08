@@ -10,6 +10,7 @@
     ./cloudflared.nix
     ./davis.nix
     ./forgejo.nix
+    ./hermes-agent.nix
     ./immich.nix
     ./lidarr.nix
     ./mealie.nix

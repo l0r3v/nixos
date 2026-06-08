@@ -80,6 +80,10 @@
       url = "https://flakehub.com/f/AshleyYakeley/NixVirt/0.6.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hermes-agent = {
+      url = "github:NousResearch/hermes-agent";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -146,6 +150,7 @@
           inputs.sops-nix.nixosModules.sops
           inputs.authentik-nix.nixosModules.default
           inputs.nixvirt.nixosModules.default
+          inputs.hermes-agent.nixosModules.default
           ./homelab/configuration.nix
         ];
       };
