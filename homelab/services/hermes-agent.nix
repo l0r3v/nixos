@@ -13,14 +13,25 @@
   services.hermes-agent = {
     enable = true;
     addToSystemPackages = true;
-    settings.model = {
-      default = "qwen3.7-plus";
-      provider = "opencode-go";
-      base_url = "https://opencode.ai/zen/go/v1";
-      api_mode = "chat_completions";
+    stateDir = "/home/hspasqui";
+    user = "hspasqui";
+    group = "users";
+    createUser = false;
+    settings = {
+      model = {
+        default = "deepseek-v4-flash";
+        provider = "opencode-go";
+        base_url = "https://opencode.ai/zen/go/v1";
+        api_mode = "chat_completions";
+      };
+      display.language = "en";
+      terminal.backend = "local";
+      agent = {
+        max_turns = 150;
+        gateway_timeout = 1800;
+      };
     };
     environmentFiles = [config.sops.templates."hermes-env".path];
-
     extraDependencyGroups = ["messaging"];
   };
 }
