@@ -6,9 +6,11 @@
     ../../common/zerotier.nix
     ./actual-budget.nix
     ./authentik.nix
+    ./caddy.nix
     ./calibre-web.nix
     ./cloudflared.nix
     ./davis.nix
+    ./fisicatecnica-wiki.nix
     ./forgejo.nix
     ./hermes-agent.nix
     ./immich.nix
