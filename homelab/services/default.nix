@@ -21,5 +21,6 @@
     ./paperless.nix
     ./postgresql.nix
     ./prowlarr.nix
+    ./wyoming.nix
   ];
 }

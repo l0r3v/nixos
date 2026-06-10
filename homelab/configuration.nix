@@ -145,6 +145,7 @@ in {
     nodejs
     tea
     factorio-headless
+    piper-tts
   ];
 
   systemd.services.hacompanion = {
