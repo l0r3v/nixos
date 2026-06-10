@@ -21,6 +21,5 @@
     ./paperless.nix
     ./postgresql.nix
     ./prowlarr.nix
-    ./readarr.nix
   ];
 }
