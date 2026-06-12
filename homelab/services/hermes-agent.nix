@@ -29,6 +29,7 @@ in {
     "hermes/vault_pass" = {};
     "hermes/paperless_token" = {};
     "hermes/groq_key" = {};
+    "uptime_kuma/api_key" = {};
   };
   sops.templates."hermes-env".content = ''
     OPENCODE_GO_API_KEY=${config.sops.placeholder."hermes/opencode_api"}
@@ -39,6 +40,8 @@ in {
     VAULTWARDEN_PASS=${config.sops.placeholder."hermes/vault_pass"}
     PAPERLESS_TOKEN=${config.sops.placeholder."hermes/paperless_token"}
     GROQ_API_KEY=${config.sops.placeholder."hermes/groq_key"}
+    UPTIME_KUMA_API_KEY=${config.sops.placeholder."uptime_kuma/api_key"}
+    UPTIME_KUMA_URL=https://status.pasqui.casa
     TERMINAL_ENV=local
   '';
   services.hermes-agent = {
