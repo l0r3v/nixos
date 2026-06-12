@@ -10,7 +10,6 @@
     ../common/get-remote-build.nix
     ./remote-vacation.nix
     ./airplay.nix
-    ./llm.nix
   ];
 
   modules = {
