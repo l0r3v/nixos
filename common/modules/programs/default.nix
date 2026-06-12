@@ -6,7 +6,6 @@
     ./gaming.nix
     ./ghostty.nix
     ./git.nix
-    ./tmux.nix
     ./kanata.nix
     ./nixvim.nix
     ./obsidian.nix
@@ -14,6 +13,8 @@
     ./ssh.nix
     ./texlive.nix
     ./thunar.nix
+    ./thunderbird.nix
+    ./tmux.nix
     ./waybar
     ./zathura.nix
     ./zen-browser.nix
