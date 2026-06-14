@@ -18,7 +18,7 @@
     ./mealie.nix
     ./miniflux.nix
     ./navidrome.nix
-    ./ntfy.nix
+    #./ntfy.nix
     ./paperless.nix
     ./postgresql.nix
     ./prowlarr.nix
