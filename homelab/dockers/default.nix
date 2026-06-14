@@ -3,6 +3,7 @@
     #./dawarich
     #./tududi
     #./gitea
+    ./flaresolverr
     ./owncloud
     ./rdt-client
   ];
