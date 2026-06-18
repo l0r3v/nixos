@@ -13,8 +13,8 @@
   };
 
   systemd.tmpfiles.rules = [
-    "d /srv/archive/music 2775 root music -"
-    "d /srv/archive/downloads 2775 root music -"
+    "d /srv/archive/music 2775 music music -"
+    "d /srv/archive/downloads 2775 music music -"
     "d /srv/archive/lidarr 0755 lidarr music -"
   ];
 
