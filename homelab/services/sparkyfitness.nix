@@ -76,8 +76,6 @@ in {
       ];
       extraOptions = [
         "--add-host=host.docker.internal:host-gateway"
-        "--log-opt=max-size=10m"
-        "--log-opt=max-file=3"
       ];
     };
 
@@ -92,8 +90,6 @@ in {
       };
       extraOptions = [
         "--add-host=host.docker.internal:host-gateway"
-        "--log-opt=max-size=10m"
-        "--log-opt=max-file=3"
       ];
     };
 
@@ -120,8 +116,6 @@ in {
       ];
       extraOptions = [
         "--add-host=host.docker.internal:host-gateway"
-        "--log-opt=max-size=10m"
-        "--log-opt=max-file=3"
       ];
     };
 
