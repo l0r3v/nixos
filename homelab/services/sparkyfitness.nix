@@ -54,20 +54,6 @@ in {
       SPARKY_FITNESS_API_KEY=${config.sops.placeholder."hermes/sparky_key"}
     '';
 
-    # ─── PostgreSQL ─────────────────────────────────────────────────────────
-    services.postgresql = {
-      ensureDatabases = [cfg.dbName];
-      ensureUsers = [
-        {
-          name = "sparky";
-          ensureDBOwnership = true;
-        }
-        {
-          name = "sparkyapp";
-        }
-      ];
-    };
-
     # ─── Container: Backend (porta 3010) ───────────────────────────────────
     virtualisation.oci-containers.containers."sparkyfitness-server" = {
       image = "codewithcj/sparkyfitness_server:latest";
