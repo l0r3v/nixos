@@ -14,7 +14,7 @@
     ./forgejo.nix
     ./hermes-agent.nix
     ./immich.nix
-    ./lidarr.nix
+    #./lidarr.nix
     ./mealie.nix
     ./miniflux.nix
     ./navidrome.nix

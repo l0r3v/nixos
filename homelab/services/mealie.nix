@@ -20,7 +20,7 @@
     OIDC_SIGNUP_ENABLED=true
     OIDC_USER_GROUP=mealie-users
     OIDC_ADMIN_GROUP=mealie-admins
-    OIDC_AUTO_REDIRECT=true
+    OIDC_AUTO_REDIRECT=false
     OIDC_REMEMBER_ME=true
   '';
 

@@ -7,6 +7,7 @@ in {
 
   services.navidrome = {
     enable = true;
+    user = "music";
     settings = {
       MusicFolder = "/srv/archive/music";
       DataFolder = "/srv/archive/navidrome/config";
@@ -14,8 +15,12 @@ in {
     };
   };
   users.groups.music = {};
-
-  users.users = {
-    navidrome.extraGroups = ["music"];
+  users.users.music = {
+    uid = 900;
+    group = "music";
+    description = "Music system user";
+    isSystemUser = true;
+    home = "/srv/archive/music";
+    createHome = false;
   };
 }

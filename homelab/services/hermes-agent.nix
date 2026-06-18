@@ -29,6 +29,7 @@ in {
     "hermes/vault_pass" = {};
     "hermes/paperless_token" = {};
     "hermes/groq_key" = {};
+    "hermes/sparky_key" = {};
     "uptime_kuma/api_key" = {};
   };
   sops.templates."hermes-env".content = ''
@@ -42,6 +43,7 @@ in {
     GROQ_API_KEY=${config.sops.placeholder."hermes/groq_key"}
     UPTIME_KUMA_API_KEY=${config.sops.placeholder."uptime_kuma/api_key"}
     UPTIME_KUMA_URL=https://status.pasqui.casa
+    SPARKYFITNESS_API_KEY=${config.sops.placeholder."hermes/sparky_key"}
     TERMINAL_ENV=local
   '';
   services.hermes-agent = {
@@ -81,6 +83,14 @@ in {
       };
       voice = {
         auto_tts = false;
+      };
+      mcpServers = {
+        sparkyfitness = {
+          url = "https://fit.pasqui.casa/api/mcp";
+          headers = {
+            Authorization = "Bearer \${SPARKYFITNESS_API_KEY}";
+          };
+        };
       };
     };
     environmentFiles = [config.sops.templates."hermes-env".path];

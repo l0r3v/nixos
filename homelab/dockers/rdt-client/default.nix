@@ -8,7 +8,7 @@ in {
   virtualisation.oci-containers.containers."rdt-client" = {
     image = "rogerfar/rdtclient:latest";
     environment = {
-      PUID = "306";
+      PUID = "900";
       PGID = toString config.users.groups.music.gid;
       TZ = "Europe/Rome";
     };
