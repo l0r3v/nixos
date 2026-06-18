@@ -236,6 +236,8 @@ in {
     enable = true;
   };
 
+  services.sparkyfitness.enable = true;
+
   networking.firewall.allowedTCPPorts = [8123 8080 8031 8083 2443 44 5423 6080 5901];
   networking.firewall.allowedUDPPorts = [8123 8031 6080 5901];
   networking.firewall.extraCommands = ''
