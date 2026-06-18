@@ -61,16 +61,9 @@ in {
         {
           name = "sparky";
           ensureDBOwnership = true;
-          ensurePermissions = {
-            "DATABASE ${cfg.dbName}" = "ALL PRIVILEGES";
-          };
         }
         {
           name = "sparkyapp";
-          ensurePermissions = {
-            "ALL TABLES IN SCHEMA public" = "SELECT, INSERT, UPDATE, DELETE";
-            "ALL SEQUENCES IN SCHEMA public" = "USAGE, SELECT";
-          };
         }
       ];
     };
