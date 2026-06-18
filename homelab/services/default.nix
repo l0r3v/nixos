@@ -20,6 +20,7 @@
     ./navidrome.nix
     #./ntfy.nix
     ./paperless.nix
+    ./sparkyfitness.nix
     ./postgresql.nix
     ./prowlarr.nix
     ./wyoming.nix
