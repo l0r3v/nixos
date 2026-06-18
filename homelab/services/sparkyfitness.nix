@@ -54,19 +54,24 @@ in {
       SPARKY_FITNESS_API_KEY=${config.sops.placeholder."hermes/sparky_key"}
     '';
 
+    # ─── PostgreSQL: abilita ascolto su bridge Docker ───────────────────────
+    services.postgresql = lib.mkIf (config.services.postgresql.enable or true) {
+      settings.listen_addresses = lib.mkForce "localhost,172.17.0.1";
+    };
+
     # ─── Container: Backend (porta 3010) ───────────────────────────────────
     virtualisation.oci-containers.containers."sparkyfitness-server" = {
       image = "codewithcj/sparkyfitness_server:latest";
       ports = ["3010:3010/tcp"];
       environment = {
-        SPARKY_FITNESS_DB_HOST = "host.docker.internal";
+        SPARKY_FITNESS_DB_HOST = "172.17.0.1";
         SPARKY_FITNESS_DB_PORT = "5432";
         SPARKY_FITNESS_DB_NAME = cfg.dbName;
         SPARKY_FITNESS_DB_USER = "sparky";
         SPARKY_FITNESS_APP_DB_USER = "sparkyapp";
         SPARKY_FITNESS_FRONTEND_URL = "https://${cfg.domain}";
         SPARKY_FITNESS_ADMIN_EMAIL = "lorenzopasqui@gmail.com";
-        SPARKY_FITNESS_MCP_URL = "http://host.docker.internal:${toString cfg.mcpPort}";
+        SPARKY_FITNESS_MCP_URL = "http://172.17.0.1:${toString cfg.mcpPort}";
         ALLOW_PRIVATE_NETWORK_CORS = "true";
       };
       environmentFiles = [config.sops.templates."sparkyfitness.env".path];
@@ -85,7 +90,7 @@ in {
       ports = ["${toString cfg.frontendPort}:80/tcp"];
       environment = {
         SPARKY_FITNESS_FRONTEND_URL = "https://${cfg.domain}";
-        SPARKY_FITNESS_SERVER_HOST = "host.docker.internal";
+        SPARKY_FITNESS_SERVER_HOST = "172.17.0.1";
         SPARKY_FITNESS_SERVER_PORT = "3010";
       };
       extraOptions = [
@@ -98,13 +103,13 @@ in {
       image = "codewithcj/sparkyfitness_mcp:latest";
       ports = ["${toString cfg.mcpPort}:3001/tcp"];
       environment = {
-        SPARKY_FITNESS_DB_HOST = "host.docker.internal";
+        SPARKY_FITNESS_DB_HOST = "172.17.0.1";
         SPARKY_FITNESS_DB_PORT = "5432";
         SPARKY_FITNESS_DB_NAME = cfg.dbName;
         SPARKY_FITNESS_DB_USER = "sparky";
         SPARKY_FITNESS_APP_DB_USER = "sparkyapp";
         MCP_TRANSPORT = "http";
-        SPARKY_FITNESS_SERVER_HOST = "host.docker.internal";
+        SPARKY_FITNESS_SERVER_HOST = "172.17.0.1";
         SPARKY_FITNESS_SERVER_PORT = "3010";
         SPARKY_FITNESS_FRONTEND_URL = "https://${cfg.domain}";
         ALLOW_PRIVATE_NETWORK_CORS = "true";
