@@ -84,9 +84,9 @@ in {
       voice = {
         auto_tts = false;
       };
-      mcpServers = {
+      mcp_servers = {
         sparkyfitness = {
-          url = "http://localhost:3001/mcp";
+          url = "http://localhost:3002/mcp";
           headers = {
             Authorization = "Bearer \${SPARKYFITNESS_API_KEY}";
           };
