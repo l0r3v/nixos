@@ -71,54 +71,8 @@ in {
       "docker-compose-sparkyfitness-root.target"
     ];
   };
-  virtualisation.oci-containers.containers."sparkyfitness-mcp" = {
-    image = "codewithcj/sparkyfitness_mcp:${version}";
-    environment = {
-      "ALLOW_PRIVATE_NETWORK_CORS" = "false";
-      "MCP_TRANSPORT" = "http";
-      "SPARKY_FITNESS_APP_DB_USER" = "sparky_app";
-      "SPARKY_FITNESS_DB_HOST" = "sparkyfitness-db";
-      "SPARKY_FITNESS_DB_NAME" = "sparkyfitness_db";
-      "SPARKY_FITNESS_DB_PORT" = "5432";
-      "SPARKY_FITNESS_DB_USER" = "sparky";
-      "SPARKY_FITNESS_EXTRA_TRUSTED_ORIGINS" = "";
-      "SPARKY_FITNESS_FRONTEND_URL" = "https://fit.pasqui.casa";
-      "SPARKY_FITNESS_SERVER_HOST" = "sparkyfitness-server";
-      "SPARKY_FITNESS_SERVER_PORT" = "3010";
-    };
-    environmentFiles = [config.sops.templates."sparkyfitness.env".path];
-    ports = [
-      "3002:3001/tcp"
-    ];
-    dependsOn = [
-      "sparkyfitness-db"
-    ];
-    log-driver = "journald";
-    extraOptions = [
-      "--network-alias=sparkyfitness-mcp"
-      "--network=sparkyfitness_sparkyfitness-network"
-    ];
-  };
-  systemd.services."docker-sparkyfitness-mcp" = {
-    serviceConfig = {
-      Restart = lib.mkOverride 90 "always";
-      RestartMaxDelaySec = lib.mkOverride 90 "1m";
-      RestartSec = lib.mkOverride 90 "100ms";
-      RestartSteps = lib.mkOverride 90 9;
-    };
-    after = [
-      "docker-network-sparkyfitness_sparkyfitness-network.service"
-    ];
-    requires = [
-      "docker-network-sparkyfitness_sparkyfitness-network.service"
-    ];
-    partOf = [
-      "docker-compose-sparkyfitness-root.target"
-    ];
-    wantedBy = [
-      "docker-compose-sparkyfitness-root.target"
-    ];
-  };
+  # MCP is now served internally by the server at /mcp (in-process).
+  # The dedicated MCP container is deprecated and removed.
   virtualisation.oci-containers.containers."sparkyfitness-sparkyfitness-frontend" = {
     image = "codewithcj/sparkyfitness:latest";
     environment = {
@@ -182,7 +136,6 @@ in {
       "SPARKY_FITNESS_EXTRA_TRUSTED_ORIGINS" = "";
       "SPARKY_FITNESS_FRONTEND_URL" = "https://fit.pasqui.casa";
       "SPARKY_FITNESS_LOG_LEVEL" = "ERROR";
-      "SPARKY_FITNESS_MCP_URL" = "http://sparkyfitness-mcp:3001";
       "SPARKY_FITNESS_PUBLIC_API_DOCS" = "false";
     };
     environmentFiles = [config.sops.templates."sparkyfitness.env".path];
