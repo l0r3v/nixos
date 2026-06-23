@@ -6,6 +6,7 @@
   services.lidarr = {
     enable = true;
     dataDir = "/srv/archive/lidarr";
+    user = "music";
     group = "music";
     settings = {
       server.port = 8686;
@@ -15,8 +16,6 @@
   systemd.tmpfiles.rules = [
     "d /srv/archive/music 2775 music music -"
     "d /srv/archive/downloads 2775 music music -"
-    "d /srv/archive/lidarr 0755 lidarr music -"
+    "d /srv/archive/lidarr 0755 music music -"
   ];
-
-  users.users.lidarr.extraGroups = ["music"];
 }
