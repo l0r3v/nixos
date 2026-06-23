@@ -3,9 +3,8 @@
     #./dawarich
     #./tududi
     #./gitea
-    ./flaresolverr
     ./owncloud
-    ./rdt-client
+    ./sparkyfitness
     ./soulsync
     ./slskd
   ];
