@@ -5,7 +5,7 @@
   config,
   ...
 }: let
-  version = "v0.17.1";
+  version = "v0.17.2";
 in {
   homelab.tunnelRoutes = {
     "fit.pasqui.casa" = "http://localhost:3004";
@@ -74,7 +74,7 @@ in {
   # MCP is now served internally by the server at /mcp (in-process).
   # The dedicated MCP container is deprecated and removed.
   virtualisation.oci-containers.containers."sparkyfitness-sparkyfitness-frontend" = {
-    image = "codewithcj/sparkyfitness:latest";
+    image = "codewithcj/sparkyfitness:${version}";
     environment = {
       "GUID" = "1000";
       "PUID" = "1000";
