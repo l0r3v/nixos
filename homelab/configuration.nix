@@ -146,6 +146,7 @@ in {
     tea
     factorio-headless
     piper-tts
+    opencode
   ];
 
   systemd.services.hacompanion = {
