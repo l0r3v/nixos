@@ -17,6 +17,8 @@ in {
     "sparkyfitness/better_auth_secret" = {};
     "sparkyfitness/app_db_password" = {};
     "sparkyfitness/api_encryption_key" = {};
+    "sparkyfitness/oidc_client_id" = {};
+    "sparkyfitness/oidc_client_secret" = {};
   };
 
   sops.templates."sparkyfitness.env".content = ''
@@ -25,6 +27,10 @@ in {
     BETTER_AUTH_SECRET=${config.sops.placeholder."sparkyfitness/better_auth_secret"}
     SPARKY_FITNESS_APP_DB_PASSWORD=${config.sops.placeholder."sparkyfitness/app_db_password"}
     SPARKY_FITNESS_API_ENCRYPTION_KEY=${config.sops.placeholder."sparkyfitness/api_encryption_key"}
+    # OIDC / Authentik
+    SPARKY_FITNESS_OIDC_AUTH_ENABLED=true
+    SPARKY_FITNESS_OIDC_CLIENT_ID=${config.sops.placeholder."sparkyfitness/oidc_client_id"}
+    SPARKY_FITNESS_OIDC_CLIENT_SECRET=${config.sops.placeholder."sparkyfitness/oidc_client_secret"}
   '';
   virtualisation.docker = {
     enable = true;
@@ -115,18 +121,17 @@ in {
     ];
   };
   virtualisation.oci-containers.containers."sparkyfitness-sparkyfitness-server" = {
-    image = "codewithcj/sparkyfitness_server:${version}";
+    image = "ghcr.io/l0r3v/sparkyfitness-server:latest";
     environment = {
       "ALLOW_PRIVATE_NETWORK_CORS" = "false";
       "GUID" = "1000";
       "PUID" = "1000";
-      "SPARKY_FITNESS_ADMIN_EMAIL" = "lorenzo@pasqui.casa";
       "SPARKY_FITNESS_APP_DB_USER" = "sparky_app";
       "SPARKY_FITNESS_DB_HOST" = "sparkyfitness-db";
       "SPARKY_FITNESS_DB_NAME" = "sparkyfitness_db";
       "SPARKY_FITNESS_DB_PORT" = "5432";
       "SPARKY_FITNESS_DB_USER" = "sparky";
-      "SPARKY_FITNESS_DISABLE_SIGNUP" = "true";
+      "SPARKY_FITNESS_DISABLE_SIGNUP" = "false";
       "SPARKY_FITNESS_EMAIL_FROM" = "";
       "SPARKY_FITNESS_EMAIL_HOST" = "";
       "SPARKY_FITNESS_EMAIL_PASS" = "";
@@ -137,6 +142,15 @@ in {
       "SPARKY_FITNESS_FRONTEND_URL" = "https://fit.pasqui.casa";
       "SPARKY_FITNESS_LOG_LEVEL" = "ERROR";
       "SPARKY_FITNESS_PUBLIC_API_DOCS" = "false";
+      # OIDC / Authentik — non-secret (secrets are in sops template)
+      "SPARKY_FITNESS_OIDC_ISSUER_URL" = "https://auth.pasqui.casa/application/o/sparkyfitness/";
+      "SPARKY_FITNESS_OIDC_PROVIDER_SLUG" = "sparkyfitness";
+      "SPARKY_FITNESS_OIDC_PROVIDER_NAME" = "Log in with Authentik";
+      "SPARKY_FITNESS_OIDC_SCOPE" = "openid email group profile";
+      "SPARKY_FITNESS_OIDC_TOKEN_AUTH_METHOD" = "client_secret_post";
+      "SPARKY_FITNESS_OIDC_AUTO_REGISTER" = "true";
+      "SPARKY_FITNESS_OIDC_ADMIN_GROUP" = "sparky_admin";
+      "SPARKY_FITNESS_DISABLE_EMAIL_LOGIN" = "true";
     };
     environmentFiles = [config.sops.templates."sparkyfitness.env".path];
 
