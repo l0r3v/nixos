@@ -256,5 +256,12 @@ in {
     trusted-users = ["root" "@wheel"];
   };
 
+  # Overlay for mealie-mcp-server
+  nixpkgs.overlays = [
+    (final: prev: {
+      mealie-mcp-server = prev.callPackage ../pkgs/mealie-mcp-server { };
+    })
+  ];
+
   system.stateVersion = "24.11"; # Did you read the comment?
 }

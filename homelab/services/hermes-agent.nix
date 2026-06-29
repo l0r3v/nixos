@@ -30,6 +30,7 @@ in {
     "hermes/paperless_token" = {};
     "hermes/groq_key" = {};
     "hermes/sparky_key" = {};
+    "hermes/mealie_token" = {};
     "uptime_kuma/api_key" = {};
   };
   sops.templates."hermes-env".content = ''
@@ -44,6 +45,8 @@ in {
     UPTIME_KUMA_API_KEY=${config.sops.placeholder."uptime_kuma/api_key"}
     UPTIME_KUMA_URL=https://status.pasqui.casa
     SPARKYFITNESS_API_KEY=${config.sops.placeholder."hermes/sparky_key"}
+    MEALIE_API_KEY=${config.sops.placeholder."hermes/mealie_token"}
+    MEALIE_BASE_URL=https://ricette.pasqui.casa
     TERMINAL_ENV=local
   '';
   services.hermes-agent = {
@@ -89,6 +92,13 @@ in {
           url = "http://localhost:3004/mcp";
           headers = {
             Authorization = "Bearer \${SPARKYFITNESS_API_KEY}";
+          };
+        };
+        mealie = {
+          command = "${pkgs.mealie-mcp-server}/bin/mealie-mcp-server";
+          env = {
+            MEALIE_API_KEY = "\${MEALIE_API_KEY}";
+            MEALIE_BASE_URL = "\${MEALIE_BASE_URL}";
           };
         };
       };
