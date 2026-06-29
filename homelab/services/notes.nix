@@ -18,6 +18,6 @@ in {
   # Ensure Caddy can traverse /home/hspasqui (tmpfiles runs at boot)
   systemd.tmpfiles.rules = [
     "d /home/hspasqui/notes/public 0755 hspasqui users -"
-    "a /home/hspasqui - - - - u:root:r-x,o:x"
+    "a /home/hspasqui - - - - o:x"
   ];
 }
