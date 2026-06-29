@@ -55,6 +55,9 @@
         ROOT_URL = "https://forge.pasqui.casa/";
         COOKIE_SECURE = true;
       };
+      webhook = {
+        ALLOWED_HOST_LIST = "localhost,127.0.0.1";
+      };
     };
     secrets = {
       mailer = {
