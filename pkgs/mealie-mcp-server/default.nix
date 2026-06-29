@@ -11,7 +11,7 @@ let
     owner = "rldiao";
     repo = "mealie-mcp-server";
     rev = "f7a2a5e21e68e223629393a5ad16f55dca6ea577";
-    hash = "sha256-0j7dz2pzj39kpkwxaysnqwx80jv0qfalq5gsmkl9pp4dp13cbaya=";
+    hash = "sha256-yqvFRriN3JvorPoVTJXDYEuAOsdWe9X5vDMN+a/47Ug=";
   };
 
 in
