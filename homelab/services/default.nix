@@ -19,6 +19,7 @@
     ./miniflux.nix
     ./navidrome.nix
     ./notes.nix
+    ./notes-webhook.nix
     #./ntfy.nix
     ./paperless.nix
     ./postgresql.nix
