@@ -15,9 +15,9 @@ in {
       RestartSec = 5;
       Environment = [
         "WEBHOOK_PORT=${toString webhookPort}"
+        "REBUILD_CMD=cd /home/hspasqui/notes/.quartz && ${pkgs.nodejs_22}/bin/node quartz/bootstrap-cli.mjs build -d /home/hspasqui/notes/Garden -o /home/hspasqui/notes/public 2>&1"
       ];
-      # Read secret from file — create it with:
-      #   echo -n 'your-token' > /home/hspasqui/.notes-webhook-secret
+      # Read secret from file
       EnvironmentFile = "-/home/hspasqui/.notes-webhook-secret";
     };
   };
