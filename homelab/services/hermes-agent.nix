@@ -101,6 +101,10 @@ in {
             MEALIE_BASE_URL = "\${MEALIE_BASE_URL}";
           };
         };
+        revolutx = {
+          command = "${pkgs.nodejs}/bin/node";
+          args = ["/home/hspasqui/revolut-x-api/mcp/dist/index.js"];
+        };
       };
     };
     environmentFiles = [config.sops.templates."hermes-env".path];
