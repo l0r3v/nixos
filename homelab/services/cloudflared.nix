@@ -38,6 +38,7 @@
           // {
             "chessdriller.pasqui.casa" = "http://localhost:3123";
             "immich-swipe.pasqui.casa" = "http://localhost:4040";
+            "notes.pasqui.casa" = "http://localhost:8085";
           };
       };
     };

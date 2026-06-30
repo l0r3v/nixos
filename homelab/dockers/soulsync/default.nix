@@ -15,12 +15,12 @@
       "8889:8889/tcp" # Tidal OAuth
     ];
     volumes = [
-      "/srv/archive/soulsync/config:/app/config:rw"
+      "/srv/archive/soulsync/config:/config:rw"
       "/srv/archive/soulsync/data:/app/data:rw"
       "/srv/archive/soulsync/logs:/app/logs:rw"
-      "/srv/archive/music:/music:rw"
-      "/srv/archive/downloads/soulseek:/downloads:rw"
-      "/srv/archive/imports/music:/imports:rw"
+      "/srv/archive/music:/app/Transfer:rw"
+      "/srv/archive/downloads/soulseek:/app/downloads:rw"
+      "/srv/archive/imports/music:/app/Staging:rw"
     ];
   };
 

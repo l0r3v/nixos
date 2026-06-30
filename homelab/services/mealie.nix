@@ -27,6 +27,7 @@
   services.mealie = {
     enable = true;
     settings = {
+      BASE_URL = "https://ricette.pasqui.casa";
       ALLOW_SIGNUP = "false";
       TZ = "IT";
       SMTP_HOST = "smtp.mail.me.com";
