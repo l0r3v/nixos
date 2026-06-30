@@ -15,9 +15,15 @@ in {
 
   systemd.services.caddy.serviceConfig.ProtectHome = lib.mkForce false;
 
-  # Ensure Caddy can traverse /home/hspasqui (tmpfiles runs at boot)
-  systemd.tmpfiles.rules = [
-    "d /home/hspasqui/notes/public 0755 hspasqui users -"
-    "a /home/hspasqui - - - - o:x"
-  ];
+  # Ensure Caddy can traverse /home/hspasqui (runs after every deploy)
+  systemd.services.fix-caddy-home = {
+    description = "Fix /home/hspasqui permission for Caddy";
+    after = ["nixos-activation.service"];
+    wantedBy = ["multi-user.target"];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.coreutils}/bin/chmod o+x /home/hspasqui";
+      RemainAfterExit = true;
+    };
+  };
 }
