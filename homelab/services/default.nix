@@ -6,6 +6,7 @@
     ../../common/zerotier.nix
     ./actual-budget.nix
     ./authentik.nix
+    ./backup-sparkyfitness.nix
     ./caddy.nix
     ./calibre-web.nix
     ./cloudflared.nix
