@@ -1,15 +1,16 @@
-{config, ...}: {
-  homelab.tunnelRoutes = {
-    "lidarr.pasqui.casa" = "http://localhost:${toString config.services.lidarr.settings.server.port}";
-  };
-
-  services.lidarr = {
-    enable = true;
-    dataDir = "/srv/archive/lidarr";
-    user = "music";
-    group = "music";
-    settings = {
-      server.port = 8686;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  port = 8686;
+in
+{
+  sops.secrets = {
+    "lidarr/api_key" = {
+      owner = "hspasqui";
     };
   };
 
@@ -18,4 +19,18 @@
     "d /srv/archive/downloads 2775 music music -"
     "d /srv/archive/lidarr 0755 music music -"
   ];
+
+  systemd.services.lidarr = {
+    description = "Lidarr";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "simple";
+      User = "hspasqui";
+      Group = "users";
+      ExecStart = "${pkgs.lidarr}/bin/Lidarr --nobrowser --data=/srv/archive/lidarr";
+      Restart = "on-failure";
+      RestartSec = "5";
+    };
+  };
 }
