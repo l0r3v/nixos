@@ -225,7 +225,7 @@ in {
   };
 
   systemd.services."backup-sparkyfitness" = {
-    path = with pkgs; [borgbackup postgresql_18 docker];
+    path = with pkgs; [borgbackup gzip postgresql_18 docker];
     script = ''
       set -eu
       START=$(date +%s)
