@@ -115,6 +115,13 @@ in {
           command = "${pkgs.nodejs}/bin/node";
           args = ["/home/hspasqui/revolut-x-api/mcp/dist/index.js"];
         };
+        forgejo = {
+          command = "${pkgs.forgejo-mcp}/bin/forgejo-mcp";
+          env = {
+            FORGEJO_URL = "https://forge.pasqui.casa";
+            FORGEJO_TOKEN = "\\${FORGEJO_TOKEN}";
+          };
+        };
       };
     };
     environmentFiles = [config.sops.templates."hermes-env".path];
