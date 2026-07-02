@@ -119,7 +119,7 @@ in {
           command = "${pkgs.forgejo-mcp}/bin/forgejo-mcp";
           env = {
             FORGEJO_URL = "https://forge.pasqui.casa";
-            FORGEJO_TOKEN = "\\${FORGEJO_TOKEN}";
+            FORGEJO_TOKEN = "\${FORGEJO_TOKEN}";
           };
         };
       };
