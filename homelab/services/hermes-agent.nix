@@ -87,6 +87,16 @@ in {
       voice = {
         auto_tts = false;
       };
+      platforms = {
+        webhook = {
+          enabled = true;
+          extra = {
+            host = "0.0.0.0";
+            port = 8644;
+            secret = "d1e30a14f00f19cd9bc2f3277db7ce752ea020362ef7c0d30eb6cb09451c533";
+          };
+        };
+      };
       mcp_servers = {
         sparkyfitness = {
           url = "http://localhost:3004/mcp";
