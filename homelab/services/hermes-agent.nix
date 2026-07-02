@@ -21,17 +21,23 @@ let
     cp "$srcJson" $out/it_IT-paola-medium.onnx.json
   '';
 in {
-  sops.secrets = {
-    "hermes/opencode_api" = {};
-    "hermes/telegrambot_api" = {};
-    "hermes/hass_token" = {};
-    "hermes/forgejo_token" = {};
-    "hermes/vault_pass" = {};
-    "hermes/paperless_token" = {};
-    "hermes/groq_key" = {};
-    "hermes/sparky_key" = {};
-    "hermes/mealie_token" = {};
-    "uptime_kuma/api_key" = {};
+  sops.secrets = let
+    hermesSecret = {
+      owner = "hspasqui";
+      group = "users";
+      mode = "0440";
+    };
+  in {
+    "hermes/opencode_api" = hermesSecret;
+    "hermes/telegrambot_api" = hermesSecret;
+    "hermes/hass_token" = hermesSecret;
+    "hermes/forgejo_token" = hermesSecret;
+    "hermes/vault_pass" = hermesSecret;
+    "hermes/paperless_token" = hermesSecret;
+    "hermes/groq_key" = hermesSecret;
+    "hermes/sparky_key" = hermesSecret;
+    "hermes/mealie_token" = hermesSecret;
+    "uptime_kuma/api_key" = hermesSecret;
   };
   sops.templates."hermes-env".content = ''
     OPENCODE_GO_API_KEY=${config.sops.placeholder."hermes/opencode_api"}
