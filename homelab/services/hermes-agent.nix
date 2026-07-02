@@ -38,7 +38,7 @@ in {
     HASS_TOKEN=${config.sops.placeholder."hermes/hass_token"}
     HASS_URL=http://192.168.1.65:8123
     TELEGRAM_BOT_TOKEN=${config.sops.placeholder."hermes/telegrambot_api"}
-    FORGEJO_TOKEN=${config.sops.placeholder."hermes/forgejo_token"}
+    FORGEJO_ACCESS_TOKEN=${config.sops.placeholder."hermes/forgejo_token"}
     VAULTWARDEN_PASS=${config.sops.placeholder."hermes/vault_pass"}
     PAPERLESS_TOKEN=${config.sops.placeholder."hermes/paperless_token"}
     GROQ_API_KEY=${config.sops.placeholder."hermes/groq_key"}
@@ -104,6 +104,13 @@ in {
         revolutx = {
           command = "${pkgs.nodejs}/bin/node";
           args = ["/home/hspasqui/revolut-x-api/mcp/dist/index.js"];
+        };
+        forgejo = {
+          command = "${pkgs.forgejo-mcp}/bin/forgejo-mcp";
+          env = {
+            FORGEJO_URL = "https://forge.pasqui.casa";
+            FORGEJO_ACCESS_TOKEN = "\${FORGEJO_ACCESS_TOKEN}";
+          };
         };
       };
     };
