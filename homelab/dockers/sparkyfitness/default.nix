@@ -259,8 +259,8 @@ in {
 
       END=$(date +%s)
       DURATION=$((END - START))
-      ''$MIN=$((DURATION / 60))
-      ''$SEC=$((DURATION % 60))
+      MIN=$((DURATION / 60))
+      SEC=$((DURATION % 60))
 
       if [ "$STATUS" -eq 0 ]; then
         MSG="✅ SparkyFitness backup completato (''${MIN}m''${SEC}s, $DUMP_SIZE)"
