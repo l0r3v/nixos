@@ -225,17 +225,23 @@ in {
   };
 
   systemd.services."backup-sparkyfitness" = {
-    path = with pkgs; [borgbackup gzip postgresql_18 docker];
+    path = with pkgs; [borgbackup gzip postgresql_18 docker curl util-linux];
     script = ''
+      #!/bin/sh
       set -eu
-      START=$(date +%s)
-      STATUS=0
-      BACKUP_NAME="sparkyfitness-{now:%Y-%m-%dT%H:%M:%S}"
 
+      STATUS=0
+      TELEGRAM_BOT_TOKEN="$(cat ${config.sops.secrets.telegram_bot_token.path})"
+      DUMP_FILE="/tmp/sparkyfitness-dump.sql.gz"
+
+      export BORG_PASSCOMMAND="cat ${config.sops.secrets."borgbase/passphrase".path}"
+      export BORG_RSH="ssh -i ${config.sops.secrets."borgbase/ssh_key".path} -o StrictHostKeyChecking=no"
+      REMOTE_HOST=$(cat ${config.sops.secrets."borgbase/forgejo/remote_host".path})
+      REPO="$REMOTE_HOST./repo"
+
+      start_time=$(date +%s)
       echo "=== SparkyFitness backup ==="
       echo "Dumping PostgreSQL database..."
-
-      DUMP_FILE="/tmp/sparkyfitness-dump.sql.gz"
 
       docker exec sparkyfitness-db pg_dump -U sparky sparkyfitness_db \
         | gzip > "$DUMP_FILE"
@@ -244,35 +250,32 @@ in {
       echo "Dump size: $DUMP_SIZE"
 
       echo "Sending to BorgBase..."
-      export BORG_PASSCOMMAND="cat ${config.sops.secrets."borgbase/passphrase".path}"
-      export BORG_RSH="ssh -i ${config.sops.secrets."borgbase/ssh_key".path} -o StrictHostKeyChecking=no"
-      REMOTE_HOST=$(cat ${config.sops.secrets."borgbase/forgejo/remote_host".path})
-      REPO="$REMOTE_HOST./repo"
-
       borg create \
         --compression lz4 \
         --stats \
-        "$REPO::$BACKUP_NAME" \
+        "$REPO::{now}" \
         "$DUMP_FILE" || STATUS=$?
 
       rm -f "$DUMP_FILE"
 
-      END=$(date +%s)
-      DURATION=$((END - START))
-      MIN=$((DURATION / 60))
-      SEC=$((DURATION % 60))
+      end_time=$(date +%s)
+      duration=$((end_time - start_time))
+      minutes=$((duration / 60))
+      seconds=$((duration % 60))
 
       if [ "$STATUS" -eq 0 ]; then
-        MSG="✅ SparkyFitness backup completato (''${MIN}m''${SEC}s, $DUMP_SIZE)"
+        MSG="✅ SparkyFitness backup completato con successo"
       else
-        MSG="❌ SparkyFitness backup FALLITO (exit $STATUS) @Lorevocator"
+        MSG="❌ Errore nel backup SparkyFitness (exit $STATUS) @Lorevocator"
       fi
 
-      echo "$MSG"
-      curl -s -X POST "https://api.telegram.org/bot$(cat ${config.sops.secrets.telegram_bot_token.path})/sendMessage" \
+      echo "Status $STATUS: $MSG"
+      curl -s -X POST "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
         -d chat_id=-1002509650347 \
         -d message_thread_id=5596 \
-        -d text="#sparky: $MSG"
+        -d text="#sparky: $MSG. Tempo impiegato: $minutes min e $seconds sec ($DUMP_SIZE)"
+
+      exit $STATUS
     '';
 
     serviceConfig = {
@@ -280,5 +283,6 @@ in {
       User = "root";
       LogsDirectory = "backup-sparkyfitness";
     };
+    restartIfChanged = false;
   };
 }
