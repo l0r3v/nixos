@@ -236,7 +236,7 @@ in {
 
       export BORG_PASSCOMMAND="cat ${config.sops.secrets."borgbase/passphrase".path}"
       export BORG_RSH="ssh -i ${config.sops.secrets."borgbase/ssh_key".path} -o StrictHostKeyChecking=no"
-      REMOTE_HOST=$(cat ${config.sops.secrets."borgbase/forgejo/remote_host".path})
+      REMOTE_HOST=$(cat ${config.sops.secrets."borgbase/sparkyfitness/remote_host".path})
       REPO="$REMOTE_HOST./repo"
 
       start_time=$(date +%s)
