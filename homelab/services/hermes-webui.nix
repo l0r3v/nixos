@@ -7,6 +7,8 @@
 let
   webuiPort = 8787;
   webuiStateDir = "/home/hspasqui/.hermes/webui";
+  # Hermes-agent Python env — needed by WebUI for agent/hermes_cli imports
+  hermesPythonEnv = config.services.hermes-agent.package.passthru.hermesVenv;
 in {
   # --- Sops secret for the WebUI password ---
   sops.secrets."hermes/webui_password" = {};
@@ -35,6 +37,7 @@ in {
       HERMES_WEBUI_STATE_DIR = webuiStateDir;
       PYTHONDONTWRITEBYTECODE = "1";
       PYTHONUNBUFFERED = "1";
+      PYTHONPATH = "${hermesPythonEnv}/lib/python3.12/site-packages";
     };
 
     serviceConfig = {
