@@ -19,6 +19,9 @@ in {
     "sparkyfitness/api_encryption_key" = {};
     "sparkyfitness/oidc_client_id" = {};
     "sparkyfitness/oidc_client_secret" = {};
+    "borgbase/passphrase" = {};
+    "borgbase/ssh_key" = {};
+    "borgbase/sparkyfitness/remote_host" = {};
   };
 
   sops.templates."sparkyfitness.env".content = ''
