@@ -7,14 +7,13 @@
 let
   webuiPort = 8787;
   webuiStateDir = "/home/hspasqui/.hermes/webui";
-  # Hermes-agent Python env — needed by WebUI for agent/hermes_cli imports.
-  # Override the elocke package to use the full hermes-agent env rather than
-  # the minimal default (pyyaml + cryptography only). This avoids
-  # ModuleNotFoundError for hermes-agent modules and pydantic_core C extensions.
-  hermesPythonEnv = config.services.hermes-agent.package.passthru.hermesVenv;
-  hermesWebuiPkg = pkgs.hermes-webui.override {
-    inherit hermesPythonEnv;
-  };
+
+  # Package dal dbeley flake — self-contained con pyyaml + cryptography.
+  # Il dbeley package NON include hermes_cli; lo aggiungiamo via PYTHONPATH
+  # puntando all'agent package (gestito da services.hermes-agent).
+  hermesWebuiPkg = pkgs.hermes-webui;
+  hermesAgentPkg = config.services.hermes-agent.package;
+  hermesAgentPythonPath = "${hermesAgentPkg}/${pkgs.python3.sitePackages}";
 in {
   # --- Sops secret for the WebUI password ---
   sops.secrets."hermes/webui_password" = {};
@@ -33,7 +32,7 @@ in {
   systemd.services.hermes-webui = {
     description = "Hermes WebUI — browser interface for Hermes Agent";
     wantedBy = ["multi-user.target"];
-    after = ["network-online.target"];
+    after = ["network-online.target" "hermes-agent.service"];
     wants = ["network-online.target"];
 
     environment = {
@@ -41,6 +40,10 @@ in {
       HERMES_WEBUI_HOST = "0.0.0.0";
       HERMES_WEBUI_PORT = toString webuiPort;
       HERMES_WEBUI_STATE_DIR = webuiStateDir;
+      # Condivide i moduli Python dell'agent così il WebUI può importare hermes_cli
+      # e comunicare col gateway via API interne (non spawna un gateway suo).
+      HERMES_WEBUI_AGENT_DIR = hermesAgentPythonPath;
+      PYTHONPATH = hermesAgentPythonPath;
       PYTHONDONTWRITEBYTECODE = "1";
       PYTHONUNBUFFERED = "1";
     };

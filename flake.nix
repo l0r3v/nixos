@@ -85,8 +85,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hermes-webui = {
-      url = "github:elocke/nix-hermes-webui/v0.1.0";
+      url = "github:dbeley/hermes-webui-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.llm-agents.follows = "nixpkgs";
     };
   };
 
