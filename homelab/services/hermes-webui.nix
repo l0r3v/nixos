@@ -7,8 +7,14 @@
 let
   webuiPort = 8787;
   webuiStateDir = "/home/hspasqui/.hermes/webui";
-  # Hermes-agent Python env — needed by WebUI for agent/hermes_cli imports
+  # Hermes-agent Python env — needed by WebUI for agent/hermes_cli imports.
+  # Override the elocke package to use the full hermes-agent env rather than
+  # the minimal default (pyyaml + cryptography only). This avoids
+  # ModuleNotFoundError for hermes-agent modules and pydantic_core C extensions.
   hermesPythonEnv = config.services.hermes-agent.package.passthru.hermesVenv;
+  hermesWebuiPkg = pkgs.hermes-webui.override {
+    inherit hermesPythonEnv;
+  };
 in {
   # --- Sops secret for the WebUI password ---
   sops.secrets."hermes/webui_password" = {};
@@ -37,7 +43,6 @@ in {
       HERMES_WEBUI_STATE_DIR = webuiStateDir;
       PYTHONDONTWRITEBYTECODE = "1";
       PYTHONUNBUFFERED = "1";
-      PYTHONPATH = "${hermesPythonEnv}/lib/python3.12/site-packages";
     };
 
     serviceConfig = {
@@ -45,7 +50,7 @@ in {
       User = "hspasqui";
       Group = "users";
       WorkingDirectory = "/home/hspasqui";
-      ExecStart = "${pkgs.hermes-webui}/bin/hermes-webui";
+      ExecStart = "${hermesWebuiPkg}/bin/hermes-webui";
       Restart = "on-failure";
       RestartSec = 10;
       EnvironmentFile = config.sops.templates."hermes-webui-env".path;
