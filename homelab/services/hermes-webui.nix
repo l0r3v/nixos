@@ -8,12 +8,26 @@ let
   webuiPort = 8787;
   webuiStateDir = "/home/hspasqui/.hermes/webui";
 
-  # Package dal dbeley flake — self-contained con pyyaml + cryptography.
-  # Il dbeley package NON include hermes_cli; lo aggiungiamo via PYTHONPATH
-  # puntando all'agent package (gestito da services.hermes-agent).
   hermesWebuiPkg = pkgs.hermes-webui;
   hermesAgentPkg = config.services.hermes-agent.package;
-  hermesAgentPythonPath = "${hermesAgentPkg}/${pkgs.python3.sitePackages}";
+
+  # Start script che estrae HERMES_PYTHON dal wrapper dell'agent
+  # (come fa il dbeley flake nel modulo Home Manager). Questo permette
+  # al WebUI di usare il Python dell'agent con tutti i moduli hermes_cli,
+  # senza doverli duplicare nel package WebUI.
+  startScript = pkgs.writeShellScript "hermes-webui-start" ''
+    # Estrai il Python dell'agent dal wrapper 'hermes'
+    HERMES_PYTHON=$(grep -oP "HERMES_PYTHON='\K[^']+" ${hermesAgentPkg}/bin/hermes 2>/dev/null || true)
+
+    if [ -n "$HERMES_PYTHON" ] && [ -x "$HERMES_PYTHON" ]; then
+      cd ${hermesWebuiPkg}/share/hermes-webui
+      exec "$HERMES_PYTHON" server.py
+    else
+      # Fallback: usa il Python del package WebUI (ha solo pyyaml+cryptography,
+      # quindi import hermes_cli fallirà — ma almeno il server parte)
+      exec ${hermesWebuiPkg}/bin/hermes-webui
+    fi
+  '';
 in {
   # --- Sops secret for the WebUI password ---
   sops.secrets."hermes/webui_password" = {};
@@ -40,10 +54,6 @@ in {
       HERMES_WEBUI_HOST = "0.0.0.0";
       HERMES_WEBUI_PORT = toString webuiPort;
       HERMES_WEBUI_STATE_DIR = webuiStateDir;
-      # Condivide i moduli Python dell'agent così il WebUI può importare hermes_cli
-      # e comunicare col gateway via API interne (non spawna un gateway suo).
-      HERMES_WEBUI_AGENT_DIR = hermesAgentPythonPath;
-      PYTHONPATH = hermesAgentPythonPath;
       PYTHONDONTWRITEBYTECODE = "1";
       PYTHONUNBUFFERED = "1";
     };
@@ -53,7 +63,7 @@ in {
       User = "hspasqui";
       Group = "users";
       WorkingDirectory = "/home/hspasqui";
-      ExecStart = "${hermesWebuiPkg}/bin/hermes-webui";
+      ExecStart = "${startScript}";
       Restart = "on-failure";
       RestartSec = 10;
       EnvironmentFile = config.sops.templates."hermes-webui-env".path;
