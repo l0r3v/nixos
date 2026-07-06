@@ -160,7 +160,6 @@
           inputs.authentik-nix.nixosModules.default
           inputs.nixvirt.nixosModules.default
           inputs.hermes-agent.nixosModules.default
-          inputs.sparkyfitness.nixosModules.sparkyfitness
           ./homelab/configuration.nix
         ];
       };
