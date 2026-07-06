@@ -237,7 +237,7 @@ in {
     enable = true;
   };
 
-  networking.firewall.allowedTCPPorts = [8123 8080 8031 8083 2443 44 5423 6080 5901];
+  networking.firewall.allowedTCPPorts = [8123 8080 8031 8083 2443 44 5423 6080 5901 8787];
   networking.firewall.allowedUDPPorts = [8123 8031 6080 5901];
   networking.firewall.extraCommands = ''
     iptables -A nixos-fw -p tcp --dport 44 -s 192.168.1.0/16 -j nixos-fw-accept
@@ -261,6 +261,7 @@ in {
     (final: prev: {
       mealie-mcp-server = prev.callPackage ../pkgs/mealie-mcp-server { };
     })
+    inputs.hermes-webui.overlays.default
   ];
 
   system.stateVersion = "24.11"; # Did you read the comment?

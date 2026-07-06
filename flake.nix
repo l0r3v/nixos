@@ -84,6 +84,11 @@
       url = "github:NousResearch/hermes-agent";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hermes-webui = {
+      url = "github:dbeley/hermes-webui-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.llm-agents.follows = "nixpkgs";
+    };
   };
 
   outputs = {

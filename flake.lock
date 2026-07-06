@@ -599,6 +599,29 @@
         "type": "github"
       }
     },
+    "hermes-webui": {
+      "inputs": {
+        "llm-agents": [
+          "nixpkgs"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783012172,
+        "narHash": "sha256-zmeFcjbVHKR4bGGL2/Px5FSL3wBS+R+BsPuCGLp5eaI=",
+        "owner": "dbeley",
+        "repo": "hermes-webui-nix",
+        "rev": "92ec783da97f0a44d41953c77ecbf1710770605a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dbeley",
+        "repo": "hermes-webui-nix",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -1587,6 +1610,7 @@
         "deploy-rs": "deploy-rs",
         "firefox-addons": "firefox-addons",
         "hermes-agent": "hermes-agent",
+        "hermes-webui": "hermes-webui",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "inkscape-figures": "inkscape-figures",
