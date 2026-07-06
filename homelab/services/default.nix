@@ -25,6 +25,7 @@
     ./paperless.nix
     ./postgresql.nix
     ./prowlarr.nix
+    ./sparkyfitness.nix
     ./wyoming.nix
   ];
 }
