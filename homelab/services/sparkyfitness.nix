@@ -70,10 +70,11 @@ in
     environmentFile = config.sops.templates."sparkyfitness.env".path;
 
     database = {
-      # Don't let the module touch the shared PostgreSQL config (the
-      # homelab manages it in services/postgresql.nix).  We provision
-      # the sparky role and database ourselves below.
-      createLocally = false;
+      createLocally = true;
+      # Pin to the NixOS default PostgreSQL version (matches the homelab's
+      # services.postgresql.package).  The module defaults to pg16; override
+      # so we don't accidentally downgrade.
+      package = pkgs.postgresql;
       host = "127.0.0.1";
       port = 5432;
       name = "sparkyfitness_db";
@@ -109,63 +110,6 @@ in
   services.nginx.virtualHosts."fit.pasqui.casa".listen = [
     { addr = "127.0.0.1"; port = 3044; }
   ];
-
-  # ── Database initialisation ──────────────────────────────────────
-  # Mirror what the module's `database.createLocally` does, but for
-  # the shared homelab PostgreSQL instance.
-  systemd.services.sparkyfitness-db-init = {
-    description = "SparkyFitness database initialisation";
-    after = [ "postgresql.service" ];
-    requires = [ "postgresql.service" ];
-    wantedBy = [ "multi-user.target" ];
-    before = [ "sparkyfitness.service" ];
-
-    serviceConfig = {
-      Type = "oneshot";
-      User = "postgres";
-      Group = "postgres";
-      RemainAfterExit = true;
-      EnvironmentFile = config.sops.templates."sparkyfitness.env".path;
-    };
-
-    path = [ config.services.postgresql.package ];
-
-    script = ''
-      set -euo pipefail
-      DB="sparkyfitness_db"
-      OWNER="sparky"
-      APP="sparky_app"
-
-      # Create / update the privileged owner role.
-      if psql -tAc "SELECT 1 FROM pg_roles WHERE rolname='$OWNER'" | grep -q 1; then
-        printf '%s\n' "ALTER ROLE \"$OWNER\" WITH LOGIN CREATEROLE PASSWORD :'passwd';" \
-          | psql -v passwd="$SPARKY_FITNESS_DB_PASSWORD"
-      else
-        printf '%s\n' "CREATE ROLE \"$OWNER\" WITH LOGIN CREATEROLE PASSWORD :'passwd';" \
-          | psql -v passwd="$SPARKY_FITNESS_DB_PASSWORD"
-      fi
-
-      # Create the database owned by the owner role.
-      if ! psql -tAc "SELECT 1 FROM pg_database WHERE datname='$DB'" | grep -q 1; then
-        psql -c "CREATE DATABASE \"$DB\" OWNER \"$OWNER\""
-      else
-        psql -c "ALTER DATABASE \"$DB\" OWNER TO \"$OWNER\""
-      fi
-
-      # Hand the public schema to the owner role.
-      psql -d "$DB" -c "ALTER SCHEMA public OWNER TO \"$OWNER\""
-
-      # The backend creates the limited application role at startup, but
-      # pre-create it here so the env file is the single source of truth.
-      if psql -tAc "SELECT 1 FROM pg_roles WHERE rolname='$APP'" | grep -q 1; then
-        printf '%s\n' "ALTER ROLE \"$APP\" WITH LOGIN PASSWORD :'passwd';" \
-          | psql -v passwd="$SPARKY_FITNESS_APP_DB_PASSWORD"
-      else
-        printf '%s\n' "CREATE ROLE \"$APP\" WITH LOGIN PASSWORD :'passwd';" \
-          | psql -v passwd="$SPARKY_FITNESS_APP_DB_PASSWORD"
-      fi
-    '';
-  };
 
   # ── Backup (nightly pg_dump → BorgBase) ──────────────────────────
   systemd.timers."backup-sparkyfitness" = {
