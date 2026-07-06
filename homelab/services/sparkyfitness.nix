@@ -152,8 +152,6 @@
         "$REPO::{now}" \
         "$DUMP_FILE" || STATUS=$?
 
-      rm -f "$DUMP_FILE"
-
       end_time=$(date +%s)
       duration=$((end_time - start_time))
       minutes=$((duration / 60))
