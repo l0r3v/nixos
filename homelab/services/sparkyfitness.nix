@@ -33,7 +33,7 @@ in
 {
   # ── Cloudflare tunnel route ───────────────────────────────────────
   homelab.tunnelRoutes = {
-    "fit.pasqui.casa" = "http://localhost:3044";
+    "fit.pasqui.casa" = "http://localhost:3004";
   };
 
   # ── Secrets ───────────────────────────────────────────────────────
@@ -105,10 +105,9 @@ in
 
   # ── nginx listen on a dedicated port ─────────────────────────────
   # The module's nginx virtualHost defaults to listening on *:80.
-  # Pin it to 127.0.0.1:3044 so it doesn't collide with anything else
-  # on port 80.
+  # Pin it to 127.0.0.1:3004 (same port the old Docker frontend used).
   services.nginx.virtualHosts."fit.pasqui.casa".listen = [
-    { addr = "127.0.0.1"; port = 3044; }
+    { addr = "127.0.0.1"; port = 3004; }
   ];
 
   # ── Backup (nightly pg_dump → BorgBase) ──────────────────────────

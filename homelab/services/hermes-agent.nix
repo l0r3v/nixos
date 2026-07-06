@@ -89,7 +89,7 @@ in {
       };
       mcp_servers = {
         sparkyfitness = {
-          url = "http://localhost:3044/mcp";
+          url = "http://localhost:3004/mcp";
           headers = {
             Authorization = "Bearer \${SPARKYFITNESS_API_KEY}";
           };
