@@ -23,14 +23,13 @@
 # ⚠  Deploy will fail binaurally until steps 1-3 are completed.
 # ─────────────────────────────────────────────────────────────────────
 
-{ inputs, config, pkgs, lib, ... }:
-let
-  inherit (pkgs.stdenv.hostPlatform) system;
-  sparkyfitness = inputs.sparkyfitness;
-  backendPackage = sparkyfitness.packages.${system}.sparkyfitness-server;
-  frontendPackage = sparkyfitness.packages.${system}.sparkyfitness-frontend;
-in
+{ inputs, config, pkgs, ... }:
 {
+  # ── SparkyFitness NixOS module ────────────────────────────────────
+  # The convenience module auto-sets backendPackage / frontendPackage
+  # from the flake's build outputs.
+  imports = [ inputs.sparkyfitness.nixosModules.sparkyfitness ];
+
   # ── Cloudflare tunnel route ───────────────────────────────────────
   homelab.tunnelRoutes = {
     "fit.pasqui.casa" = "http://localhost:3004";
@@ -58,10 +57,8 @@ in
     SPARKY_FITNESS_OIDC_CLIENT_SECRET=${config.sops.placeholder."sparkyfitness/oidc_client_secret"}
   '';
 
-  # ── NixOS module ──────────────────────────────────────────────────
   services.sparkyfitness = {
     enable = true;
-    inherit backendPackage frontendPackage;
 
     port = 3010;
     frontendUrl = "https://fit.pasqui.casa";
@@ -84,8 +81,6 @@ in
 
     nginx = {
       enable = true;
-      # Matches the cloudflared tunnel Host header so nginx serves
-      # the right virtual server block.
       virtualHost = "fit.pasqui.casa";
     };
 
@@ -104,8 +99,6 @@ in
   };
 
   # ── nginx listen on a dedicated port ─────────────────────────────
-  # The module's nginx virtualHost defaults to listening on *:80.
-  # Pin it to 127.0.0.1:3004 (same port the old Docker frontend used).
   services.nginx.virtualHosts."fit.pasqui.casa".listen = [
     { addr = "127.0.0.1"; port = 3004; }
   ];
