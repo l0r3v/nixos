@@ -1,7 +1,6 @@
-{lib, pkgs, ...}: {
+{lib, ...}: {
   services.postgresql = {
     enable = true;
-    package = lib.mkForce pkgs.postgresql_17;
     settings = {
       max_connections = 300;
       shared_buffers = "4GB";
