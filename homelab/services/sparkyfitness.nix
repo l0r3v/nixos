@@ -22,13 +22,16 @@
 #
 # ⚠  Deploy will fail binaurally until steps 1-3 are completed.
 # ─────────────────────────────────────────────────────────────────────
-
-{ inputs, config, pkgs, ... }:
 {
+  inputs,
+  config,
+  pkgs,
+  ...
+}: {
   # ── SparkyFitness NixOS module ────────────────────────────────────
   # The convenience module auto-sets backendPackage / frontendPackage
   # from the flake's build outputs.
-  imports = [ inputs.sparkyfitness.nixosModules.sparkyfitness ];
+  imports = [inputs.sparkyfitness.nixosModules.sparkyfitness];
 
   # ── Cloudflare tunnel route ───────────────────────────────────────
   homelab.tunnelRoutes = {
@@ -37,15 +40,15 @@
 
   # ── Secrets ───────────────────────────────────────────────────────
   sops.secrets = {
-    "sparkyfitness/db_password" = { };
-    "sparkyfitness/better_auth_secret" = { };
-    "sparkyfitness/app_db_password" = { };
-    "sparkyfitness/api_encryption_key" = { };
-    "sparkyfitness/oidc_client_id" = { };
-    "sparkyfitness/oidc_client_secret" = { };
-    "borgbase/passphrase" = { };
-    "borgbase/ssh_key" = { };
-    "borgbase/sparkyfitness/remote_host" = { };
+    "sparkyfitness/db_password" = {};
+    "sparkyfitness/better_auth_secret" = {};
+    "sparkyfitness/app_db_password" = {};
+    "sparkyfitness/api_encryption_key" = {};
+    "sparkyfitness/oidc_client_id" = {};
+    "sparkyfitness/oidc_client_secret" = {};
+    "borgbase/passphrase" = {};
+    "borgbase/ssh_key" = {};
+    "borgbase/sparkyfitness/remote_host" = {};
   };
 
   sops.templates."sparkyfitness.env".content = ''
@@ -68,10 +71,10 @@
 
     database = {
       createLocally = true;
-      # Pin to the NixOS default PostgreSQL version (matches the homelab's
-      # services.postgresql.package).  The module defaults to pg16; override
-      # so we don't accidentally downgrade.
-      package = pkgs.postgresql;
+      # ⚠ Do NOT set database.package — the module defaults to pg16,
+      # matching what the homelab already runs.  Overriding it changes
+      # PGDATA and causes PostgreSQL to initdb into an empty directory,
+      # which deletes ALL databases (forgejo, paperless, immich, …).
       host = "127.0.0.1";
       port = 5432;
       name = "sparkyfitness_db";
@@ -94,18 +97,21 @@
       SPARKY_FITNESS_OIDC_TOKEN_AUTH_METHOD = "client_secret_post";
       SPARKY_FITNESS_OIDC_AUTO_REGISTER = "true";
       SPARKY_FITNESS_OIDC_ADMIN_GROUP = "sparky_admin";
-      SPARKY_FITNESS_DISABLE_EMAIL_LOGIN = "true";
+      SPARKY_FITNESS_DISABLE_EMAIL_LOGIN = "false";
     };
   };
 
   # ── nginx listen on a dedicated port ─────────────────────────────
   services.nginx.virtualHosts."fit.pasqui.casa".listen = [
-    { addr = "127.0.0.1"; port = 3004; }
+    {
+      addr = "127.0.0.1";
+      port = 3004;
+    }
   ];
 
   # ── Backup (nightly pg_dump → BorgBase) ──────────────────────────
   systemd.timers."backup-sparkyfitness" = {
-    wantedBy = [ "timers.target" ];
+    wantedBy = ["timers.target"];
     timerConfig = {
       OnCalendar = "03:00";
       Persistent = true;
@@ -114,7 +120,7 @@
   };
 
   systemd.services."backup-sparkyfitness" = {
-    path = with pkgs; [ borgbackup gzip postgresql_18 curl util-linux ];
+    path = with pkgs; [borgbackup gzip postgresql_18 curl util-linux];
     script = ''
       #!/bin/sh
       set -eu
