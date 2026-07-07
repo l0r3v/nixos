@@ -4,7 +4,7 @@
     #./tududi
     #./gitea
     ./owncloud
-    ./sparkyfitness
+    #./sparkyfitness
     ./soulsync
     ./slskd
   ];
