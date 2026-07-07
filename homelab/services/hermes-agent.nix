@@ -3,23 +3,23 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   # Piper voice model — scaricato nel nix store
-  piperItalianVoice = pkgs.runCommand "piper-voice-it_IT-paola-medium" {
-    srcOnnx = pkgs.fetchurl {
-      url = "https://huggingface.co/rhasspy/piper-voices/resolve/main/it/it_IT/paola/medium/it_IT-paola-medium.onnx";
-      hash = "sha256-b8kYtaDqYTc4KDPd36Vnv/vmpQYMAgQ8hxku5ZwEIQw=";
-    };
-    srcJson = pkgs.fetchurl {
-      url = "https://huggingface.co/rhasspy/piper-voices/resolve/main/it/it_IT/paola/medium/it_IT-paola-medium.onnx.json";
-      hash = "sha256-rqGcCn/OKfvDWbk/EOeQKFRAHkyVri6jKK5RaxXSls8=";
-    };
-  } ''
-    mkdir -p $out
-    cp "$srcOnnx" $out/it_IT-paola-medium.onnx
-    cp "$srcJson" $out/it_IT-paola-medium.onnx.json
-  '';
+  piperItalianVoice =
+    pkgs.runCommand "piper-voice-it_IT-paola-medium" {
+      srcOnnx = pkgs.fetchurl {
+        url = "https://huggingface.co/rhasspy/piper-voices/resolve/main/it/it_IT/paola/medium/it_IT-paola-medium.onnx";
+        hash = "sha256-b8kYtaDqYTc4KDPd36Vnv/vmpQYMAgQ8hxku5ZwEIQw=";
+      };
+      srcJson = pkgs.fetchurl {
+        url = "https://huggingface.co/rhasspy/piper-voices/resolve/main/it/it_IT/paola/medium/it_IT-paola-medium.onnx.json";
+        hash = "sha256-rqGcCn/OKfvDWbk/EOeQKFRAHkyVri6jKK5RaxXSls8=";
+      };
+    } ''
+      mkdir -p $out
+      cp "$srcOnnx" $out/it_IT-paola-medium.onnx
+      cp "$srcJson" $out/it_IT-paola-medium.onnx.json
+    '';
 in {
   sops.secrets = {
     "hermes/opencode_api" = {};

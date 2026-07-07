@@ -1,4 +1,8 @@
-{lib, pkgs, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   webhookPort = 9099;
 in {
   systemd.services.notes-webhook = {

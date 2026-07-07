@@ -3,11 +3,9 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   port = 8686;
-in
-{
+in {
   sops.secrets = {
     "lidarr/api_key" = {
       owner = "hspasqui";
@@ -22,8 +20,8 @@ in
 
   systemd.services.lidarr = {
     description = "Lidarr";
-    after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
+    after = ["network.target"];
+    wantedBy = ["multi-user.target"];
     serviceConfig = {
       Type = "simple";
       User = "hspasqui";

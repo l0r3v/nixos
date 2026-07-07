@@ -259,7 +259,7 @@ in {
   # Overlay for mealie-mcp-server
   nixpkgs.overlays = [
     (final: prev: {
-      mealie-mcp-server = prev.callPackage ../pkgs/mealie-mcp-server { };
+      mealie-mcp-server = prev.callPackage ../pkgs/mealie-mcp-server {};
     })
     inputs.hermes-webui.overlays.default
   ];

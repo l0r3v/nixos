@@ -3,8 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   webuiPort = 8787;
   webuiStateDir = "/home/hspasqui/.hermes/webui";
 
