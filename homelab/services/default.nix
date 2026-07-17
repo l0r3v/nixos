@@ -7,7 +7,7 @@
     ./actual-budget.nix
     ./authentik.nix
     ./caddy.nix
-    ./calibre-web.nix
+    ./kavita.nix
     ./cloudflared.nix
     ./davis.nix
     ./fisicatecnica-wiki.nix
