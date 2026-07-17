@@ -87,6 +87,12 @@ in {
       voice = {
         auto_tts = false;
       };
+      auxiliary = {
+        compression = {
+          provider = "auto";
+          timeout = 30;
+        };
+      };
       mcp_servers = {
         sparkyfitness = {
           url = "http://localhost:3004/mcp";
