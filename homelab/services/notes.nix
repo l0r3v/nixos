@@ -19,7 +19,9 @@ in {
 
   systemd.services.caddy.serviceConfig.ProtectHome = lib.mkForce false;
 
-  # Ensure Caddy can traverse /home/hspasqui (runs after every deploy)
+  # Ensure Caddy can traverse /home/hspasqui
+  users.users.caddy.extraGroups = ["users"];
+
   systemd.services.fix-caddy-home = {
     description = "Fix /home/hspasqui permission for Caddy";
     after = ["nixos-activation.service"];
