@@ -90,7 +90,7 @@
       inputs.llm-agents.follows = "nixpkgs";
     };
     sparkyfitness = {
-      url = "github:CodeWithCJ/SparkyFitness";
+      url = "github:l0r3v/SparkyFitness";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
