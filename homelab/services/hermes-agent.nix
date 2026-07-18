@@ -32,6 +32,7 @@ in {
     "hermes/sparky_key" = {};
     "hermes/mealie_token" = {};
     "uptime_kuma/api_key" = {};
+    "hermes/hevy_key" = {};
   };
   sops.templates."hermes-env".content = ''
     OPENCODE_GO_API_KEY=${config.sops.placeholder."hermes/opencode_api"}
@@ -45,6 +46,7 @@ in {
     UPTIME_KUMA_API_KEY=${config.sops.placeholder."uptime_kuma/api_key"}
     UPTIME_KUMA_URL=https://status.pasqui.casa
     SPARKYFITNESS_API_KEY=${config.sops.placeholder."hermes/sparky_key"}
+    HEVY_API_KEY=${config.sops.placeholder."hermes/hevy_key"}
     MEALIE_API_KEY=${config.sops.placeholder."hermes/mealie_token"}
     MEALIE_BASE_URL=https://ricette.pasqui.casa
     TERMINAL_ENV=local
