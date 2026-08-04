@@ -1692,15 +1692,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1784309165,
-        "narHash": "sha256-3jT2s9gBnGHW00Zq1WAqjkh5LGfMIAP69rpt58qGHys=",
-        "owner": "l0r3v",
+        "lastModified": 1785004462,
+        "narHash": "sha256-CjOrwcWsYYSNoENS2xESx6RwLlk8b58K45T8Gfk/OKE=",
+        "owner": "CodeWithCJ",
         "repo": "SparkyFitness",
-        "rev": "39e326d123aa4d22bfd8d1b4283f0dbf3e717202",
+        "rev": "b7dabb43da8987997a574cc180e1970de53b89b8",
         "type": "github"
       },
       "original": {
-        "owner": "l0r3v",
+        "owner": "CodeWithCJ",
         "repo": "SparkyFitness",
         "type": "github"
       }
