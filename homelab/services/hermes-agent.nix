@@ -31,6 +31,11 @@ in {
     "hermes/groq_key" = {};
     "hermes/sparky_key" = {};
     "hermes/mealie_token" = {};
+    "hermes/strava_client_id" = {};
+    "hermes/strava_client_secret" = {};
+    "hermes/strava_access_token" = {};
+    "hermes/strava_refresh_token" = {};
+    "hermes/gemini_key" = {};
     "uptime_kuma/api_key" = {};
     "hermes/hevy_key" = {};
   };
@@ -43,6 +48,11 @@ in {
     VAULTWARDEN_PASS=${config.sops.placeholder."hermes/vault_pass"}
     PAPERLESS_TOKEN=${config.sops.placeholder."hermes/paperless_token"}
     GROQ_API_KEY=${config.sops.placeholder."hermes/groq_key"}
+    GEMINI_API_KEY=${config.sops.placeholder."hermes/gemini_key"}
+    STRAVA_CLIENT_ID=${config.sops.placeholder."hermes/strava_client_id"}
+    STRAVA_CLIENT_SECRET=${config.sops.placeholder."hermes/strava_client_secret"}
+    STRAVA_ACCESS_TOKEN=${config.sops.placeholder."hermes/strava_access_token"}
+    STRAVA_REFRESH_TOKEN=${config.sops.placeholder."hermes/strava_refresh_token"}
     UPTIME_KUMA_API_KEY=${config.sops.placeholder."uptime_kuma/api_key"}
     UPTIME_KUMA_URL=https://status.pasqui.casa
     SPARKYFITNESS_API_KEY=${config.sops.placeholder."hermes/sparky_key"}
@@ -71,6 +81,18 @@ in {
         max_turns = 150;
         gateway_timeout = 1800;
       };
+      compression = {
+        enabled = true;
+        threshold = 0.85;
+        target_ratio = 0.2;
+        protect_last_n = 20;
+        hygiene_hard_message_limit = 400;
+        protect_first_n = 3;
+        abort_on_summary_failure = false;
+        codex_gpt55_autoraise = true;
+        summary_model = "deepseek-v4-pro";
+        in_place = true;
+      };
       stt = {
         enabled = true;
         provider = "groq";
@@ -92,7 +114,20 @@ in {
       auxiliary = {
         compression = {
           provider = "auto";
-          timeout = 30;
+          model = "deepseek-v4-flash";
+          timeout = 600;
+        };
+        web_extract = {
+          provider = "groq";
+          model = "llama-3.3-70b-versatile";
+        };
+        title_generation = {
+          provider = "groq";
+          model = "llama-3.3-70b-versatile";
+        };
+        vision = {
+          provider = "gemini";
+          model = "gemini-3-flash-preview";
         };
       };
       mcp_servers = {
@@ -118,6 +153,17 @@ in {
           env = {
             FORGEJO_URL = "https://forge.pasqui.casa";
             FORGEJO_ACCESS_TOKEN = "\${FORGEJO_ACCESS_TOKEN}";
+          };
+        };
+        strava = {
+          command = "${pkgs.nodejs}/bin/npx";
+          args = ["-y" "@r-huijts/strava-mcp-server"];
+          env = {
+            STRAVA_CLIENT_ID = "\${STRAVA_CLIENT_ID}";
+            STRAVA_CLIENT_SECRET = "\${STRAVA_CLIENT_SECRET}";
+            STRAVA_ACCESS_TOKEN = "\${STRAVA_ACCESS_TOKEN}";
+            STRAVA_REFRESH_TOKEN = "\${STRAVA_REFRESH_TOKEN}";
+            ROUTE_EXPORT_PATH = "/home/hspasqui/workspace/strava-exports";
           };
         };
       };
