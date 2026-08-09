@@ -55,9 +55,9 @@ in {
   ];
   services.xserver.videoDrivers = ["nvidia"];
 
-  # Bootloader.
+  # Bootloader: il disco di boot è sdb (MBR, root su sdb1) — sda è il disco dati GPT
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.device = "/dev/sdb";
   boot.loader.grub.useOSProber = true;
 
   networking.hostName = "homelab"; # Define your hostname.
