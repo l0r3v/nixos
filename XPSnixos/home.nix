@@ -8,6 +8,7 @@ in {
   home = {
     username = "lorev";
     homeDirectory = "/home/lorev";
+    pointerCursor.enable = true;
     packages = [
       #FROM FLAKES
       inputs.yt-x.packages."${system}".default

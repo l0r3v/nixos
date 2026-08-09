@@ -5,32 +5,29 @@
   ...
 }: let
   cfg = config.modules.programs.texlive;
-  tex = pkgs.texlive.combine {
-    inherit
-      (pkgs.texlive)
-      scheme-small
-      collection-langitalian
-      latexmk
-      titlesec
-      titling
-      pgfplots
-      wrapfig
-      import
-      cancel
-      xifthen
-      transparent
-      cleveref
-      ifmtarg
-      l3packages
-      tcolorbox
-      adjustbox
-      physics
-      tikzfill
-      pdfcol
-      listingsutf8
-      xargs
-      ;
-  };
+  tex = pkgs.texliveSmall.withPackages (ps: [
+    ps.scheme-small
+    ps.collection-langitalian
+    ps.latexmk
+    ps.titlesec
+    ps.titling
+    ps.pgfplots
+    ps.wrapfig
+    ps.import
+    ps.cancel
+    ps.xifthen
+    ps.transparent
+    ps.cleveref
+    ps.ifmtarg
+    ps.l3packages
+    ps.tcolorbox
+    ps.adjustbox
+    ps.physics
+    ps.tikzfill
+    ps.pdfcol
+    ps.listingsutf8
+    ps.xargs
+  ]);
 in {
   options.modules.programs.texlive.enable = lib.mkEnableOption "texlive";
   config = lib.mkIf cfg.enable {
