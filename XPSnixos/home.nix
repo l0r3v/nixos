@@ -64,7 +64,6 @@ in {
       pkgs.seahorse
       pkgs.lazygit
       pkgs.pinentry-curses
-      pkgs.rbw
       pkgs.cloudflared
       pkgs.libqalculate
       pkgs.cider-2

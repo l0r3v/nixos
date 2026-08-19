@@ -32,6 +32,7 @@
       nixvim.enable = true;
       obsidian.enable = true;
       rofi.enable = true;
+      rofi-rbw.enable = true;
       ssh.enable = true;
       texlive.enable = true;
       thunar.enable = true;

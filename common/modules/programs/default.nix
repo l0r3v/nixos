@@ -10,6 +10,7 @@
     ./nixvim.nix
     ./obsidian.nix
     ./rofi
+    ./rofi-rbw.nix
     ./ssh.nix
     ./texlive.nix
     ./thunar.nix

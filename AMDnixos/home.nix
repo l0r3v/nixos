@@ -67,8 +67,6 @@ in {
       pkgs.seahorse
       pkgs.lazygit
       pkgs.pinentry-curses
-      pkgs.rbw
-      pkgs.rofi-rbw-wayland
       pkgs.cloudflared
       pkgs.libqalculate
       pkgs.cider-2
