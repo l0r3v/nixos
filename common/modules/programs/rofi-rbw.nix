@@ -17,8 +17,6 @@ in {
       ];
       home.file.".config/rofi-rbw.rc".text = ''
         action = type
-        target = [username, password]
-        display-fields = [name_with_folder, user]
         clear-after = 20
         use-notify-send = true
       '';
