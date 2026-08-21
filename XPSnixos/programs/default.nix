@@ -4,6 +4,5 @@
     ./alacritty.nix
     ./mpv.nix
     ./rbw.nix
-    ./qutebrowser
   ];
 }

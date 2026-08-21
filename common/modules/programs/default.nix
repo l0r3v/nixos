@@ -9,6 +9,7 @@
     ./kanata.nix
     ./nixvim.nix
     ./obsidian.nix
+    ./qutebrowser
     ./rofi
     ./rofi-rbw.nix
     ./ssh.nix

@@ -31,6 +31,7 @@
       tmux.enable = true;
       nixvim.enable = true;
       obsidian.enable = true;
+      qutebrowser.enable = false;
       rofi.enable = true;
       rofi-rbw.enable = true;
       ssh.enable = true;
