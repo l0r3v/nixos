@@ -92,7 +92,7 @@ in {
         protect_first_n = 3;
         abort_on_summary_failure = false;
         codex_gpt55_autoraise = true;
-        summary_model = "deepseek-v4-pro";
+        summary_model = "gemini-3-flash-preview";
         in_place = true;
       };
       stt = {
@@ -115,8 +115,9 @@ in {
       };
       auxiliary = {
         compression = {
-          provider = "auto";
-          model = "deepseek-v4-flash";
+          provider = "gemini";
+          model = "gemini-3-flash-preview";
+          base_url = "";
           timeout = 600;
         };
         web_extract = {
