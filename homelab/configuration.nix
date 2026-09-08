@@ -22,15 +22,12 @@ in {
 
   modules.nix-helpers.enable = true;
   modules.programs.tmux.enable = true;
+  services.xserver.videoDrivers = ["nouveau"];
+
   hardware = {
     graphics.enable = true;
-    nvidia-container-toolkit.enable = true;
-    nvidia = {
-      modesetting.enable = true;
-      open = false;
-      nvidiaSettings = false;
-      package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
-    };
+    # opzionale per app a 32 bit (es. Steam / Wine):
+    # graphics.enable32Bit = true;
   };
   programs.ssh.extraConfig = ''
     Host eu.nixbuild.net
@@ -53,7 +50,6 @@ in {
       size = 8192;
     }
   ];
-  services.xserver.videoDrivers = ["nvidia"];
 
   # Bootloader: il disco di boot è sdb (MBR, root su sdb1) — sda è il disco dati GPT
   boot.loader.grub.enable = true;
