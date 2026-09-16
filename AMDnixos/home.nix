@@ -63,7 +63,6 @@ in {
       })
       pkgs.aria2
       pkgs.vorta
-      pkgs.gcr
       pkgs.seahorse
       pkgs.lazygit
       pkgs.pinentry-curses
