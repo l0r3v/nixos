@@ -15,6 +15,8 @@ in {
       inputs.inkscape-figures.packages."${system}".inkscape-figures
       inputs.university-setup.packages."${system}".default
 
+      pkgs.inkscape
+
       pkgs.htop-vim # system monitor with vim keybindings
       pkgs.eza #modern replacement for ls
       pkgs.fzf #cli fuzzy finder
