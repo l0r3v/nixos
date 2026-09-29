@@ -14,6 +14,7 @@ in {
       inputs.yt-x.packages."${system}".default
       inputs.inkscape-figures.packages."${system}".inkscape-figures
       inputs.university-setup.packages."${system}".default
+      inputs.elegoo-slicer.packages.${system}.default
 
       pkgs.inkscape
 
@@ -51,6 +52,7 @@ in {
       pkgs.audacity
       pkgs.latexrun
       pkgs.xdotool
+      pkgs.freecad
       (pkgs.symlinkJoin {
         name = "owncloud-client-wrapped";
         paths = [pkgs.owncloud-client];

@@ -14,6 +14,7 @@ in {
       inputs.yt-x.packages."${system}".default
       inputs.inkscape-figures.packages."${system}".inkscape-figures
       inputs.university-setup.packages."${system}".default
+      inputs.elegoo-slicer.packages.${system}.default
 
       pkgs.htop-vim # system monitor with vim keybindings
       pkgs.eza #modern replacement for ls
@@ -71,6 +72,7 @@ in {
       pkgs.feishin
       pkgs.power-profiles-daemon
       pkgs.vscodium
+      pkgs.freecad
     ]; #END OF PACKAGES
   };
 

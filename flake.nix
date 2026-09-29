@@ -93,6 +93,10 @@
       url = "github:CodeWithCJ/SparkyFitness";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    elegoo-slicer = {
+      url = "git+https://forge.pasqui.casa/hermes-bot/elegoo-slicer";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
