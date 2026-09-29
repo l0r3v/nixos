@@ -1298,11 +1298,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1780389925,
-        "narHash": "sha256-cOnjOseyo+E1PSxmh1k6Vc2Bxm+egKFbr5GwmI6Jle8=",
+        "lastModified": 1789543290,
+        "narHash": "sha256-zqYn4XU98uNJVYZTrQNo6xWYoVjKbNQubMtRJgHLiqg=",
         "ref": "refs/heads/main",
-        "rev": "7e4911708c4ff7438c7b829a5662433a29fc0cd3",
-        "revCount": 152,
+        "rev": "f722a1e690d7ac9b842702fc89d824a4c78cca6c",
+        "revCount": 154,
         "type": "git",
         "url": "https://forge.pasqui.casa/lorev/nixvim"
       },
