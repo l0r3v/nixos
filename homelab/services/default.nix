@@ -13,7 +13,7 @@
     ./fisicatecnica-wiki.nix
     ./forgejo.nix
     ./hermes-agent.nix
-    ./hermes-webui.nix
+    #./hermes-webui.nix
     ./immich.nix
     #./lidarr.nix
     ./mealie.nix
@@ -26,6 +26,7 @@
     ./postgresql.nix
     ./prowlarr.nix
     ./sparkyfitness.nix
+    #./vaultwarden.nix
     ./wyoming.nix
   ];
 }

@@ -30,13 +30,15 @@ in {
     SMTP_SSL=true
     SMTP_FROM=security@pasqui.casa
     SMTP_FROM_NAME="Vault di Casa Pasqui"
-    SSO_ENABLED=true
+    SSO_ENABLED=false
     SSO_AUTHORITY=https://auth.pasqui.casa/application/o/vaultwarden/
     SSO_SCOPES="openid email profile offline_access"
     SSO_ALLOW_UNKNOWN_EMAIL_VERIFICATION=false
     SSO_CLIENT_CACHE_EXPIRATION=0
-    # Set to true to disable email+master password login and require SSO
-    SSO_ONLY=true
+    # SSO disattivato per ora: login normale (email + master password) garantito.
+    # I valori SSO restano configurati per un futuro rientro. Da abilitare SOLO quando
+    # l'SSO con authentik funziona, altrimenti si rischia il lockout.
+    SSO_ONLY=false
     # Match first SSO login to existing account by email
     SSO_SIGNUPS_MATCH_EMAIL=true
   '';
