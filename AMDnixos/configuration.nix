@@ -174,7 +174,6 @@
 
     libsForQt5.qtstyleplugin-kvantum
 
-    gemini-cli
     clinfo
     vim
     openrgb-with-all-plugins
@@ -205,7 +204,7 @@
     playerctl
     yafc-ce
   ];
-  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+  nix.settings.nix-path = ["nixpkgs=${inputs.nixpkgs}"];
 
   fonts.packages = with pkgs; [
     fira-code

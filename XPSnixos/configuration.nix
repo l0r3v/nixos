@@ -276,7 +276,7 @@
     yafc-ce
     tigervnc
   ];
-  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+  nix.settings.nix-path = ["nixpkgs=${inputs.nixpkgs}"];
 
   fonts.packages = with pkgs; [
     fira-code
